@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Function to get query parameter value from URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the token from the URL
+        var token = getQueryParam('token');
+
+        // Check if the token is correct
+        if (token !== 'secretcode') {
+            // If the token is incorrect or missing, show an alert and redirect
+            alert("Access Denied! Invalid or missing token.");
+            window.location.href = "https://markmajcherczykolczak.com/transfer-blueprint.html"; // Redirect to transfer-blueprint.html
+        } else {
+            // If the token is correct, display the content
+            document.body.innerHTML = `
+                <h1>Welcome to the Protected Page</h1>
+                <div class="content">
+                    <p>This page is protected and only visible with the correct token in the URL!</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
