@@ -30,18 +30,12 @@
         var token = getQueryParam('token');
 
         // Check if the token is correct
-        if (token !== 'secretcode') {
-            // If the token is incorrect or missing, show an alert and redirect
-            alert("Access Denied! Invalid or missing token.");
-            window.location.href = "https://markmajcherczykolczak.com/transfer-blueprint.html"; // Redirect to transfer-blueprint.html
+        if (token === 'secretcode') {
+            // If the token is correct, redirect to transfer-blueprint.html
+            window.location.href = "https://markmajcherczykolczak.com/transfer-blueprint.html";
         } else {
-            // If the token is correct, display the content
-            document.body.innerHTML = `
-                <h1>Welcome to the Protected Page</h1>
-                <div class="content">
-                    <p>This page is protected and only visible with the correct token in the URL!</p>
-                </div>
-            `;
+            // If the token is incorrect or missing, redirect back to the homepage
+            window.location.href = "https://markmajcherczykolczak.com";
         }
     </script>
 </body>
