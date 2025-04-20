@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Majcherczyk Digital Shopify UI Cheatsheet</title>
+  <style>
+    :root {
+      --marquee-speed: 10s;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e1a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #3a2050;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .announcement-bar--inner {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      max-width: none;
+      white-space: nowrap;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .announcement-bar--inner.direction-left > div {
+      animation: marquee-left var(--marquee-speed) linear infinite;
+    }
+
+    @keyframes marquee-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .announcement-bar--inner > div {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      will-change: transform;
+    }
+
+    .announcement-bar--inner:hover > div {
+      animation-play-state: paused;
+    }
+
+    main {
+      padding: 120px 20px 40px;
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section {
+      background: #1f1f2e;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #ff79c6;
+    }
+
+    pre {
+      background: #282a36;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #50fa7b;
+      color: #000;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="https://zzm6cb-da.myshopify.com/collections/%F0%9F%8C%B8-spring-collection-mindmatchup-%F0%9F%8C%B8/spring" style="color: inherit; text-decoration: none;">
+      <div class="announcement-bar--inner direction-left">
+        <div>YOUR BANNER TEXT HERE</div>
+        <div>YOUR BANNER TEXT HERE</div>
+        <div>YOUR BANNER TEXT HERE</div>
+        <div>YOUR BANNER TEXT HERE</div>
+        <div>YOUR BANNER TEXT HERE</div>
+      </div>
+    </a>
+  </header>
+
+  <main>
+    <h1>🧠 Majcherczyk Digital Shopify UI Cheatsheet</h1>
+
+    <section>
+      <h2>Rolling Banner</h2>
+      <pre><code id="code-rolling-banner">&lt;!-- Paste this just before &lt;/head&gt; --&gt;
+&lt;style&gt;
+  :root {
+    --marquee-speed: 10s;
+  }
+  #announcement-bar {
+    background-color: #3a2050;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  #announcement-bar a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .announcement-bar--inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+    will-change: transform;
+  }
+  .announcement-bar--inner.direction-left &gt; div {
+    animation: marquee-left var(--marquee-speed) linear infinite;
+  }
+  @keyframes marquee-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .announcement-bar--inner &gt; div {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    will-change: transform;
+  }
+  .announcement-bar--inner:hover &gt; div {
+    animation-play-state: paused;
+  }
+&lt;/style&gt;
+&lt;div id="announcement-bar"&gt;
+  &lt;a href="https://zzm6cb-da.myshopify.com/collections/%F0%9F%8C%B8-spring-collection-mindmatchup-%F0%9F%8C%B8/spring"&gt;
+    &lt;div class="announcement-bar--inner direction-left"&gt;
+      &lt;div&gt;YOUR BANNER TEXT HERE&lt;/div&gt;
+      &lt;div&gt;YOUR BANNER TEXT HERE&lt;/div&gt;
+      &lt;div&gt;YOUR BANNER TEXT HERE&lt;/div&gt;
+      &lt;div&gt;YOUR BANNER TEXT HERE&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code>
+<button class="copy-btn" onclick="copyCode('code-rolling-banner', this)">Copy</button>
+      </pre>
+    </section>
+  </main>
+
+  <footer>
+    2025 Majcherczyk Digital
+  </footer>
+
+  <script>
+    function copyCode(id, btn) {
+      const el = document.getElementById(id);
+      const code = el.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.innerText = "Copied! ✅";
+        setTimeout(() => {
+          btn.innerText = "Copy";
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
