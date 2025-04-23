@@ -330,8 +330,7 @@ footer p {
         }
 
         function generatePDF() {
-            const userPassword = prompt("Enter password to generate PDF:");
-            if (userPassword === password) {
+           
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
 
