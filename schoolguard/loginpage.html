@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | SchoolGuard</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #3b82f6;
+      --text-color: #1f2937;
+      --bg-color: #ffffff;
+      --card-bg: #f3f4f6;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    form {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    label {
+      font-size: 1.1em;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 20px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 0;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: var(--transition);
+    }
+
+    button:hover {
+      background-color: var(--secondary-color);
+      transform: scale(1.05);
+    }
+
+    .error-message {
+      color: red;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f9fafb;
+      color: #4b5563;
+      transition: all 0.3s ease-in-out;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    footer .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease-in-out;
+    }
+
+    footer a:hover {
+      color: #1d4ed8;
+      transform: scale(1.05);
+    }
+
+    footer p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h2>Welcome Back to SchoolGuard</h2>
+  <form id="loginForm">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">Login</button>
+    <div id="errorMessage" class="error-message">Incorrect username or password. Please try again.</div>
+  </form>
+
+  <footer>
+    <p>2025 <a href="https://www.markmajcherczykolczak.com" target="_blank">Majcherczyk Digital</a>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const logins = {
+      "polishschoolealing": { password: "polishschoolealing", redirect: "polishschoolealing.html" },
+      "schoolB": { password: "abcd", redirect: "schoolB.html" },
+    };
+
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMessage = document.getElementById("errorMessage");
+
+      errorMessage.style.display = "none";
+
+      if (logins[username] && logins[username].password === password) {
+        window.location.href = logins[username].redirect;
+      } else {
+        errorMessage.style.display = "block";
+      }
+    });
+
+    document.getElementById("loginForm").addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        document.querySelector("button[type='submit']").click();
+      }
+    });
+  </script>
+</body>
+</html>
