@@ -1,0 +1,369 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polish School Ealing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .button {
+            background-color: #ff0000; /* Red background */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #b30000; /* Darker red */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .canvas-container {
+            margin-top: 20px;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            touch-action: none; /* Disable default touch actions */
+        }
+
+        #selected-name {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #time {
+            font-size: 18px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+     footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9fafb;
+  color: #4b5563;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+footer .contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+footer a:hover {
+  color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+footer p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+    </style>
+</head>
+<body>
+    <div id="landing-page">
+        <h1>Signature Capture App</h1>
+        <button class="button" onclick="showNameSelection()">Select Name</button>
+        <button class="button" onclick="generatePDF()">Generate PDF</button>
+    </div>
+
+    <div id="name-selection" class="hidden">
+        <h2>Select First Letter of Surname</h2>
+        <div id="surname-selection"></div>
+        <button class="button" onclick="goToLandingPage()">Back to Landing Page</button>
+    </div>
+
+    <div id="first-name-selection" class="hidden">
+        <h2>Select First Letter of First Name</h2>
+        <div id="first-name-buttons"></div>
+        <button class="button" onclick="goBackToSurname()">Back</button>
+    </div>
+
+    <div id="name-choices" class="hidden">
+        <h2>Select Your Name</h2>
+        <div id="name-list"></div>
+        <button class="button" onclick="goBackToFirstName()">Back</button>
+    </div>
+
+    <div id="signature-page" class="hidden">
+        <h2 id="selected-name"></h2>
+        <canvas id="signatureCanvas" width="400" height="200"></canvas>
+        <div>
+            <button class="button" onclick="signIn()">Sign In</button>
+            <button class="button" onclick="signOut()">Sign Out</button>
+        </div>
+        <div class="canvas-container">
+            <button class="button" onclick="clearSignature()">Clear Signature</button>
+        </div>
+    </div>
+
+    <div id="time"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        let signatures = {
+            signIn: [],
+            signOut: []
+        };
+        let selectedName = '';
+        let currentTime = '';
+        const password = 'test'; // Predefined password for generating PDF
+    
+    const nameDatabase = {
+    B: ['Szymon Baranski', 'Alan Bartusik', 'Rachela Baj', 'Magdalena Bahadrian', 'Katarzyna Blaszczuk', 'Maciej Behnke', 'Aneta Bogdanska', 'Malgorzata Bystrzynska'],
+    C: ['Natalia Chomiczewska', 'Natalia Citko', 'Agnieszka Chmiel-Stanko', 'Wojciech Chmielewski', 'Anna Choroszczynska'],
+    D: ['Izabela Dmytrasz', 'Aleksander Dzwonek', 'Agata Dabkowska', 'Mariusz Milwicz Vel Delach', 'Marzena Dobrowolska', 'Pawel Daszynski'],
+    F: ['Pawel Fedorowicz-Jackowski', 'Natalie Fernandes', 'Tomasz Filipkiewicz'],
+    G: ['Jolanta Grzybowska-Szczurek'],
+    H: ['Agnieszka Haduch', 'Karolina Hernandez'],
+    J: ['Nicole Janik', 'Monika Janeczek', 'Ewa Jackowska', 'Joanna Jekal', 'Anna Juchum', 'Emilia Jaworska', 'Agnieszka Jaslar'],
+    K: ['Maja Krukowska', 'Marcel Krukowska', 'Nina Kaniewska', 'Emilia Kaim', 'Monika Kolata', 'Aneta Karnas', 'Emilia Kieliszek', 'Ewa Klimek', 'Martina Kocinska', 'Katarzyna Kocol', 'Aleksandra Kowalska', 'Pawel Kowalski', 'Sylwia Klocek'],
+    L: ['Halina Ledzianowska', 'Anna Likos', 'Iwona Lukomska-Read', 'Barbara Luszczek', 'Krystyna Lukasiewicz'],
+    M: ['Jakub Mejdus', 'Agnieszka Mejdus', 'Martyna Mazurek', 'Anna Monczynska-Szewczyk', 'Aneta Mes'],
+    N: ['Julia Nalepa', 'Miroslawa Nowickka', 'Malgorzata Nawrocka', 'Magdalena Nurkowska'],
+    P: ['Izabela Pakulska', 'Romulad Piosik', 'Iwona Paliwoda', 'Anna Poszalska', 'Elzbieta Polchlopek', 'Monika Przelozynska'],
+    S: ['Aleksander Siudmak', 'Julia Szewczyk', 'Dominika Schoenborn-Joseph', 'Aneta Zakrocka dos Santos', 'Sylwia Spek', 'Pawel Skiba', 'Justyna Sierant', 'Malgorzata Siudmak', 'Magdalena Skiba', 'Aneta Soszynska', 'Elzbieta Sygut-Skadlubowicz', 'Ewelina Tarasek dos Santos', 'Katarzyna Sienkiewicz', 'Jerzy Stera', 'Monika Szlek', 'Anna Sobania', 'Iwona Szyszko'],
+    T: ['Marta Tatol'],
+    W: ['Alizee Winjarska', 'Olivia-Lilly Wojtowicz', 'Hanna Wos', 'Monika Wojtun-Sieminska', 'Zaneta Wereda', 'Zaneta Wereda', 'Patrycja Winiarz'],
+    Z: ['Zuzanna Zarajczyk', 'Brygida Zajdel-Morus', 'Bogumila Zaluska', 'Joanna Zbrzyzna'],
+    // Add more names as needed
+};
+
+
+
+        // Example letter selections (not names)
+        const surnameLetters = Array.from(Array(26)).map((_, i) => String.fromCharCode(65 + i));
+        const firstNameLetters = Array.from(Array(26)).map((_, i) => String.fromCharCode(65 + i));
+
+        function showNameSelection() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('name-selection').classList.remove('hidden');
+
+            // Create surname selection buttons
+            const surnameSelection = document.getElementById('surname-selection');
+            surnameSelection.innerHTML = ''; // Clear previous buttons
+            surnameLetters.forEach(letter => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerText = letter;
+                button.onclick = () => showFirstNameSelection(letter);
+                surnameSelection.appendChild(button);
+            });
+        }
+
+        function showFirstNameSelection(surnameLetter) {
+            const firstNameButtons = document.getElementById('first-name-buttons');
+            firstNameButtons.innerHTML = `<h2> Surname Initial (Letter ${surnameLetter})</h2>`;
+
+            firstNameLetters.forEach(letter => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerText = letter;
+                button.onclick = () => showNameChoices(surnameLetter, letter);
+                firstNameButtons.appendChild(button);
+            });
+
+            document.getElementById('name-selection').classList.add('hidden');
+            document.getElementById('first-name-selection').classList.remove('hidden');
+        }
+
+        function showNameChoices(surnameLetter, firstLetter) {
+            const fullNames = nameDatabase[surnameLetter] || [];
+            const nameList = document.getElementById('name-list');
+            nameList.innerHTML = ''; // Clear previous names
+
+            // Filter names based on selected initials
+            const filteredNames = fullNames.filter(name => name.startsWith(firstLetter));
+
+            if (filteredNames.length > 0) {
+                filteredNames.forEach(name => {
+                    const button = document.createElement('button');
+                    button.className = 'button';
+                    button.innerText = name;
+                    button.onclick = () => selectName(name);
+                    nameList.appendChild(button);
+                });
+            } else {
+                nameList.innerHTML = `<p>No names found for the initials ${surnameLetter} ${firstLetter}</p>`;
+            }
+
+            document.getElementById('first-name-selection').classList.add('hidden');
+            document.getElementById('name-choices').classList.remove('hidden');
+        }
+
+        function goBackToFirstName() {
+            document.getElementById('name-choices').classList.add('hidden');
+            document.getElementById('first-name-selection').classList.remove('hidden');
+        }
+
+        function goBackToSurname() {
+            document.getElementById('first-name-selection').classList.add('hidden');
+            document.getElementById('name-selection').classList.remove('hidden');
+        }
+
+        function goToLandingPage() {
+            document.getElementById('name-selection').classList.add('hidden');
+            document.getElementById('first-name-selection').classList.add('hidden');
+            document.getElementById('name-choices').classList.add('hidden');
+            document.getElementById('signature-page').classList.add('hidden');
+            document.getElementById('landing-page').classList.remove('hidden');
+        }
+
+        function selectName(name) {
+            selectedName = name;
+            document.getElementById('selected-name').innerText = selectedName;
+            document.getElementById('name-choices').classList.add('hidden');
+            document.getElementById('signature-page').classList.remove('hidden');
+            updateTime();
+        }
+
+        function updateTime() {
+            currentTime = new Date().toLocaleString();
+            document.getElementById('time').innerText = currentTime;
+            setTimeout(updateTime, 1000); // Update every second
+        }
+
+        function initSignature() {
+            const canvas = document.getElementById('signatureCanvas');
+            const ctx = canvas.getContext("2d");
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "#000";
+            let drawing = false;
+            let currentX, currentY;
+
+            function getPosition(event) {
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: event.touches ? event.touches[0].clientX - rect.left : event.clientX - rect.left,
+                    y: event.touches ? event.touches[0].clientY - rect.top : event.clientY - rect.top
+                };
+            }
+
+            function startDrawing(event) {
+                const pos = getPosition(event);
+                currentX = pos.x;
+                currentY = pos.y;
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(currentX, currentY);
+            }
+
+            function drawLine(event) {
+                if (!drawing) return;
+                const pos = getPosition(event);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                currentX = pos.x;
+                currentY = pos.y;
+            }
+
+            function stopDrawing() {
+                drawing = false;
+                ctx.closePath();
+            }
+
+            canvas.addEventListener("touchstart", startDrawing);
+            canvas.addEventListener("mousedown", startDrawing);
+            canvas.addEventListener("touchmove", drawLine);
+            canvas.addEventListener("mousemove", drawLine);
+            canvas.addEventListener("touchend", stopDrawing);
+            canvas.addEventListener("mouseup", stopDrawing);
+        }
+
+        function signIn() {
+            if (!selectedName) return;
+            const signatureCanvas = document.getElementById('signatureCanvas');
+            const signatureDataUrl = signatureCanvas.toDataURL();
+            signatures.signIn.push({ name: selectedName, signature: signatureDataUrl, time: currentTime });
+            clearSignature();
+            goToLandingPage(); // Automatically return to landing page
+        }
+
+        function signOut() {
+            if (!selectedName) return;
+            const signatureCanvas = document.getElementById('signatureCanvas');
+            const signatureDataUrl = signatureCanvas.toDataURL();
+            signatures.signOut.push({ name: selectedName, signature: signatureDataUrl, time: currentTime });
+            clearSignature();
+            goToLandingPage(); // Automatically return to landing page
+        }
+
+        function clearSignature() {
+            const canvas = document.getElementById('signatureCanvas');
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function generatePDF() {
+            const userPassword = prompt("Enter password to generate PDF:");
+            if (userPassword === password) {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                // Add Sign In page
+                doc.text("Sign In", 10, 10);
+                signatures.signIn.forEach((entry, index) => {
+                    const yPosition = 20 + (index * 60);
+                    doc.text(`Name: ${entry.name}`, 10, yPosition);
+                    doc.text(`Time: ${entry.time}`, 10, yPosition + 10);
+                    doc.addImage(entry.signature, 'PNG', 10, yPosition + 20, 80, 40);
+                });
+                doc.addPage();
+
+                // Add Sign Out page
+                doc.text("Sign Out", 10, 10);
+                signatures.signOut.forEach((entry, index) => {
+                    const yPosition = 20 + (index * 60);
+                    doc.text(`Name: ${entry.name}`, 10, yPosition);
+                    doc.text(`Time: ${entry.time}`, 10, yPosition + 10);
+                    doc.addImage(entry.signature, 'PNG', 10, yPosition + 20, 80, 40);
+                });
+
+                doc.save('signatures.pdf');
+                goToLandingPage(); // Return to landing page after generating PDF
+            } else {
+                goToLandingPage(); // Return to landing page on incorrect password
+            }
+        }
+
+        initSignature();
+    </script>
+ <footer>
+  <p>2025 <a href="https://www.markmajcherczykolczak.com" target="_blank">Majcherczyk Digital</a>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
