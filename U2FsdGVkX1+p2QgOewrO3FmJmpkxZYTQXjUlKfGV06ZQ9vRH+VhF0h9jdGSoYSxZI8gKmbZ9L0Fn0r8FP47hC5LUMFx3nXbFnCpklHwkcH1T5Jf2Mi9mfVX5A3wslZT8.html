@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BorrowBase Email Hub</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .input-box {
+      border: 2px solid #0070f3;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f0f8ff;
+      margin-top: 0.5rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.4rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .email-box {
+      position: relative;
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-family: monospace;
+      margin-top: 1rem;
+      min-height: 150px;
+    }
+    .copy-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 1rem;
+      color: #0070f3;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .copy-btn:hover {
+      color: #0056b3;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📨 BorrowBase Email Hub</h1>
+
+    <div class="input-box">
+      <label for="borrowerUsername">Borrower Username:</label>
+      <input type="text" id="borrowerUsername" placeholder="@borrower123" />
+    </div>
+
+    <div class="input-box">
+      <label for="lenderUsername">Lender Username:</label>
+      <input type="text" id="lenderUsername" placeholder="@lender456" />
+    </div>
+
+    <div class="input-box">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" placeholder="e.g. Cordless Drill" />
+    </div>
+
+    <div class="input-box">
+      <label for="pickupLocation">Pickup Location (optional):</label>
+      <input type="text" id="pickupLocation" placeholder="e.g. 123 Borrow St, London" />
+    </div>
+
+    <div class="input-box">
+      <label for="pickupTime">Pickup Time (optional):</label>
+      <input type="text" id="pickupTime" placeholder="e.g. Saturday at 2:00 PM" />
+    </div>
+
+    <button onclick="generateEmails()">✉️ Generate Emails</button>
+
+    <h2>📧 Borrower Email</h2>
+    <div class="email-box" id="borrowerOutput">
+      (Fill in above and click Generate)
+      <span class="copy-btn" onclick="copyToClipboard('borrowerOutput')">Copy</span>
+    </div>
+
+    <h2>📧 Lender Email</h2>
+    <div class="email-box" id="lenderOutput">
+      (Fill in above and click Generate)
+      <span class="copy-btn" onclick="copyToClipboard('lenderOutput')">Copy</span>
+    </div>
+
+    <footer>2025 Majcherczyk Digital. All rights reserved.</footer>
+  </div>
+
+  <script>
+    function generateEmails() {
+      const borrowerUsername = document.getElementById("borrowerUsername").value.trim();
+      const lenderUsername = document.getElementById("lenderUsername").value.trim();
+      const itemName = document.getElementById("itemName").value.trim();
+      const pickupLocation = document.getElementById("pickupLocation").value.trim();
+      const pickupTime = document.getElementById("pickupTime").value.trim();
+
+      let borrowerText = `Hi ${borrowerUsername},
+
+Thanks for your request to borrow: ${itemName} ✅`;
+
+      if (pickupTime || pickupLocation) {
+        borrowerText += `
+
+Your lender will soon confirm the pickup details.
+Requested Pickup Time: ${pickupTime || '—'}
+Suggested Pickup Location: ${pickupLocation || '—'}`;
+      }
+
+      borrowerText += `
+
+Please remember to review our safety tips before meeting: https://borrowbase.co.uk/safety
+
+All the best,  
+The BorrowBase Team`;
+
+      let lenderText = `Hi ${lenderUsername},
+
+You’ve received a new borrow request from ${borrowerUsername} for: ${itemName}`;
+
+      if (pickupTime || pickupLocation) {
+        lenderText += `
+
+Please confirm the pickup details by replying to this email.
+Requested Pickup Time: ${pickupTime || '—'}
+Suggested Pickup Location: ${pickupLocation || '—'}`;
+      } else {
+        lenderText += `
+
+Please reply to this email to confirm a suitable pickup time and location.`;
+      }
+
+      lenderText += `
+
+Also, please check out our safety tips before the handover: https://borrowbase.co.uk/safety
+
+All the best,  
+The BorrowBase Team`;
+
+      document.getElementById("borrowerOutput").innerText = borrowerText;
+      document.getElementById("lenderOutput").innerText = lenderText;
+    }
+
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</body>
+</html>
