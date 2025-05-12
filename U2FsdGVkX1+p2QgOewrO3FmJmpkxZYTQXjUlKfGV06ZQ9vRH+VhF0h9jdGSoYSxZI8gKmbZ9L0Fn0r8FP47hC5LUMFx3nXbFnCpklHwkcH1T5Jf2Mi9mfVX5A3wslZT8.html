@@ -1,3 +1,4 @@
+<!-- 🛡️ Updated BorrowBase Email Hub -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +104,16 @@
     </div>
 
     <div class="input-box">
+      <label for="rentalStart">Proposed Rental Start Date:</label>
+      <input type="date" id="rentalStart" />
+    </div>
+
+    <div class="input-box">
+      <label for="rentalEnd">Proposed Rental End Date:</label>
+      <input type="date" id="rentalEnd" />
+    </div>
+
+    <div class="input-box">
       <label for="pickupLocation">Pickup Location (optional):</label>
       <input type="text" id="pickupLocation" placeholder="e.g. 123 Borrow St, London" />
     </div>
@@ -136,45 +147,46 @@
       const itemName = document.getElementById("itemName").value.trim();
       const pickupLocation = document.getElementById("pickupLocation").value.trim();
       const pickupTime = document.getElementById("pickupTime").value.trim();
+      const rentalStart = document.getElementById("rentalStart").value;
+      const rentalEnd = document.getElementById("rentalEnd").value;
 
-      let borrowerText = `Hi ${borrowerUsername},
+      let rentalDates = "";
+      if (rentalStart || rentalEnd) {
+        rentalDates += `\nProposed Rental Dates:\n`;
+        if (rentalStart) rentalDates += `Start: ${rentalStart}\n`;
+        if (rentalEnd) rentalDates += `End: ${rentalEnd}`;
+      }
 
+      let borrowerText = `Hi ${borrowerUsername},\n
 Thanks for your request to borrow: ${itemName} ✅`;
 
       if (pickupTime || pickupLocation) {
-        borrowerText += `
-
-Your lender will soon confirm the pickup details.
+        borrowerText += `\n\nYour lender will soon confirm the pickup details.
 Requested Pickup Time: ${pickupTime || '—'}
 Suggested Pickup Location: ${pickupLocation || '—'}`;
       }
 
-      borrowerText += `
+      borrowerText += rentalDates;
 
-Please remember to review our safety tips before meeting: https://borrowbase.co.uk/safety
+      borrowerText += `\n\nPlease remember to review our safety tips before meeting: https://borrowbase.co.uk/safety
 
 All the best,  
 The BorrowBase Team`;
 
-      let lenderText = `Hi ${lenderUsername},
-
+      let lenderText = `Hi ${lenderUsername},\n
 You’ve received a new borrow request from ${borrowerUsername} for: ${itemName}`;
 
       if (pickupTime || pickupLocation) {
-        lenderText += `
-
-Please confirm the pickup details by replying to this email.
+        lenderText += `\n\nPlease confirm the pickup details by replying to this email.
 Requested Pickup Time: ${pickupTime || '—'}
 Suggested Pickup Location: ${pickupLocation || '—'}`;
       } else {
-        lenderText += `
-
-Please reply to this email to confirm a suitable pickup time and location.`;
+        lenderText += `\n\nPlease reply to this email to confirm a suitable pickup time and location.`;
       }
 
-      lenderText += `
+      lenderText += rentalDates;
 
-Also, please check out our safety tips before the handover: https://borrowbase.co.uk/safety
+      lenderText += `\n\nAlso, please check out our safety tips before the handover: https://borrowbase.co.uk/safety
 
 All the best,  
 The BorrowBase Team`;
