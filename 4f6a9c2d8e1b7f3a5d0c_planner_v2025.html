@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mark’s Day Planner</title>
+  <style>
+    :root {
+      --bg: #f9f9fb;
+      --text: #333;
+      --accent: #4f46e5;
+      --done-bg: #e0ffe0;
+      --rounded: 12px;
+      --font: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .planner {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: var(--rounded);
+      padding: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display: none;
+    }
+
+    .planner.visible {
+      display: block;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+      padding-left: 0.5rem;
+    }
+
+    .task.done {
+      background: var(--done-bg);
+      text-decoration: line-through;
+      border-left-color: limegreen;
+    }
+
+    .task input[type="time"] {
+      border: none;
+      border-bottom: 2px solid var(--accent);
+      padding: 0.3rem;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    .task input[type="text"] {
+      flex: 1;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: var(--rounded);
+    }
+
+    .task input[type="checkbox"] {
+      transform: scale(1.3);
+      accent-color: var(--accent);
+    }
+
+    .add-task {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .add-task input, .add-task button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: var(--rounded);
+    }
+
+    .add-task input {
+      border: 1px solid #ccc;
+    }
+
+    .add-task #taskText {
+      flex: 2;
+    }
+
+    .add-task #taskTime {
+      flex: 1;
+    }
+
+    .add-task button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .add-task button:hover {
+      background: #3730a3;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .reset-button {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .reset-button:hover {
+      background: #b91c1c;
+    }
+
+    .celebrate {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: limegreen;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .celebrate.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🗓️ Mark's Day Planner</h1>
+
+  <form class="add-task" id="taskForm">
+    <input type="time" id="taskTime" required />
+    <input type="text" id="taskText" placeholder="What do you need to do?" required />
+    <button type="submit">Add</button>
+  </form>
+
+  <div class="planner" id="planner"></div>
+
+  <div class="controls">
+    <button class="reset-button" id="resetAll">Reset All Tasks</button>
+  </div>
+
+  <div class="celebrate" id="celebrate">✅ All tasks done! You’re on fire, Mark 🔥</div>
+
+  <script>
+    const planner = document.getElementById('planner');
+    const form = document.getElementById('taskForm');
+    const taskTime = document.getElementById('taskTime');
+    const taskText = document.getElementById('taskText');
+    const celebrate = document.getElementById('celebrate');
+    const resetAll = document.getElementById('resetAll');
+
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function sortTasks() {
+      tasks.sort((a, b) => a.time.localeCompare(b.time));
+    }
+
+    function renderTasks() {
+      sortTasks();
+      planner.innerHTML = '';
+
+      if (tasks.length > 0) {
+        planner.classList.add('visible');
+      } else {
+        planner.classList.remove('visible');
+      }
+
+      let allDone = tasks.length > 0 && tasks.every(t => t.done);
+
+      tasks.forEach((task, index) => {
+        const div = document.createElement('div');
+        div.className = 'task' + (task.done ? ' done' : '');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = task.done;
+        checkbox.addEventListener('change', () => {
+          task.done = checkbox.checked;
+          saveTasks();
+          renderTasks();
+        });
+
+        const timeInput = document.createElement('input');
+        timeInput.type = 'time';
+        timeInput.value = task.time;
+        timeInput.addEventListener('change', () => {
+          task.time = timeInput.value;
+          saveTasks();
+          renderTasks();
+        });
+
+        const textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.value = task.text;
+        textInput.addEventListener('change', () => {
+          task.text = textInput.value;
+          saveTasks();
+        });
+
+        div.appendChild(checkbox);
+        div.appendChild(timeInput);
+        div.appendChild(textInput);
+        planner.appendChild(div);
+      });
+
+      celebrate.classList.toggle('show', allDone);
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      tasks.push({ time: taskTime.value, text: taskText.value, done: false });
+      taskText.value = '';
+      taskTime.value = '';
+      saveTasks();
+      renderTasks();
+    });
+
+    resetAll.addEventListener('click', () => {
+      if (confirm("Are you sure you want to delete all tasks?")) {
+        tasks = [];
+        saveTasks();
+        renderTasks();
+      }
+    });
+
+    renderTasks();
+  </script>
+</body>
+</html>
