@@ -88,7 +88,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--text-color);
     display: flex;
