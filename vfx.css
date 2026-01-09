@@ -46,9 +46,11 @@
   object-fit: cover;
 }
 
-.vfx-portfolio .img-compare img:first-child {
-  clip-path: inset(0 50% 0 0);
+
+.vfx-portfolio .img-compare img:last-child {
+  clip-path: inset(0 0 0 50%);
 }
+
 
 .vfx-portfolio .video-grid {
   display: grid;
