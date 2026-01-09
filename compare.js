@@ -1,5 +1,8 @@
 document.querySelectorAll('.img-compare').forEach(container => {
-  const overlay = container.querySelector('img:last-child');
+  const images = container.querySelectorAll('img');
+  if (images.length < 2) return;
+
+  const overlay = images[1]; // SECOND image = sliding image
   const handle = container.querySelector('.slider-handle');
 
   let isDragging = false;
@@ -15,9 +18,7 @@ document.querySelectorAll('.img-compare').forEach(container => {
     overlay.style.clipPath = `inset(0 0 0 ${percent}%)`;
   }
 
-  /* =====================
-     MOUSE EVENTS
-     ===================== */
+  /* MOUSE */
   handle.addEventListener('mousedown', () => {
     isDragging = true;
     document.body.style.userSelect = 'none';
@@ -33,9 +34,7 @@ document.querySelectorAll('.img-compare').forEach(container => {
     setSliderPosition(e.clientX);
   });
 
-  /* =====================
-     TOUCH EVENTS (mobile)
-     ===================== */
+  /* TOUCH */
   handle.addEventListener('touchstart', () => {
     isDragging = true;
   });
@@ -49,11 +48,9 @@ document.querySelectorAll('.img-compare').forEach(container => {
     setSliderPosition(e.touches[0].clientX);
   });
 
-  /* =====================
-     START CENTERED
-     ===================== */
+  /* START CENTERED */
   setSliderPosition(
-    container.getBoundingClientRect().width / 2 +
-    container.getBoundingClientRect().left
+    container.getBoundingClientRect().left +
+    container.getBoundingClientRect().width / 2
   );
 });
