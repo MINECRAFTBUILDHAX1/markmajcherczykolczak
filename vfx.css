@@ -18,10 +18,10 @@
 }
 
 .vfx-portfolio .section {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
-/* VIDEO */
+/* VIDEO (Showreel) */
 .vfx-portfolio .video-wrapper iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -33,12 +33,12 @@
    SLIDER CONTAINER
    ========================= */
 .vfx-portfolio .img-compare {
-  --slider-x: 50%; /* JS will override on load */
+  --slider-x: 50%;
 
   position: relative;
   width: 100%;
-  height: 520px; /* BIGGER for storyboards & final shots */
-  margin-bottom: 40px;
+  height: 500px; /* default for desktop */
+  margin-bottom: 50px;
   overflow: hidden;
   border-radius: 18px;
 }
@@ -47,11 +47,13 @@
 .vfx-portfolio .img-compare img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   object-fit: cover;
   user-select: none;
   pointer-events: none;
+  left: -5%;
+  top: -5%;
 }
 
 /* TOP IMAGE (revealed by slider) */
@@ -74,7 +76,6 @@
   z-index: 10;
 }
 
-/* Knob (grab indicator) */
 .vfx-portfolio .slider-handle::after {
   content: "";
   position: absolute;
@@ -89,21 +90,44 @@
 }
 
 /* =========================
-   HOUDINI GRID
+   HOUDINI GRID / VIDEOS
    ========================= */
 .vfx-portfolio .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-/* PLACEHOLDERS */
-.vfx-portfolio .video-placeholder {
-  background: #f0f0f0;
-  color: #666;
-  height: 160px;
+.vfx-portfolio .houdini-video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
   border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+   ========================= */
+@media (max-width: 768px) {
+  .vfx-portfolio .img-compare {
+    height: 400px;
+  }
+  .vfx-portfolio .houdini-video {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vfx-portfolio h1 {
+    font-size: 2.2rem;
+  }
+  .vfx-portfolio h2 {
+    font-size: 1.5rem;
+  }
+  .vfx-portfolio .img-compare {
+    height: 300px;
+  }
+  .vfx-portfolio .houdini-video {
+    height: 120px;
+  }
 }
