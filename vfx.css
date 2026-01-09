@@ -34,13 +34,13 @@
    ========================= */
 .vfx-portfolio .img-compare {
   --slider-x: 50%; /* JS will override on load */
-
   position: relative;
   width: 100%;
-  height: 650px; /* taller for full visibility */
+  height: 680px; /* bigger so images aren’t cropped */
   margin-bottom: 50px;
   overflow: hidden;
   border-radius: 18px;
+  background: #f8f8f8;
 }
 
 /* IMAGES */
@@ -50,10 +50,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* <-- important: no cropping, fits in container */
+  object-fit: contain; /* keeps full image visible */
   user-select: none;
   pointer-events: none;
-  background: #f8f8f8; /* optional, in case images have transparency */
 }
 
 /* TOP IMAGE (revealed by slider) */
@@ -95,15 +94,29 @@
    ========================= */
 .vfx-portfolio .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+}
+
+.vfx-portfolio .houdini-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .vfx-portfolio .houdini-video {
   width: 100%;
-  aspect-ratio: 16 / 9; /* keeps video proportion correct */
+  aspect-ratio: 16 / 9; 
   object-fit: cover;
   border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+.vfx-portfolio .houdini-caption {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+  font-style: italic;
 }
 
 /* =========================
@@ -111,10 +124,10 @@
    ========================= */
 @media (max-width: 768px) {
   .vfx-portfolio .img-compare {
-    height: 450px; /* smaller for mobile */
+    height: 500px;
   }
   .vfx-portfolio .houdini-video {
-    height: 140px;
+    height: 180px;
   }
 }
 
@@ -123,6 +136,6 @@
     height: 350px;
   }
   .vfx-portfolio .houdini-video {
-    height: 120px;
+    height: 140px;
   }
 }
