@@ -2,13 +2,14 @@
   max-width: 900px;
   margin: auto;
   padding: 60px 20px;
-  color: #fff;
+  color: #111111; /* FIX: dark text */
   font-family: system-ui, sans-serif;
 }
 
 .vfx-portfolio h1 {
   text-align: center;
   font-size: 3rem;
+  color: #111111;
 }
 
 .vfx-portfolio .section {
@@ -18,6 +19,7 @@
 .vfx-portfolio h2 {
   text-align: center;
   margin-bottom: 30px;
+  color: #111111;
 }
 
 .vfx-portfolio .video-wrapper iframe {
@@ -55,11 +57,12 @@
 }
 
 .vfx-portfolio .video-placeholder {
-  background: #1a1a1a;
+  background: #f0f0f0; /* FIX: visible on white bg */
+  color: #666;
   height: 160px;
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.6;
+  opacity: 1;
 }
