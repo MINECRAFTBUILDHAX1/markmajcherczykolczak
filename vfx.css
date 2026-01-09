@@ -51,6 +51,19 @@
   clip-path: inset(0 0 0 50%);
 }
 
+.vfx-portfolio .img-compare::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+
 
 .vfx-portfolio .video-grid {
   display: grid;
