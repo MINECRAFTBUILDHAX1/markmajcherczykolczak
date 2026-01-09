@@ -2,18 +2,15 @@
   max-width: 900px;
   margin: auto;
   padding: 60px 20px;
-  color: #111111; /* FIX: dark text */
+  color: #111111;
   font-family: system-ui, sans-serif;
 }
 
+/* HEADINGS */
 .vfx-portfolio h1 {
   text-align: center;
   font-size: 3rem;
   color: #111111;
-}
-
-.vfx-portfolio .section {
-  margin-top: 80px;
 }
 
 .vfx-portfolio h2 {
@@ -22,6 +19,11 @@
   color: #111111;
 }
 
+.vfx-portfolio .section {
+  margin-top: 80px;
+}
+
+/* VIDEO */
 .vfx-portfolio .video-wrapper iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -29,7 +31,10 @@
   border: none;
 }
 
+/* SLIDER */
 .vfx-portfolio .img-compare {
+  --slider-x: 50%; /* start centered */
+
   position: relative;
   width: 100%;
   height: 400px;
@@ -39,6 +44,7 @@
   cursor: ew-resize;
 }
 
+/* IMAGES */
 .vfx-portfolio .img-compare img {
   position: absolute;
   width: 100%;
@@ -46,38 +52,38 @@
   object-fit: cover;
 }
 
-
+/* TOP IMAGE (the one that slides) */
 .vfx-portfolio .img-compare img:last-child {
-  clip-path: inset(0 0 0 50%);
+  clip-path: inset(0 0 0 var(--slider-x));
 }
 
+/* GUIDING LINE */
 .vfx-portfolio .img-compare::after {
   content: "";
   position: absolute;
   top: 0;
-  left: 50%;
+  left: var(--slider-x);
   width: 3px;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.6); /* visible on white bg */
   transform: translateX(-50%);
   pointer-events: none;
 }
 
-
-
+/* HOUDINI GRID */
 .vfx-portfolio .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* PLACEHOLDERS */
 .vfx-portfolio .video-placeholder {
-  background: #f0f0f0; /* FIX: visible on white bg */
+  background: #f0f0f0;
   color: #666;
   height: 160px;
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
 }
