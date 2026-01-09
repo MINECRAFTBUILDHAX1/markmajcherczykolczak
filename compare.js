@@ -1,24 +1,59 @@
 document.querySelectorAll('.img-compare').forEach(container => {
   const overlay = container.querySelector('img:last-child');
-  let line = container;
+  const handle = container.querySelector('.slider-handle');
 
-  function moveSlider(x) {
+  let isDragging = false;
+
+  function setSliderPosition(clientX) {
     const rect = container.getBoundingClientRect();
+    let x = clientX - rect.left;
+
     x = Math.max(0, Math.min(x, rect.width));
     const percent = (x / rect.width) * 100;
 
-    overlay.style.clipPath = `inset(0 0 0 ${percent}%)`;
     container.style.setProperty('--slider-x', `${percent}%`);
+    overlay.style.clipPath = `inset(0 0 0 ${percent}%)`;
   }
 
-  container.addEventListener('mousemove', e => {
-    moveSlider(e.clientX - container.getBoundingClientRect().left);
+  /* =====================
+     MOUSE EVENTS
+     ===================== */
+  handle.addEventListener('mousedown', () => {
+    isDragging = true;
+    document.body.style.userSelect = 'none';
   });
 
-  container.addEventListener('mouseleave', () => {
-    moveSlider(container.offsetWidth / 2);
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    document.body.style.userSelect = '';
   });
 
-  // Start centered
-  moveSlider(container.offsetWidth / 2);
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    setSliderPosition(e.clientX);
+  });
+
+  /* =====================
+     TOUCH EVENTS (mobile)
+     ===================== */
+  handle.addEventListener('touchstart', () => {
+    isDragging = true;
+  });
+
+  window.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+  window.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    setSliderPosition(e.touches[0].clientX);
+  });
+
+  /* =====================
+     START CENTERED
+     ===================== */
+  setSliderPosition(
+    container.getBoundingClientRect().width / 2 +
+    container.getBoundingClientRect().left
+  );
 });
