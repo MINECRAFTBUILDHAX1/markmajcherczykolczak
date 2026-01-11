@@ -2,7 +2,7 @@ document.querySelectorAll('.img-compare').forEach(container => {
   const images = container.querySelectorAll('img');
   if (images.length < 2) return;
 
-  const overlay = images[1]; // SECOND image = sliding image
+  const overlay = images[1];
   const handle = container.querySelector('.slider-handle');
 
   let isDragging = false;
@@ -34,23 +34,24 @@ document.querySelectorAll('.img-compare').forEach(container => {
     setSliderPosition(e.clientX);
   });
 
-  /* TOUCH */
-  handle.addEventListener('touchstart', () => {
+  /* TOUCH 📱 */
+  handle.addEventListener('touchstart', e => {
     isDragging = true;
-  });
+    setSliderPosition(e.touches[0].clientX);
+    e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    setSliderPosition(e.touches[0].clientX);
+    e.preventDefault();
+  }, { passive: false });
 
   window.addEventListener('touchend', () => {
     isDragging = false;
   });
 
-  window.addEventListener('touchmove', e => {
-    if (!isDragging) return;
-    setSliderPosition(e.touches[0].clientX);
-  });
-
   /* START CENTERED */
-  setSliderPosition(
-    container.getBoundingClientRect().left +
-    container.getBoundingClientRect().width / 2
-  );
+  const rect = container.getBoundingClientRect();
+  setSliderPosition(rect.left + rect.width / 2);
 });
