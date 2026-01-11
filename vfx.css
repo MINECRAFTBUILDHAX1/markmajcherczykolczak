@@ -90,8 +90,9 @@
 }
 
 .vfx-portfolio .img-compare {
-  touch-action: none;
+  touch-action: pan-y; /* allows vertical scroll while enabling horizontal drag */
 }
+
 
 
 /* =========================
