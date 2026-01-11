@@ -89,6 +89,11 @@
   transform: translate(-50%, -50%);
 }
 
+.vfx-portfolio .img-compare {
+  touch-action: none;
+}
+
+
 /* =========================
    HOUDINI GRID / VIDEOS
    ========================= */
