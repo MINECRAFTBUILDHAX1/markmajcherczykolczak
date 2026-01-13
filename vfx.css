@@ -29,6 +29,24 @@
   border: none;
 }
 
+/* BREAKDOWN VIDEO */
+.vfx-portfolio .breakdown-video video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption under breakdown */
+.vfx-portfolio .video-caption {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  letter-spacing: 0.3px;
+}
+
 /* =========================
    SLIDER CONTAINER
    ========================= */
