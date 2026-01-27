@@ -109,5 +109,8 @@ document.querySelectorAll('.project-image img').forEach(img => {
     });
 });
 
- 
+ document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
+
 
