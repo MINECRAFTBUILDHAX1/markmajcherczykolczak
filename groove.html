@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Groove — Press Kit</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Groove — Press Kit | Mark Majcherczyk-Olczak</title>
+
+<!-- SEO META -->
+<meta name="description" content="Official press kit for Groove — jazz / contemporary instrumental album by Mark Majcherczyk-Olczak. Media assets, bio, and streaming info.">
+<meta name="keywords" content="Mark Majcherczyk-Olczak, Groove album, jazz instrumental, press kit, music producer, CipherSound">
+<meta name="author" content="Mark Majcherczyk-Olczak">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Groove — Press Kit">
+<meta property="og:description" content="Official album press kit and media resources.">
+<meta property="og:image" content="groove.png">
+<meta property="og:type" content="website">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Groove — Press Kit">
+<meta name="twitter:image" content="groove.png">
+
 <style>
-:root {
+:root{
   --bg:#0e0e11;
   --text:#ffffff;
-  --accent:#6cf0ff;
   --card:#1a1a20;
 }
 
-body.day {
-  --bg:#f7f7f9;
+body.day{
+  --bg:#f6f6f8;
   --text:#111;
   --card:#ffffff;
 }
 
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   background:var(--bg);
   color:var(--text);
   transition:.35s ease;
+  text-align:center;
 }
 
 header{
-  padding:24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  padding:40px 20px 10px;
+}
+
+header h1{
+  margin:0;
+  font-size:2.6rem;
+  letter-spacing:.05em;
 }
 
 .toggle{
+  margin-top:14px;
   cursor:pointer;
   font-size:22px;
   border:none;
@@ -41,36 +64,39 @@ header{
 }
 
 .container{
-  max-width:1100px;
+  max-width:820px;
   margin:auto;
   padding:20px;
 }
 
 .card{
   background:var(--card);
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:24px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
 .cover{
   width:100%;
-  border-radius:16px;
+  max-width:420px;
+  margin:auto;
+  border-radius:18px;
   display:block;
 }
 
-.tracklist li{
-  padding:6px 0;
+.tracklist{
+  list-style-position:inside;
+  padding:0;
 }
 
 .buttons a{
   display:inline-block;
-  margin:8px 8px 0 0;
-  padding:10px 16px;
-  border-radius:10px;
+  margin:10px;
+  padding:12px 18px;
+  border-radius:12px;
   text-decoration:none;
-  background:var(--accent);
+  background:#ffffff;
   color:#000;
   font-weight:600;
 }
@@ -82,47 +108,47 @@ header{
   align-items:center;
   justify-content:center;
   opacity:.6;
-  border:2px dashed var(--accent);
 }
 
 footer{
   text-align:center;
   padding:30px;
   opacity:.7;
+  font-size:.9rem;
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<h2>GROOVE — Press Kit</h2>
+<h1>GROOVE — Press Kit</h1>
 <button class="toggle" onclick="toggleMode()" id="modeBtn">🌙</button>
 </header>
 
 <div class="container">
 
 <div class="card">
-<img class="cover" src="<img src="/groove.png" alt="Album Cover">
-">
+<img class="cover" src="groove.png" alt="Groove Album Cover">
 </div>
 
 <div class="card">
-<h3>Overview</h3>
+<h2>Overview</h2>
 <p>
-Mark Majcherczyk-Olczak is an artist and producer blending experimental ideas with the familiar clarity of traditional pop. His sound moves between bright melodies, textured production, and modern rhythms, creating tracks that feel fresh while still staying accessible.
+Mark Majcherczyk-Olczak is an artist and producer blending experimental ideas with the familiar clarity of traditional pop. His sound moves between bright melodies, textured production, and modern rhythms.
 </p>
 <p>
-His release Glidin' in the Club has started building early traction, passing 3,000+ streams and reaching listeners across multiple countries, including the UK, Canada, South Africa, and India. The track’s growing activity on Spotify reflects the momentum of his evolving catalogue.
+Recent releases have reached listeners across multiple countries, building early global traction and reflecting the forward momentum of his catalogue.
 </p>
 <p>
-Alongside it, songs like Washington, D.C. and After Dark show the range of his style — from energetic, catchy sections to smoother, atmospheric moments. Mark continues shaping a sound that stays forward‑moving, versatile, and rooted in pop.
+With Groove, he continues shaping a sound that is versatile, forward-leaning, and rooted in musical clarity.
 </p>
 </div>
 
 <div class="card">
-<h3>Album Info</h3>
-<ul>
-<li><strong>Artist:</strong> Mark Majcherczyk‑Olczak</li>
+<h2>Album Info</h2>
+<ul style="list-style:none;padding:0">
+<li><strong>Artist:</strong> Mark Majcherczyk-Olczak</li>
 <li><strong>Title:</strong> Groove</li>
 <li><strong>Genre:</strong> Jazz / Contemporary Instrumental</li>
 <li><strong>Contact:</strong> mmajcherczykolczak@gmail.com</li>
@@ -131,7 +157,7 @@ Alongside it, songs like Washington, D.C. and After Dark show the range of his s
 </div>
 
 <div class="card">
-<h3>Tracklist (Placeholder)</h3>
+<h2>Tracklist</h2>
 <ol class="tracklist">
 <li>Track 01</li>
 <li>Track 02</li>
@@ -147,14 +173,14 @@ Alongside it, songs like Washington, D.C. and After Dark show the range of his s
 </div>
 
 <div class="card">
-<h3>Streaming</h3>
+<h2>Streaming</h2>
 <div class="embed-placeholder">
-Spotify Embed Goes Here
+Spotify Embed Here
 </div>
 </div>
 
 <div class="card buttons">
-<h3>Press Assets</h3>
+<h2>Press Assets</h2>
 <a href="#">Download Cover</a>
 <a href="#">Download Bio</a>
 <a href="#">Download WAV Snippets</a>
@@ -163,7 +189,7 @@ Spotify Embed Goes Here
 </div>
 
 <footer>
-© Mark Majcherczyk‑Olczak
+<span id="copyright"></span>
 </footer>
 
 <script>
@@ -172,6 +198,9 @@ function toggleMode(){
   const btn=document.getElementById('modeBtn');
   btn.textContent=document.body.classList.contains('day')?'☀️':'🌙';
 }
+
+document.getElementById("copyright").textContent =
+`© ${new Date().getFullYear()} Majcherczyk Digital Ltd. All rights reserved.`;
 </script>
 
 </body>
