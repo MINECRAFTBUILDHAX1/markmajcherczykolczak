@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Groove — Press Kit</title>
+<style>
+:root {
+  --bg:#0e0e11;
+  --text:#ffffff;
+  --accent:#6cf0ff;
+  --card:#1a1a20;
+}
+
+body.day {
+  --bg:#f7f7f9;
+  --text:#111;
+  --card:#ffffff;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.35s ease;
+}
+
+header{
+  padding:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.toggle{
+  cursor:pointer;
+  font-size:22px;
+  border:none;
+  background:transparent;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.cover{
+  width:100%;
+  border-radius:16px;
+  display:block;
+}
+
+.tracklist li{
+  padding:6px 0;
+}
+
+.buttons a{
+  display:inline-block;
+  margin:8px 8px 0 0;
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  background:var(--accent);
+  color:#000;
+  font-weight:600;
+}
+
+.embed-placeholder{
+  height:180px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:.6;
+  border:2px dashed var(--accent);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.7;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>GROOVE — Press Kit</h2>
+<button class="toggle" onclick="toggleMode()" id="modeBtn">🌙</button>
+</header>
+
+<div class="container">
+
+<div class="card">
+<img class="cover" src="https://via.placeholder.com/1000x1000.png?text=Groove+Cover+Placeholder" alt="Groove Cover Placeholder">
+</div>
+
+<div class="card">
+<h3>Overview</h3>
+<p>
+Mark Majcherczyk-Olczak is an artist and producer blending experimental ideas with the familiar clarity of traditional pop. His sound moves between bright melodies, textured production, and modern rhythms, creating tracks that feel fresh while still staying accessible.
+</p>
+<p>
+His release Glidin' in the Club has started building early traction, passing 3,000+ streams and reaching listeners across multiple countries, including the UK, Canada, South Africa, and India. The track’s growing activity on Spotify reflects the momentum of his evolving catalogue.
+</p>
+<p>
+Alongside it, songs like Washington, D.C. and After Dark show the range of his style — from energetic, catchy sections to smoother, atmospheric moments. Mark continues shaping a sound that stays forward‑moving, versatile, and rooted in pop.
+</p>
+</div>
+
+<div class="card">
+<h3>Album Info</h3>
+<ul>
+<li><strong>Artist:</strong> Mark Majcherczyk‑Olczak</li>
+<li><strong>Title:</strong> Groove</li>
+<li><strong>Genre:</strong> Jazz / Contemporary Instrumental</li>
+<li><strong>Contact:</strong> mmajcherczykolczak@gmail.com</li>
+<li><strong>Instagram / TikTok:</strong> @markmajcherczykolczak</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Tracklist (Placeholder)</h3>
+<ol class="tracklist">
+<li>Track 01</li>
+<li>Track 02</li>
+<li>Track 03</li>
+<li>Track 04</li>
+<li>Track 05</li>
+<li>Track 06</li>
+<li>Track 07</li>
+<li>Track 08</li>
+<li>Track 09</li>
+<li>Track 10</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>Streaming</h3>
+<div class="embed-placeholder">
+Spotify Embed Goes Here
+</div>
+</div>
+
+<div class="card buttons">
+<h3>Press Assets</h3>
+<a href="#">Download Cover</a>
+<a href="#">Download Bio</a>
+<a href="#">Download WAV Snippets</a>
+</div>
+
+</div>
+
+<footer>
+© Mark Majcherczyk‑Olczak
+</footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle('day');
+  const btn=document.getElementById('modeBtn');
+  btn.textContent=document.body.classList.contains('day')?'☀️':'🌙';
+}
+</script>
+
+</body>
+</html>
