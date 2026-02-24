@@ -7,7 +7,6 @@
 <title>Mark Majcherczyk-Olczak | Official Music</title>
 <meta name="description" content="Official music catalogue of Mark Majcherczyk-Olczak. Composer, Producer, and Artist.">
 
-<!-- PRELOAD IMAGES -->
 <link rel="preload" as="image" href="artist.png">
 <link rel="preload" as="image" href="good-morning.png">
 <link rel="preload" as="image" href="fever-dream.png">
@@ -23,13 +22,12 @@
 <link rel="preload" as="image" href="click-clack-walk.jpg">
 <link rel="preload" as="image" href="trumpet-suite.jpg">
 
-<!-- JSON-LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "MusicGroup",
  "name": "Mark Majcherczyk-Olczak",
- "url": "https://markmajcherczykolczak/music",
+ "url": "https://markmajcherczykolczak.com/music",
  "sameAs": [
    "https://open.spotify.com/artist/5uAIGbJGhlsX1vbj4rQwhN",
    "https://www.instagram.com/markmajcherczykolczak"
@@ -46,14 +44,14 @@ nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;padding:
 nav h1{font-weight:500;letter-spacing:1px;font-size:18px;}
 
 .hero{
-height:85vh;
+min-height:85vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 background:linear-gradient(to bottom,#111,#000);
-padding-top:60px;
+padding:120px 20px 60px 20px;
 }
 
 .artist-img{
@@ -72,8 +70,37 @@ animation:float 6s ease-in-out infinite;
 100%{transform:translateY(0);}
 }
 
-.releases{padding:120px 40px;text-align:center;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:45px;max-width:1200px;margin:auto;}
+.bio{
+max-width:720px;
+font-size:15px;
+line-height:1.7;
+opacity:0.75;
+margin:25px auto;
+}
+
+.spotify-follow{
+margin-top:15px;
+}
+
+.releases{
+padding:80px 40px;
+text-align:center;
+}
+
+.releases h2{
+margin-bottom:50px;
+font-weight:400;
+opacity:0.8;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:45px;
+max-width:1200px;
+margin:auto;
+margin-top:20px;
+}
 
 .release{
 text-decoration:none;
@@ -82,6 +109,13 @@ transform:translateY(30px);
 opacity:0;
 animation:fadeUp 0.8s ease forwards;
 }
+
+.release:nth-child(1){animation-delay:0.1s;}
+.release:nth-child(2){animation-delay:0.15s;}
+.release:nth-child(3){animation-delay:0.2s;}
+.release:nth-child(4){animation-delay:0.25s;}
+.release:nth-child(5){animation-delay:0.3s;}
+.release:nth-child(6){animation-delay:0.35s;}
 
 @keyframes fadeUp{
 to{opacity:1;transform:translateY(0);}
@@ -121,13 +155,25 @@ margin-top:80px;
 <section class="hero">
 <img class="artist-img" src="artist.png">
 
+<div class="bio">
+Mark Majcherczyk-Olczak is an artist and producer blending experimental ideas with the familiar clarity of traditional pop. His sound moves between bright melodies, textured production, and modern rhythms, creating tracks that feel fresh while still staying accessible.<br><br>
+
+His release Glidin' in the Club has started building early traction, passing 3,000+ streams and reaching listeners across multiple countries, including the UK, Canada, South Africa, and India. The track’s growing activity on Spotify reflects the momentum of his evolving catalogue.<br><br>
+
+Alongside it, songs like Washington, D.C. and After Dark show the range of his style — from energetic, catchy sections to smoother, atmospheric moments.<br><br>
+
+Mark continues shaping a sound that stays forward-moving, versatile, and rooted in pop. Each release adds to a catalogue designed to reach new listeners as well as engage returning listeners and push his creativity further with every drop.
+</div>
+
+<div class="spotify-follow">
 <iframe style="border-radius:12px"
-src="https://open.spotify.com/follow/1/?uri=spotify:artist:YOUR_SPOTIFY_ARTIST_ID&size=detail&theme=dark"
+src="https://open.spotify.com/follow/1/?uri=spotify:artist:5uAIGbJGhlsX1vbj4rQwhN&size=detail&theme=dark"
 width="250"
 height="56"
 frameborder="0"
 allowtransparency="true">
 </iframe>
+</div>
 
 </section>
 
