@@ -1,10 +1,236 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; https://sites.google.com/view/markmajcherczyk-olczak/home" />
-  <script type="text/javascript">
-    window.location.href = "https://sites.google.com/view/markmajcherczyk-olczak/home";
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mark Majcherczyk-Olczak | Official Music</title>
+<meta name="description" content="Official music catalogue of Mark Majcherczyk-Olczak. Composer, Producer, and Artist.">
+<meta name="author" content="Mark Majcherczyk-Olczak">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Mark Majcherczyk-Olczak | Official Music">
+<meta property="og:type" content="website">
+<meta property="og:image" content="artist.jpg">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "Mark Majcherczyk-Olczak",
+ "url": "https://YOURDOMAIN.com/music.html",
+ "sameAs": [
+   "https://open.spotify.com/artist/YOUR_SPOTIFY_ARTIST_ID",
+   "https://www.instagram.com/markmajcherczykolczak"
+ ]
+}
+</script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+background:#0b0b0b;
+color:white;
+opacity:0;
+transition:opacity 1.2s ease;
+}
+
+body.loaded{
+opacity:1;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(12px);
+z-index:1000;
+}
+
+nav h1{
+font-weight:500;
+letter-spacing:1px;
+font-size:18px;
+}
+
+.hero{
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(to bottom,#111,#000);
+padding-top:60px;
+}
+
+.artist-img{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:25px;
+box-shadow:0 0 60px rgba(255,255,255,0.08);
+animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+.hero h2{
+font-weight:300;
+opacity:0.7;
+letter-spacing:2px;
+margin-bottom:20px;
+}
+
+.spotify-follow{
+margin-top:10px;
+}
+
+.releases{
+padding:120px 40px;
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:45px;
+max-width:1200px;
+margin:auto;
+}
+
+.release{
+text-decoration:none;
+color:white;
+transition:0.4s;
+transform:translateY(30px);
+opacity:0;
+animation:fadeUp 0.8s ease forwards;
+}
+
+.release:nth-child(n){
+animation-delay:0.2s;
+}
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.release img{
+width:100%;
+border-radius:14px;
+transition:0.4s;
+}
+
+.release img:hover{
+transform:scale(1.06);
+box-shadow:0 0 40px rgba(255,255,255,0.15);
+}
+
+.release-title{
+margin-top:12px;
+font-size:15px;
+opacity:0.9;
+}
+
+.release-type{
+font-size:12px;
+opacity:0.5;
+margin-top:4px;
+}
+
+footer{
+text-align:center;
+padding:50px 20px;
+opacity:0.5;
+font-size:13px;
+border-top:1px solid rgba(255,255,255,0.05);
+margin-top:80px;
+}
+</style>
 </head>
+
 <body>
+
+<nav>
+<h1>Mark Majcherczyk-Olczak</h1>
+</nav>
+
+<section class="hero">
+<img class="artist-img" src="artist.jpg">
+<h2>Composer • Producer • Artist</h2>
+
+<!-- Spotify Follow Button -->
+<div class="spotify-follow">
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/follow/1/?uri=spotify:artist:YOUR_SPOTIFY_ARTIST_ID&size=detail&theme=dark"
+width="250"
+height="56"
+frameborder="0"
+allowtransparency="true">
+</iframe>
+</div>
+
+</section>
+
+<section class="releases">
+<h2>Discography</h2>
+
+<div class="grid">
+
+<a href="https://open.spotify.com/track/4CQBreSuHEvY2vBrbHDpHO" target="_blank" class="release">
+<img src="good-morning.jpg">
+<div class="release-title">Good Morning</div>
+<div class="release-type">Single</div>
+</a>
+
+<a href="https://open.spotify.com/album/4i17V7paltVw4FYfLHNiZe" target="_blank" class="release">
+<img src="fever-dream.jpg">
+<div class="release-title">Fever Dream</div>
+<div class="release-type">EP</div>
+</a>
+
+<a href="https://open.spotify.com/album/7EtEcA4rkPHQ4CeatqsYub" target="_blank" class="release">
+<img src="washington-dc.jpg">
+<div class="release-title">Washington D.C.</div>
+<div class="release-type">Album</div>
+</a>
+
+<!-- Continue same structure for remaining covers -->
+
+</div>
+</section>
+
+<footer>
+<p>© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+document.body.classList.add("loaded");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
