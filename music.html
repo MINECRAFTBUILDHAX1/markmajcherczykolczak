@@ -6,63 +6,44 @@
 
 <title>Mark Majcherczyk-Olczak | Official Music</title>
 <meta name="description" content="Official music catalogue of Mark Majcherczyk-Olczak. Composer, Producer, and Artist.">
-<meta name="author" content="Mark Majcherczyk-Olczak">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Mark Majcherczyk-Olczak | Official Music">
-<meta property="og:type" content="website">
-<meta property="og:image" content="artist.jpg">
+<!-- PRELOAD IMAGES -->
+<link rel="preload" as="image" href="artist.png">
+<link rel="preload" as="image" href="good-morning.png">
+<link rel="preload" as="image" href="fever-dream.png">
+<link rel="preload" as="image" href="washington-dc.png">
+<link rel="preload" as="image" href="summer-scars.png">
+<link rel="preload" as="image" href="airplane-mode.png">
+<link rel="preload" as="image" href="lumina2.png">
+<link rel="preload" as="image" href="luminas-lamp.png">
+<link rel="preload" as="image" href="no-questions.png">
+<link rel="preload" as="image" href="own-this-love.png">
+<link rel="preload" as="image" href="bass-count-like.png">
+<link rel="preload" as="image" href="no-signal.jpg">
+<link rel="preload" as="image" href="click-clack-walk.jpg">
+<link rel="preload" as="image" href="trumpet-suite.jpg">
 
-<!-- JSON-LD Structured Data -->
+<!-- JSON-LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "MusicGroup",
  "name": "Mark Majcherczyk-Olczak",
- "url": "https://YOURDOMAIN.com/music.html",
+ "url": "https://markmajcherczykolczak/music",
  "sameAs": [
-   "https://open.spotify.com/artist/YOUR_SPOTIFY_ARTIST_ID",
+   "https://open.spotify.com/artist/5uAIGbJGhlsX1vbj4rQwhN",
    "https://www.instagram.com/markmajcherczykolczak"
  ]
 }
 </script>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;}
+body{background:#0b0b0b;color:white;opacity:0;transition:opacity 1.2s ease;}
+body.loaded{opacity:1;}
 
-body{
-background:#0b0b0b;
-color:white;
-opacity:0;
-transition:opacity 1.2s ease;
-}
-
-body.loaded{
-opacity:1;
-}
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:center;
-padding:20px;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(12px);
-z-index:1000;
-}
-
-nav h1{
-font-weight:500;
-letter-spacing:1px;
-font-size:18px;
-}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;padding:20px;background:rgba(0,0,0,0.5);backdrop-filter:blur(12px);z-index:1000;}
+nav h1{font-weight:500;letter-spacing:1px;font-size:18px;}
 
 .hero{
 height:85vh;
@@ -86,53 +67,24 @@ animation:float 6s ease-in-out infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0px);}
+0%{transform:translateY(0);}
 50%{transform:translateY(-10px);}
-100%{transform:translateY(0px);}
+100%{transform:translateY(0);}
 }
 
-.hero h2{
-font-weight:300;
-opacity:0.7;
-letter-spacing:2px;
-margin-bottom:20px;
-}
-
-.spotify-follow{
-margin-top:10px;
-}
-
-.releases{
-padding:120px 40px;
-text-align:center;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:45px;
-max-width:1200px;
-margin:auto;
-}
+.releases{padding:120px 40px;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:45px;max-width:1200px;margin:auto;}
 
 .release{
 text-decoration:none;
 color:white;
-transition:0.4s;
 transform:translateY(30px);
 opacity:0;
 animation:fadeUp 0.8s ease forwards;
 }
 
-.release:nth-child(n){
-animation-delay:0.2s;
-}
-
 @keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
+to{opacity:1;transform:translateY(0);}
 }
 
 .release img{
@@ -146,17 +98,8 @@ transform:scale(1.06);
 box-shadow:0 0 40px rgba(255,255,255,0.15);
 }
 
-.release-title{
-margin-top:12px;
-font-size:15px;
-opacity:0.9;
-}
-
-.release-type{
-font-size:12px;
-opacity:0.5;
-margin-top:4px;
-}
+.release-title{margin-top:12px;font-size:15px;opacity:0.9;}
+.release-type{font-size:12px;opacity:0.5;margin-top:4px;}
 
 footer{
 text-align:center;
@@ -176,11 +119,8 @@ margin-top:80px;
 </nav>
 
 <section class="hero">
-<img class="artist-img" src="artist.jpg">
-<h2>Composer • Producer • Artist</h2>
+<img class="artist-img" src="artist.png">
 
-<!-- Spotify Follow Button -->
-<div class="spotify-follow">
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/follow/1/?uri=spotify:artist:YOUR_SPOTIFY_ARTIST_ID&size=detail&theme=dark"
 width="250"
@@ -188,7 +128,6 @@ height="56"
 frameborder="0"
 allowtransparency="true">
 </iframe>
-</div>
 
 </section>
 
@@ -198,24 +137,43 @@ allowtransparency="true">
 <div class="grid">
 
 <a href="https://open.spotify.com/track/4CQBreSuHEvY2vBrbHDpHO" target="_blank" class="release">
-<img src="good-morning.jpg">
-<div class="release-title">Good Morning</div>
-<div class="release-type">Single</div>
-</a>
+<img src="good-morning.png"><div class="release-title">Good Morning</div><div class="release-type">Single</div></a>
 
 <a href="https://open.spotify.com/album/4i17V7paltVw4FYfLHNiZe" target="_blank" class="release">
-<img src="fever-dream.jpg">
-<div class="release-title">Fever Dream</div>
-<div class="release-type">EP</div>
-</a>
+<img src="fever-dream.png"><div class="release-title">Fever Dream</div><div class="release-type">EP</div></a>
 
 <a href="https://open.spotify.com/album/7EtEcA4rkPHQ4CeatqsYub" target="_blank" class="release">
-<img src="washington-dc.jpg">
-<div class="release-title">Washington D.C.</div>
-<div class="release-type">Album</div>
-</a>
+<img src="washington-dc.png"><div class="release-title">Washington D.C.</div><div class="release-type">Album</div></a>
 
-<!-- Continue same structure for remaining covers -->
+<a href="https://open.spotify.com/album/26Fa4CoJvpZdyrlpkRlgud" target="_blank" class="release">
+<img src="summer-scars.png"><div class="release-title">Summer Scars</div><div class="release-type">Album</div></a>
+
+<a href="https://open.spotify.com/album/2Jt3AhGk21IqjIFF4KouCV" target="_blank" class="release">
+<img src="airplane-mode.png"><div class="release-title">Airplane Mode</div><div class="release-type">Album</div></a>
+
+<a href="https://open.spotify.com/album/09JG6fP9G6me6TBD4KXMvN" target="_blank" class="release">
+<img src="lumina2.png"><div class="release-title">Lumina II: The Shadow Void</div><div class="release-type">OST</div></a>
+
+<a href="https://open.spotify.com/album/7M88H2sOR3JmSLmhyrarGs" target="_blank" class="release">
+<img src="luminas-lamp.png"><div class="release-title">Lumina's Lamp</div><div class="release-type">Single</div></a>
+
+<a href="https://open.spotify.com/album/29oWYwloYssjUAV2XieCml" target="_blank" class="release">
+<img src="no-questions.png"><div class="release-title">No Questions, Just Funk</div><div class="release-type">EP</div></a>
+
+<a href="https://open.spotify.com/track/0bYvR5Vg2f4XQDw2DETG7V" target="_blank" class="release">
+<img src="own-this-love.png"><div class="release-title">Own This Love</div><div class="release-type">Single</div></a>
+
+<a href="https://open.spotify.com/album/6XGzEHD0oLMXP5nfjNYRhw" target="_blank" class="release">
+<img src="bass-count-like.png"><div class="release-title">Bass Count Like</div><div class="release-type">Single</div></a>
+
+<a href="https://open.spotify.com/album/2QpvotDnzwBgWrzB5Zfxbe" target="_blank" class="release">
+<img src="no-signal.jpg"><div class="release-title">NO SIGNAL</div><div class="release-type">Album</div></a>
+
+<a href="https://open.spotify.com/album/44W7nyTvgaDJJJbk307hVj" target="_blank" class="release">
+<img src="click-clack-walk.jpg"><div class="release-title">Click Clack Walk</div><div class="release-type">Single</div></a>
+
+<a href="https://open.spotify.com/album/3wuRxuHkTPHn3SgveUdqgI" target="_blank" class="release">
+<img src="trumpet-suite.jpg"><div class="release-title">Trumpet Suite in D Flat</div><div class="release-type">Album</div></a>
 
 </div>
 </section>
@@ -225,11 +183,10 @@ allowtransparency="true">
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded",function(){
 document.body.classList.add("loaded");
 });
-
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 </script>
 
 </body>
