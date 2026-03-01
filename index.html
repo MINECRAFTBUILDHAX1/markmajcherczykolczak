@@ -1,163 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta name="theme-color" content="#ffffff">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NGHYEZC273"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NGHYEZC273');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+     crossorigin="anonymous"></script>
+	<meta name="theme-color" content="#ffffff">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mark Majcherczyk-Olczak is a web developer and entrepreneur. Explore his portfolio showcasing innovative projects, including interactive games and websites.">
-<meta name="keywords" content="Mark Majcherczyk-Olczak, web developer, portfolio, entrepreneur, game developer, websites, digital projects, interactive games, design">
+<meta name="description" content="Emojible is a fun and interactive emoji puzzle game where you guess movie titles from emoji clues. Enjoy hours of entertainment and challenge your knowledge!">
+<meta name="keywords" content="emoji game, puzzle game, movie quiz, emoji guessing, interactive game, fun puzzles, brain teaser, movie trivia, word games">
 <meta name="author" content="Mark Majcherczyk-Olczak">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Mark Majcherczyk-Olczak - Portfolio">
-<meta property="og:description" content="Explore the portfolio of Mark Majcherczyk-Olczak, showcasing cutting-edge web development projects and interactive games.">
-<meta property="og:url" content="https://markmajcherczykolczak.com">
-<meta property="og:image" content="https://www.markmajcherczykolczak.com/og-image.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:title" content="Emojible - The Ultimate Emoji Puzzle Game">
+<meta property="og:description" content="Play Emojible and solve fun emoji puzzles by guessing movie titles from emoji clues. Test your knowledge and enjoy endless fun!">
+<meta property="og:url" content="https://emojible.fun">
+<meta property="og:image" content="https://www.emojible.fun/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
-<meta property="twitter:title" content="Mark Majcherczyk-Olczak - Portfolio">
-<meta property="twitter:description" content="Check out the portfolio of Mark Majcherczyk-Olczak, a web developer and entrepreneur showcasing innovative projects.">
-<meta property="twitter:url" content="https://markmajcherczykolczak.com">
-<meta property="twitter:image" content="https://www.markmajcherczykolczak.com/og-image.png"> <!-- Updated to PNG -->
+<meta property="twitter:title" content="Emojible - The Ultimate Emoji Puzzle Game">
+<meta property="twitter:description" content="Test your knowledge with Emojible, the fun emoji puzzle game. Guess movie titles from emoji clues and enjoy a fun challenge!">
+<meta property="twitter:url" content="https://emojible.fun">
+<meta property="twitter:image" content="https://www.emojible.fun/og-image.jpg"> <!-- Update this with your image URL -->
 <meta property="twitter:card" content="summary_large_image">
-<title>Mark Majcherczyk-Olczak - Portfolio</title>
+<title>Emojible</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" sizes="192x192" href="favicon-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">	
 
-    
-    <title>Mark Majcherczyk-Olczak - Web Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="animations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Help Icon */
+        .help-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4CAF50;
+        }
+
+        /* Help Popup */
+        .help-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+        }
+
+        .popup-content button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #e53935;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #game-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+		#game-container {
+    position: relative; /* Ensures the help icon positions relative to this */
+}
+
+.help-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+        h1 {
+            font-size: 32px;
+            color: #333;
+        }
+
+        #emoji-puzzle {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        #next-puzzle-message {
+            font-size: 18px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        #progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: red;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        footer a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+        .navbar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+}
+
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  color: #4CAF50;
+  user-select: none;
+}
+
+.nav-links {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-links a {
+  display: block;
+  margin: 8px 0;
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #333;
+}
+
+    </style>
 </head>
+
 <body>
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
-            </div>
-        </label>
+    
+	<a href='https://www.sideprojectors.com/project/56251/emojible' alt='Emojible is for sale at @SideProjectors'><img style='position:fixed;z-index:1000;top:-5px; right: 20px; border: 0;' src='https://www.sideprojectors.com/img/badges/badge_2_red.png' alt='Emojible is sale at @SideProjectors'></a>
+	<nav class="navbar">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div id="nav-links" class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</nav>
+
+    <!-- Help Icon -->
+    
+
+    <div id="game-container">
+        <div class="help-icon" onclick="showHelp()">&#63;</div>
+        <h1>Welcome to Emojible!</h1>
+        <div id="emoji-puzzle">
+            <!-- Emoji puzzle will go here -->
+        </div>
+        <input type="text" id="answer-input" placeholder="Type your answer..." />
+        <button id="submit-btn">Submit</button>
+        <p id="message"></p>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="next-puzzle-message"></p> <!-- Come back tomorrow message -->
     </div>
 
-    <header class="header">
-        <nav class="nav">
-            <a href="#home" class="nav-brand">Mark Majcherczyk-Olczak</a>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm Mark Majcherczyk-Olczak</h1>
-                <p class="subtitle">Entrepreneur | Founder at Majcherczyk Digital | Musical Artist</p>
-                <p class="description">
-                   I lead projects that blend film, animation, and immersive sound into bold, emotionally-driven storytelling. From original shorts and animated features to experimental soundscapes, my work focuses on bringing fresh narratives to life.
-                    Alongside film, I design custom digital platforms and websites to showcase and distribute creative work—bridging the gap between storytelling and tech in ways that connect directly with audiences.
-                </p>
-                   <p class="founder-info">
-            Founder at <strong>Majcherczyk Digital</strong>
-        </p>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="daily-acts-of-kindness.png" alt="DailyActsOfKindness.net screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>DailyActsOfKindness.net</h3>
-                        <p>A platform promoting small, meaningful acts of kindness every day. Features a simple and welcoming UI with soft pastel colors.</p>
-                        <a href="https://dailyactsofkindness.net" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="emojible.png" alt="Emojible.fun screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>Emojible.fun</h3>
-                        <p>A fun emoji-based game website with a playful design and dynamic layout.</p>
-                        <a href="https://emojible.fun" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="mind-matchup.png" alt="MindMatchUp.com screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>MindMatchUp.com</h3>
-                        <p>A brain-training game website with a modern, tech-inspired aesthetic.</p>
-                        <a href="https://mindmatchup.com" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="launch-my-page.png" alt="LaunchMyPageNow.com screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>LaunchMyPageNow.com</h3>
-                        <p>A professional web page launch service with a sleek, startup-inspired design.</p>
-                        <a href="http://launchmypagenow.com/" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="Flick-Bounce.png" alt="Flick Bounce screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>Flick Bounce</h3>
-                        <p>A fun, addictive swiping game</p>
-                        <a href="https://minecraftbuildhax1.github.io/Flick-Bounce/" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-             <article class="project-card">
-                    <div class="project-image">
-                        <img src="borrowbasewebscreenshot.png" alt="BorrowBase screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3>BorrowBase</h3>
-                        <p>Rent anything, from anyone. Borrow with confidence.</p>
-                        <a href="https://www.borrowbase.co.uk/" class="project-link" target="_blank">Visit Site</a>
-                    </div>
-                </article>
-            </div>
-            
-        </section>
-     <section id="contact" class="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact-content">
-                <p>Interested in working together? Let's connect!</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="contact-links">
-            <a href="mailto:mmajcherczykolczak@gmail.com" class="contact-link">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-            <a href="https://www.linkedin.com/in/mark-majcherczyk-olczak-112080321/" class="contact-link" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
+    <!-- Help Popup -->
+    <div id="help-popup" class="help-popup">
+        <div class="popup-content">
+            <h2>Help</h2>
+            <p>The progress bar shows if your answer is correct:</p>
+            <ul>
+                <li>Fully green and "Correct!" means your answer is almost there, but it may have too many letters.</li>
+            </ul>
+            <button onclick="closeHelp()">Close</button>
         </div>
-        <p> © <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <ul>
+            <li><a href="privacy.html">Privacy Notice</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="mailto:mmajcherczykolczak@gmail.com?subject=Enquiry%20about%20Emojible">Contact</a></li>
+        </ul>
     </footer>
 
-    <script src="main.js"></script>
+  <script>
+    // List of emoji puzzles
+   // Movie Emoji Puzzles Array
+const puzzles = [
+    // Easy
+    { emoji: '🦁👑', answer: 'The Lion King' }, // Easy
+    { emoji: '🐍🌍', answer: 'Anaconda' }, // Easy
+    { emoji: '🍕🐱', answer: 'Pizza Cat' }, // Easy
+    { emoji: '⚡🦸‍♂️', answer: 'The Flash' }, // Easy
+    { emoji: '🦄🌈', answer: 'My Little Pony' }, // Easy
+    { emoji: '🐰🎩', answer: 'Alice in Wonderland' }, // Easy
+    { emoji: '🐧🎤', answer: 'Penguins of Madagascar' }, // Easy
+    { emoji: '🦒🌳', answer: 'Madagascar' }, // Easy
+
+    // Medium
+    { emoji: '🦸‍♂️🌍', answer: 'The Avengers' }, // Medium
+    { emoji: '🐠🌊', answer: 'Finding Nemo' }, // Medium
+    { emoji: '👨‍🚀🌕', answer: 'Apollo 13' }, // Medium
+    { emoji: '🐉🔥', answer: 'How to Train Your Dragon' }, // Medium
+    { emoji: '🦁👑👑', answer: 'The Lion King 2' }, // Medium
+    { emoji: '🚗💨', answer: 'Cars' }, // Medium
+    { emoji: '🦊🐰', answer: 'Zootopia' }, // Medium
+    { emoji: '🏠👦', answer: 'Home Alone' }, // Medium
+
+    // Hard
+    { emoji: '🍫🏭', answer: 'Charlie and the Chocolate Factory' }, // Hard
+    { emoji: '🔪🔪', answer: 'Pulp Fiction' }, // Hard
+    { emoji: '⏳💍', answer: 'The Lord of the Rings' }, // Hard
+    { emoji: '💀💀🗡', answer: 'Pirates of the Caribbean' }, // Hard
+    { emoji: '🦊💎', answer: 'Fantastic Mr. Fox' }, // Hard
+    { emoji: '👑🦁', answer: 'The Lion King' }, // Hard
+
+    // Very Hard
+    { emoji: '🧙‍♂️🗡️⚔️', answer: 'The Hobbit' }, // Very Hard
+    { emoji: '🌪️👠', answer: 'The Wizard of Oz' }, // Very Hard
+    { emoji: '🐍🦖', answer: 'Jurassic Park' }, // Very Hard
+    { emoji: '🎩🕴️', answer: 'The Great Gatsby' }, // Very Hard
+    { emoji: '🚢💔', answer: 'Titanic' }, // Very Hard
+    { emoji: '🎠✨', answer: 'The Chronicles of Narnia' }, // Very Hard
+    { emoji: '🦉🎓', answer: 'Harry Potter' }, // Very Hard
+
+    // Impossible
+    { emoji: '🦇🌕', answer: 'The Dark Knight' }, // Impossible
+    { emoji: '🎥🖤💀', answer: 'Nightmare Before Christmas' }, // Impossible
+    { emoji: '🍸💋🎩', answer: 'Dr. No' }, // Impossible
+    { emoji: '🐯⏳', answer: 'Life of Pi' }, // Impossible
+    { emoji: '🏰🐉👑', answer: 'The NeverEnding Story' }, // Impossible
+    { emoji: '🦄🌠', answer: 'The Last Unicorn' }, // Impossible
+    { emoji: '👑⚔️🏰', answer: 'Brave' }, // Impossible
+];
+
+
+    let currentPuzzle = 0;
+
+    function calculateProgress(userAnswer, correctAnswer) {
+        const userAnswerLower = userAnswer.toLowerCase();
+        const correctAnswerLower = correctAnswer.toLowerCase();
+        let similarity = 0;
+
+        for (let i = 0; i < Math.min(userAnswerLower.length, correctAnswerLower.length); i++) {
+            if (userAnswerLower[i] === correctAnswerLower[i]) {
+                similarity++;
+            }
+        }
+        return (similarity / correctAnswerLower.length) * 100;
+    }
+
+    function updateProgressBar(progress, message) {
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${progress}%`;
+
+        if (progress === 100) {
+            progressBar.style.backgroundColor = 'green';
+            document.getElementById('message').textContent = 'Correct! 🎉';
+        } else if (progress >= 50) {
+            progressBar.style.backgroundColor = 'orange';
+            document.getElementById('message').textContent = message || 'Almost there!';
+        } else {
+            progressBar.style.backgroundColor = 'red';
+            document.getElementById('message').textContent = 'Try again! ❌';
+        }
+    }
+
+    function submitAnswer() {
+        const userAnswer = document.getElementById('answer-input').value.trim();
+        const correctAnswer = puzzles[currentPuzzle].answer;
+
+        if (!userAnswer) {
+            updateProgressBar(0, 'Try again! ❌');
+            return;
+        }
+
+        const progress = calculateProgress(userAnswer, correctAnswer);
+        updateProgressBar(progress);
+
+        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+            localStorage.setItem('puzzleCompleted', currentPuzzle); // Save the completed puzzle index
+            localStorage.setItem('puzzleCompletedTime', Date.now()); // Save completion time
+            disablePuzzle(24 * 60 * 60 * 1000); // Start 24-hour timer
+        }
+    }
+
+    document.getElementById('submit-btn').addEventListener('click', submitAnswer);
+    document.getElementById('answer-input').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            submitAnswer();
+        }
+    });
+
+    function checkIfPuzzleCompleted() {
+        const completedTime = localStorage.getItem('puzzleCompletedTime');
+        const completedPuzzleIndex = localStorage.getItem('puzzleCompleted');
+
+        if (completedTime) {
+            const timePassed = Date.now() - parseInt(completedTime, 10);
+            const remainingTime = 24 * 60 * 60 * 1000 - timePassed;
+
+            if (remainingTime > 0) {
+                // Puzzle completed, show the last one
+                disablePuzzle(remainingTime);
+                currentPuzzle = parseInt(completedPuzzleIndex, 10); // Show last completed puzzle
+                document.getElementById('emoji-puzzle').textContent = puzzles[currentPuzzle].emoji;
+                return;
+            } else {
+                // Reset when 24 hours have passed
+                localStorage.removeItem('puzzleCompleted');
+                localStorage.removeItem('puzzleCompletedTime');
+            }
+        }
+
+        // Show a new puzzle after 24 hours if none has been completed yet
+        loadNewPuzzle();
+    }
+
+    function disablePuzzle(remainingTime) {
+        document.getElementById('answer-input').disabled = true;
+        document.getElementById('submit-btn').disabled = true;
+        document.getElementById('next-puzzle-message').textContent = 'You have completed today\'s puzzle! ✅ Next puzzle in: ';
+
+        const countdownElement = document.createElement('span');
+        document.getElementById('next-puzzle-message').appendChild(countdownElement);
+
+        function updateTimer() {
+            const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+            countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+
+            if (remainingTime > 0) {
+                remainingTime -= 1000;
+                setTimeout(updateTimer, 1000);
+            } else {
+                localStorage.removeItem('puzzleCompleted');
+                localStorage.removeItem('puzzleCompletedTime');
+                location.reload();
+            }
+        }
+        updateTimer();
+    }
+      // Show the help popup
+function showHelp() {
+    document.getElementById('help-popup').style.display = 'flex';
+}
+
+// Close the help popup
+function closeHelp() {
+    document.getElementById('help-popup').style.display = 'none';
+}
+
+
+    function loadNewPuzzle() {
+        // Select a random puzzle from the list
+        currentPuzzle = Math.floor(Math.random() * puzzles.length);
+        document.getElementById('emoji-puzzle').textContent = puzzles[currentPuzzle].emoji;
+    }
+
+    window.onload = function () {
+        checkIfPuzzleCompleted();
+    };
+    function toggleMenu() {
+  const nav = document.getElementById("nav-links");
+  nav.style.display = nav.style.display === "block" ? "none" : "block";
+}
+
+</script>
+
+
 </body>
-</html> 
+
+</html>

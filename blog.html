@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGHYEZC273"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NGHYEZC273');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+        crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your blog about fun, games, and more!">
+    <meta name="author" content="Mark Majcherczyk-Olczak">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Emojible Blog">
+    <meta property="og:description" content="Stay updated with the latest news and fun content from Emojible!">
+    <meta property="og:url" content="https://www.emojible.fun">
+    <meta property="og:image" content="https://www.emojible.fun/og-image.jpg">
+    <meta property="og:type" content="website">
+    <title>Emojible Blog</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: flex-start;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            font-size: 28px;
+            cursor: pointer;
+            color: #4CAF50;
+            user-select: none;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-links a {
+            display: block;
+            margin: 8px 0;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #333;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 14px;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            width: 100%;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        #blog {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-container {
+            width: 80%;
+        }
+
+        .sort-options {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .sort-options select {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .blog-posts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .blog-post {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-post .date {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .blog-post .summary {
+            font-size: 1rem;
+            color: #777;
+            margin: 10px 0;
+        }
+
+        .read-more {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .full-post-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .full-post-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div id="nav-links" class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Welcome to Emojible Blog!</h1>
+        <p>Stay updated with the latest news, updates, and more from Emojible!</p>
+    </div>
+
+    <section id="blog">
+        <div class="blog-container">
+            <div class="sort-options">
+                <select id="sort-by" onchange="sortPosts()">
+                    <option value="title">Sort by Title</option>
+                    <option value="date">Sort by Date</option>
+                </select>
+            </div>
+
+            <div class="blog-posts">
+<article class="blog-post" data-title="The Rise of Emojible: A New Kind of Fun" data-date="2025-04-10">
+    <h3>Emojible: A Fun Daily Emoji Guessing Game</h3>
+    <p class="date">Published on: April 10, 2025</p>
+    <p class="summary">Emojible has quickly become one of the most exciting platforms for people looking to engage in fun, creative games. But what makes it so special? Let’s dive in...</p>
+    <a href="blog-post-1.html" class="read-more">Read More</a>
+</article>
+
+<article class="blog-post" data-title="Top 5 Emojible Features You Should Try Today" data-date="2025-04-15">
+    <h3>Top 5 Emojible Features You Should Try Today</h3>
+    <p class="date">Published on: April 15, 2025</p>
+    <p class="summary">Emojible isn’t just about fun games—it’s packed with features that make it stand out! Here are the top 5 things you should try on the platform...</p>
+    <a href="blog-post-2.html" class="read-more">Read More</a>
+</article>
+
+<article class="blog-post" data-title="Why Emojible’s Community is Its Greatest Strength" data-date="2025-04-18">
+    <h3>Why Emojible’s Community is Its Greatest Strength</h3>
+    <p class="date">Published on: April 18, 2025</p>
+    <p class="summary">At Emojible, we believe that the community is the heart of everything we do. Here's why our community stands out and how it’s shaping the future of online gaming...</p>
+    <a href="blog-post-3.html" class="read-more">Read More</a>
+</article>
+
+<article class="blog-post" data-title="Emojible’s Impact on Social Media Trends" data-date="2025-04-22">
+    <h3>Emojible’s Impact on Social Media Trends</h3>
+    <p class="date">Published on: April 22, 2025</p>
+    <p class="summary">From viral emoji memes to social challenges, Emojible has been influencing social media trends in a big way. Let’s see how the platform is making waves online...</p>
+    <a href="blog-post-4.html" class="read-more">Read More</a>
+</article>
+
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <ul>
+            <li><a href="privacy.html">Privacy Notice</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="mailto:mmajcherczykolczak@gmail.com?subject=Emojible%20Enquiry">Contact</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            if (navLinks.style.display === 'block') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'block';
+            }
+        }
+
+       
+        function sortPosts() {
+            const postsContainer = document.querySelector('.blog-posts');
+            const posts = Array.from(postsContainer.children);
+            const sortBy = document.getElementById('sort-by').value;
+            posts.sort((a, b) => {
+                const aValue = a.dataset[sortBy];
+                const bValue = b.dataset[sortBy];
+                if (sortBy === 'date') {
+                    return new Date(aValue) - new Date(bValue);
+                } else {
+                    return aValue.localeCompare(bValue);
+                }
+            });
+            posts.forEach(post => postsContainer.appendChild(post));
+        }
+    </script>
+
+</body>
+
+</html>
