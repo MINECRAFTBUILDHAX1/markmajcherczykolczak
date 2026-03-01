@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game - MindMatchup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">MindMatchup</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="game.html" class="active">Play Game</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="support.html">Support</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="game-container" id="game-container">
+            <div class="game-header">
+                <h2>Select a Game</h2>
+            </div>
+            <div class="game-selection">
+                <div class="game-type-card" onclick="startGame('quiz')">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>General Knowledge Quiz</h3>
+                    <p>Test your knowledge with fun trivia questions</p>
+                </div>
+                <div class="game-type-card" onclick="startGame('picture')">
+                    <i class="fas fa-image"></i>
+                    <h3>Picture Round</h3>
+                    <p>Identify famous landmarks and animals</p>
+                </div>
+                <div class="game-type-card" onclick="startGame('puzzle')">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h3>Word Puzzle</h3>
+                    <p>Solve word puzzles and riddles</p>
+                </div>
+                <div class="game-type-card" onclick="startGame('maths')">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Maths Challenge</h3>
+                    <p>Test your maths skills</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MindMatchup. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

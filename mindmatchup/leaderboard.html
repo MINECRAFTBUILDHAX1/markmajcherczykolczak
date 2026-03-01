@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - MindMatchup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">MindMatchup</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="game.html">Play Game</a>
+            <a href="leaderboard.html" class="active">Leaderboard</a>
+            <a href="support.html">Support</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <h1>Leaderboard</h1>
+                <p>Enter a leaderboard code to view specific scores</p>
+            </div>
+            <div class="leaderboard-code-input">
+                <input type="text" id="leaderboard-code" placeholder="Enter Leaderboard Code" maxlength="6">
+                <button onclick="viewLeaderboard()" class="cta-button">View Scores</button>
+            </div>
+            <div id="leaderboard-content">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Nickname</th>
+                            <th>Game</th>
+                            <th>Difficulty</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Leaderboard entries will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MindMatchup. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function viewLeaderboard() {
+            const code = document.getElementById('leaderboard-code').value.toUpperCase();
+            const scores = getHighScores(code);
+            const tbody = document.getElementById('leaderboard-body');
+            
+            tbody.innerHTML = scores.map((score, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${score.nickname}</td>
+                    <td>${gameTypes[score.gameType].name}</td>
+                    <td>${score.difficulty.charAt(0).toUpperCase() + score.difficulty.slice(1)}</td>
+                    <td>${score.score}</td>
+                    <td>${new Date(score.date).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Show all scores by default
+        document.addEventListener('DOMContentLoaded', viewLeaderboard);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="theme-color" content="#ffffff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MindMatchUp is an interactive brain game that challenges your memory and logical thinking. Match pairs, improve your cognitive skills, and have fun!">
+<meta name="keywords" content="brain game, memory game, interactive quiz, cognitive challenge, brain teaser, mind puzzles, fun quiz, logic game, educational game">
+<meta name="author" content="Mark Majcherczyk-Olczak">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="MindMatchUp - Interactive Brain Game">
+<meta property="og:description" content="Test your memory and logic with MindMatchUp, an interactive brain game designed to improve cognitive skills while having fun!">
+<meta property="og:url" content="https://mindmatchup.com">
+<meta property="og:image" content="https://www.mindmatchup.com/og-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="twitter:title" content="MindMatchUp - Interactive Brain Game">
+<meta property="twitter:description" content="Play MindMatchUp and challenge your memory and logic skills. Have fun solving puzzles and improving your cognitive abilities!">
+<meta property="twitter:url" content="https://mindmatchup.com">
+<meta property="twitter:image" content="https://www.mindmatchup.com/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<title>MindMatchUp - Interactive Quiz Games</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" sizes="192x192" href="favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">
+<link rel="canonical" href="https://mindmatchup.com/" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+     crossorigin="anonymous"></script>   
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        .difficulty-btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            min-width: 150px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #3498db;
+            color: white;
+        }
+
+        .difficulty-btn:hover {
+            transform: scale(1.05);
+            background-color: #2980b9;
+        }
+
+        .countdown-display {
+            display: inline-block;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .timer-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            z-index: 1000;
+            display: none;
+        }
+
+        .timer-display.active {
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>MindMatchUp</h1>
+            </div>
+            <div class="nav-links">
+                <span id="scoreDisplay">Score: 0</span>
+                <div id="dailyChallengeCountdown" class="countdown-display"></div>
+                <button id="dailyChallengeBtn">Daily Challenge</button>
+                <button id="customQuizBtn">Create Quiz</button>
+              <button id="puzzleShopBtn" onclick="window.location.href='https://zzm6cb-da.myshopify.com/'">Puzzle Shop</button>
+
+               <button id="privacyBtn">Privacy Policy</button>
+                <button id="termsBtn">Terms of Service</button>
+                <button id="contactBtn">Contact</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to MindMatchUp</h2>
+            <p>Challenge your mind with our interactive quiz games!</p>
+        </section>
+
+        <section class="games-grid">
+            <div class="game-card" data-game="general">
+                <h3>General Knowledge</h3>
+                <p>Test your knowledge across various topics</p>
+                <button class="play-btn" onclick="showDifficultySelection('general')">Play Now</button>
+            </div>
+            <div class="game-card" data-game="maths">
+                <h3>Maths Challenge</h3>
+                <p>Put your mathematical skills to the test</p>
+                <button class="play-btn" onclick="showDifficultySelection('maths')">Play Now</button>
+            </div>
+            <div class="game-card" data-game="science">
+                <h3>Science Quiz</h3>
+                <p>Explore the world of science</p>
+                <button class="play-btn" onclick="showDifficultySelection('science')">Play Now</button>
+            </div>
+            <div class="game-card" data-game="history">
+                <h3>History Quest</h3>
+                <p>Journey through time and history</p>
+                <button class="play-btn" onclick="showDifficultySelection('history')">Play Now</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content game-content">
+            <span class="close">&times;</span>
+            <h2 id="gameTitle"></h2>
+            <div id="timerDisplay" class="timer-display"></div>
+            <div id="gameContent"></div>
+        </div>
+    </div>
+
+    <!-- Daily Challenge Modal -->
+    <div id="dailyChallengeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Daily Challenge</h2>
+            <div class="daily-challenge-info">
+                <p>Complete today's unique challenge! You have 1 minute to answer all questions.</p>
+                <p>Questions are randomly selected from different categories.</p>
+                <p>You can only complete the daily challenge once per day.</p>
+            </div>
+            <button onclick="startDailyChallenge()" class="play-btn">Start Challenge</button>
+        </div>
+    </div>
+
+    <!-- Custom Quiz Modal -->
+    <div id="customQuizModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Your Own Quiz</h2>
+            <div class="custom-quiz-form">
+                <div class="form-group">
+                    <label for="quizTitle">Quiz Title:</label>
+                    <input type="text" id="quizTitle" placeholder="Enter quiz title" required>
+                </div>
+                <div id="customQuestions">
+                    <!-- Questions will be added here dynamically -->
+                </div>
+                <button onclick="addQuestionField()" class="add-btn">Add Question</button>
+                <button onclick="createCustomQuiz()" class="play-btn">Create Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Last updated: March 2024</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p>We collect information that you provide directly to us when using MindMatchUp:</p>
+            <ul>
+                <li>Quiz scores and performance data</li>
+                <li>Custom quizzes you create</li>
+                <li>Contact information when you reach out to us</li>
+            </ul>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use the collected information to:</p>
+            <ul>
+                <li>Track your progress and scores</li>
+                <li>Improve our quiz content and user experience</li>
+                <li>Respond to your inquiries and support requests</li>
+                <li>Share your custom quizzes with other users (when you choose to do so)</li>
+            </ul>
+
+            <h3>3. Data Storage and Security</h3>
+            <p>Your data is stored securely using local storage in your browser. We implement appropriate security measures to protect your information from unauthorized access, alteration, disclosure, or destruction.</p>
+
+            <h3>4. Third-Party Services</h3>
+            <p>We use third-party services for:</p>
+            <ul>
+                <li>Sound effects and audio playback</li>
+                <li>Analytics to improve our service</li>
+            </ul>
+
+            <h3>5. Your Rights</h3>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of data collection</li>
+            </ul>
+
+            <h3>6. Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us through our contact form.</p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Terms of Service</h2>
+            <p>Last updated: March 2024</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing and using MindMatchUp, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our service.</p>
+
+            <h3>2. Use License</h3>
+            <p>Permission is granted to temporarily access MindMatchUp for personal, non-commercial use only. This license does not include:</p>
+            <ul>
+                <li>Modifying or copying the materials</li>
+                <li>Using the materials for commercial purposes</li>
+                <li>Attempting to decompile or reverse engineer any software</li>
+                <li>Removing any copyright or proprietary notations</li>
+            </ul>
+
+            <h3>3. User Conduct</h3>
+            <p>Users must:</p>
+            <ul>
+                <li>Provide accurate information when creating custom quizzes</li>
+                <li>Respect intellectual property rights</li>
+                <li>Not engage in any harmful or disruptive behavior</li>
+            </ul>
+
+            <h3>4. Disclaimer</h3>
+            <p>The materials on MindMatchUp are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+
+            <h3>5. Limitations</h3>
+            <p>In no event shall MindMatchUp or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on MindMatchUp.</p>
+
+            <h3>6. Revisions and Errata</h3>
+            <p>The materials appearing on MindMatchUp could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete, or current.</p>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Have questions or feedback? We'd love to hear from you!</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
+    </footer>
+
+    <script src="quizDatabase.js"></script>
+    <script src="main.js"></script>
+   <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html> 

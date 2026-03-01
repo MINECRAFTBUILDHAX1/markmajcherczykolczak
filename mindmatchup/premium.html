@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - MindMatchup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">MindMatchup</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="game.html">Play Game</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="premium.html" class="active">Premium</a>
+            <a href="support.html">Support</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="premium-container">
+            <h2>Upgrade to Premium</h2>
+            <p class="premium-intro">Unlock exclusive features and take your quiz experience to the next level!</p>
+            
+            <div class="premium-features">
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Extra Questions</h3>
+                    <p>Access to premium questions and categories</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Extended Time</h3>
+                    <p>More time to answer each question</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Special Badges</h3>
+                    <p>Exclusive badges for premium players</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-ad"></i>
+                    <h3>Ad-Free Experience</h3>
+                    <p>Enjoy the game without interruptions</p>
+                </div>
+            </div>
+
+            <div class="premium-pricing">
+                <div class="pricing-card">
+                    <h3>Monthly Premium</h3>
+                    <p class="price">$4.99<span>/month</span></p>
+                    <ul>
+                        <li>All premium features</li>
+                        <li>Cancel anytime</li>
+                        <li>Regular updates</li>
+                    </ul>
+                    <button onclick="upgradeToPremium()" class="cta-button">Upgrade Now</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="premium-badge">Best Value</div>
+                    <h3>Yearly Premium</h3>
+                    <p class="price">$39.99<span>/year</span></p>
+                    <ul>
+                        <li>All premium features</li>
+                        <li>Save 33%</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button onclick="upgradeToPremium()" class="cta-button">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="support.html">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MindMatchup. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function upgradeToPremium() {
+            // In a real application, this would integrate with a payment processor
+            localStorage.setItem('isPremium', 'true');
+            alert('Thank you for upgrading to Premium! You now have access to all premium features.');
+            window.location.href = 'game.html';
+        }
+    </script>
+</body>
+</html> 

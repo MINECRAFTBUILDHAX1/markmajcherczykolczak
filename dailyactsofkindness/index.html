@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGMCFBNHQR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QGMCFBNHQR');
+</script>
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daily Acts of Kindness provides a new random act of kindness each day to inspire you to make a positive impact in the world. Join our mission to spread kindness every day.">
+    <meta name="keywords" content="acts of kindness, daily kindness, kindness challenge, spread kindness, kindness ideas, daily motivation, random acts of kindness">
+    <meta name="author" content="Daily Acts of Kindness">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Daily Acts of Kindness">
+    <meta property="og:description" content="Join Daily Acts of Kindness and receive a new random act of kindness every day to make a positive impact in the world. Let's spread kindness together!">
+    <meta property="og:url" content="https://dailyactsofkindness.net">
+    <meta property="og:image" content="https://www.dailyactsofkindness.net/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="twitter:title" content="Daily Acts of Kindness">
+    <meta property="twitter:description" content="Receive a new random act of kindness each day and spread positivity in the world with Daily Acts of Kindness. Join the kindness movement today!">
+    <meta property="twitter:url" content="https://dailyactsofkindness.net">
+    <meta property="twitter:image" content="https://www.dailyactsofkindness.net/og-image.jpg"> <!-- Update this with your image URL -->
+    <meta property="twitter:card" content="summary_large_image">
+    <title>Daily Acts of Kindness</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">
+    <link rel="canonical" href="https://www.dailyactsofkindness.net/" />
+
+
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  /* Basic menu styling */
+  .menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #ff005e;
+    cursor: pointer;
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 240px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    z-index: 9998;
+    padding-top: 60px;
+    padding-left: 20px;
+  }
+
+  .side-menu.open {
+    left: 0;
+  }
+
+  .side-menu a {
+    display: block;
+    margin-bottom: 20px;
+    color: #ff005e;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .side-menu a:hover {
+    text-decoration: underline;
+  }
+</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+            color: #ff005e;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 40px; /* Adjusted for better spacing */
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+
+        #kindness-box {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #ff005e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:disabled {
+            background-color: #ff8cab;
+            cursor: not-allowed;
+        }
+
+        #timer {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        /* Animation for kindness box */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#kindness-box {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Hide kindness box after the animation */
+.hidden {
+    display: none;
+}
+
+        .footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 600px) {
+    .footer a {
+        display: block; /* Stack links vertically */
+        margin: 5px 0;
+    }
+}
+
+/* Desktop screen */
+@media (min-width: 601px) {
+    .footer a {
+        margin: 0 10px;
+        display: inline-block; /* Display links in a row */
+    }
+}
+.learn-more-button {
+    display: block;
+    background-color: #ff0053;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+    margin: 30px auto 0; /* This centers the button and gives space from the text above */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.learn-more-button:hover {
+    background-color: #d40047;
+    transform: scale(1.1);
+}
+
+        /* Style for the 'Back' button */
+.back-button {
+  padding: 12px 24px;
+  background-color: #ff005e;  /* Button color */
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  text-align: center;  /* Center the text */
+}
+
+.back-button:hover {
+  background-color: #e4004f;  /* Darker shade on hover */
+}
+
+
+
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <h1>Daily Acts of Kindness</h1>
+    
+    <div class="container">
+        <button id="kindness-btn" onclick="generateKindness()">Get Your Kindness Act</button>
+        <div id="kindness-box">Click the button to get your daily act of kindness!</div>
+        <div id="timer"></div> <!-- Timer Display -->
+    </div>
+
+    <div class="footer">
+        © <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved. | <a href="mailto:mmajcherczykolzcak@gmail.com?subject=Daily%20Acts%20of%20Kindness%20Enquiry">Contact</a> |
+        <a href="privacy.html">Privacy Notice</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+<!-- Menu button and menu panel -->
+<button class="menu-button" onclick="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</button>
+
+<div class="side-menu" id="sideMenu">
+  <a href="learn-more.html">Learn More</a>
+  <a href="terms.html">Terms</a>
+  <a href="privacy.html">Privacy</a>
+</div>
+    <script>
+    const kindnessActs = [
+    "Hold the door open for someone.",
+    "Compliment a stranger.",
+    "Donate to a local charity.",
+    "Leave a positive review for a small business.",
+    "Send a kind message to a friend.",
+    "Smile at people you pass today.",
+    "Pick up litter in your neighborhood.",
+    "Let someone go ahead of you in line.",
+    "Write a thank-you note to someone who helped you.",
+    "Help carry someone's groceries.",
+    "Pay for the coffee of the person behind you in line.",
+    "Leave a kind note in a library book.",
+    "Bake cookies for your neighbors.",
+    "Call a family member just to say hello.",
+    "Leave a generous tip for your server.",
+    "Help someone struggling with their bags.",
+    "Offer to babysit for a friend or neighbor.",
+    "Bring snacks to share at work or school.",
+    "Tell someone how much they mean to you.",
+    "Leave quarters at a laundromat.",
+    "Donate books to a local library.",
+    "Send a care package to a soldier.",
+    "Help an elderly neighbor with yard work.",
+    "Give up your seat on public transport.",
+    "Share an umbrella with someone in the rain.",
+    "Offer to help someone move.",
+    "Bring flowers to a hospital or nursing home.",
+    "Send a handwritten letter to a friend.",
+    "Buy extra pet food and donate it to a shelter.",
+    "Offer words of encouragement to someone struggling.",
+    "Leave a nice comment on someone's social media post.",
+    "Surprise a coworker with a small treat.",
+    "Support a local artist by purchasing their work.",
+    "Donate gently used clothes to a shelter.",
+    "Let someone merge in traffic with a smile.",
+    "Teach someone a new skill you know.",
+    "Return a lost item you find.",
+    "Tell a manager about great service you received.",
+    "Offer to take a photo for a group or couple.",
+    "Bring in your neighbor's trash bins.",
+    "Say 'thank you' more often.",
+    "Check in on a friend who is having a hard time.",
+    "Send a funny meme to make someone smile.",
+    "Help a teacher by donating school supplies.",
+    "Plant a tree or flowers in your community.",
+    "Donate blood if you're able.",
+    "Share your umbrella with someone.",
+    "Help a younger student with their homework.",
+    "Offer a ride to someone who needs it.",
+    "Give someone an unexpected gift.",
+    "Leave kind messages on sticky notes in public places.",
+    "Help clean up after an event.",
+    "Compliment someone's effort, not just their looks.",
+    "Send a kind email to your boss or coworker.",
+    "Bring coffee or tea for a friend.",
+    "Donate old blankets to an animal shelter.",
+    "Help a tourist with directions.",
+    "Shovel snow for a neighbor.",
+    "Volunteer at a soup kitchen or food bank.",
+    "Leave a nice tip for your hairdresser.",
+    "Recommend someone's business to others.",
+    "Celebrate someone's small achievements.",
+    "Make a playlist for a friend.",
+    "Introduce people who might get along well.",
+    "Let someone borrow something they need.",
+    "Write positive messages in chalk on the sidewalk.",
+    "Help a child learn something new.",
+    "Buy extra canned goods and donate them.",
+    "Support a local fundraiser.",
+    "Offer your seat at a crowded event.",
+    "Help someone struggling with technology.",
+    "Be patient in a long line or traffic.",
+    "Compliment a child's creativity or effort.",
+    "Celebrate someone's birthday with a small gesture.",
+    "Give a flower to a stranger.",
+    "Encourage someone chasing their dreams.",
+    "Forgive someone who made a mistake.",
+    "Say 'good morning' to people you meet.",
+    "Thank a janitor or cleaner for their hard work.",
+    "Tell a joke to make someone laugh.",
+    "Help a coworker with a task.",
+    "Bring in treats for your office or school.",
+    "Write a positive note for your mail carrier.",
+    "Teach someone a useful life hack.",
+    "Leave a positive review for a teacher or professor.",
+    "Text someone good luck before an important event.",
+    "Send a postcard to a friend or family member.",
+    "Buy a gift card and give it to a stranger.",
+    "Let someone borrow your umbrella or jacket.",
+    "Encourage someone who's trying something new.",
+    "Pick up a shift for a coworker who needs a break.",
+    "Offer to walk a neighbor’s dog.",
+    "Thank a police officer or firefighter for their service.",
+    "Give your extra change to a donation box.",
+    "Help a new student feel welcome.",
+    "Share an inspiring quote with someone who needs it.",
+    "Surprise a friend with a small act of kindness.",
+    "Offer to run an errand for someone busy.",
+    "Let someone have the last piece of cake.",
+    "Help someone assemble furniture or fix something.",
+    "Give someone a ride who needs it.",
+    "Write a list of things you appreciate about a person.",
+    "Make someone laugh with a funny story.",
+    "Offer to take care of someone's pet while they're away.",
+    "Give a genuine, heartfelt compliment.",
+    "Make room for someone to sit next to you.",
+    "Donate an old musical instrument to a school.",
+    "Encourage someone who’s having a bad day.",
+    "Share your knowledge with someone curious.",
+    "Send flowers to someone for no reason.",
+    "Help an elderly person cross the street safely.",
+    "Tell someone they inspire you.",
+    "Let someone use your charger if they need it.",
+    "Surprise a loved one with their favorite treat.",
+    "Make a 'just because' phone call to a friend.",
+    "Say 'please' and 'thank you' often.",
+    "Stand up for someone being treated unfairly.",
+    "Hold back negative comments and spread positivity.",
+    "Write a note of appreciation to your parents or mentors."
+];
+
+// List is still growing! I'll keep adding more in the next messages until we hit 10,000. 🚀
+
+
+   function generateKindness() {
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    // Get the last clicked time and the current time
+    const lastClick = localStorage.getItem("lastClick");
+
+    // Prevent multiple clicks on the same day
+    if (lastClick && now - lastClick < oneDay) {
+        return; // Prevent generating a new kindness act within the same day
+    }
+
+    // Randomly pick a kindness act
+    const randomAct = kindnessActs[Math.floor(Math.random() * kindnessActs.length)];
+
+    // Save the kindness message and last click time in localStorage
+    localStorage.setItem("kindnessMessage", randomAct);
+    localStorage.setItem("lastClick", now);
+
+    // Update the kindness box with the new kindness act
+    const kindnessBox = document.getElementById("kindness-box");
+    kindnessBox.innerText = randomAct;
+
+    // Disable the button after it’s clicked
+    document.getElementById("kindness-btn").disabled = true;
+
+    // Start the countdown timer
+    startCountdown(oneDay - (now - lastClick)); 
+
+    // Trigger animation
+    kindnessBox.classList.remove('hidden');
+
+    // Hide the kindness box after 5 seconds (adjust time as needed)
+    setTimeout(function() {
+        kindnessBox.classList.add('hidden');
+    }, 5000); // Box will disappear after 5 seconds
+}
+
+    // Countdown timer function
+    function startCountdown(remainingTime) {
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer() {
+            if (remainingTime <= 0) {
+                timerElement.innerText = "You can get a new act of kindness now!";
+                document.getElementById("kindness-btn").disabled = false;
+                return;
+            }
+
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            timerElement.innerText = `Time until next Act of Kindness: ${hours}h ${minutes}m ${seconds}s`;
+            remainingTime -= 1000;
+            setTimeout(updateTimer, 1000);
+        }
+
+        updateTimer();
+    }
+
+    // Initialize the kindness act and countdown on page load
+    window.onload = function() {
+        const lastClick = localStorage.getItem("lastClick");
+        const now = new Date().getTime();
+        const oneDay = 24 * 60 * 60 * 1000;
+
+        // Check if there's a kindness message saved in localStorage
+        const savedMessage = localStorage.getItem("kindnessMessage");
+        if (savedMessage) {
+            document.getElementById("kindness-box").innerText = savedMessage;
+        } else {
+            document.getElementById("kindness-box").innerText = "Click the button to get your daily act of kindness!";
+        }
+
+        // If a kindness act was generated today, disable the button and start the countdown
+        if (lastClick && now - lastClick < oneDay) {
+            document.getElementById("kindness-btn").disabled = true;
+            const timeRemaining = oneDay - (now - lastClick);
+            startCountdown(timeRemaining);
+        }
+  };
+        
+function toggleMenu() {
+  const menu = document.getElementById('sideMenu');
+  const button = document.querySelector('.menu-button');  // Get the menu button
+
+  menu.classList.toggle('open');  // Toggle the 'open' class for the side menu
+
+  // Hide the menu button when the menu is open, show it when the menu is closed
+  if (menu.classList.contains('open')) {
+    button.style.display = 'none';  // Hide button
+  } else {
+    button.style.display = 'block';  // Show button
+  }
+}
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
+</script>
+
+<div id="kindness-info">
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    Kindness is more than just a nice thing to do — it's a way of living. It’s choosing to show care, understanding, and compassion, even when it’s not expected. In a world that often feels disconnected, kindness is what brings us together.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    The beauty of kindness is that it can be expressed in infinite ways. Holding the door for someone, complimenting a stranger, or even sending a thoughtful message can make a lasting impact. No act of kindness is ever wasted.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    Studies have shown that being kind actually boosts your own happiness. It reduces stress, increases serotonin, and creates a sense of purpose. It doesn’t just help others — it helps you too.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    Kindness is powerful because it ripples outward. One simple act can inspire another. When people see kindness in action, they’re more likely to pay it forward. That’s how real change starts — one small gesture at a time.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    You don’t need to have money, fame, or status to be kind. You just need intention. Whether you're in school, working, or chilling at home, there’s always a chance to brighten someone’s day. Being kind doesn’t take much effort, but it leaves a big impact.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    This website exists to encourage everyday kindness. From helping a neighbor carry groceries to standing up for someone being treated unfairly — these moments matter. They build character, create trust, and make the world a little better.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    Let kindness be your default. Be patient. Be generous with your words. Celebrate others’ wins. Give without expecting something in return. These small choices build a culture of kindness — something the world desperately needs right now.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    Think of kindness like sunlight. The more you shine it on others, the more it reflects back on you. And even if the world doesn’t always respond, stay kind anyway. Your actions may be invisible to most, but they’re never meaningless.
+  </p>
+  <p style="font-size: 18px; color: #ff005e; max-width: 700px; margin: 10px auto;">
+    At the end of the day, being kind is one of the most powerful choices you can make. And the cool part? You never know who you’re inspiring just by being you. So stay kind, stay real, and let your actions speak louder than words. 🌟
+  </p>
+</div>
+<a href="learn-more.html" class="learn-more-button">Learn More</a>
+
+
+
+
+</body>
+</html>

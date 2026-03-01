@@ -1,0 +1,942 @@
+/* General Styles */
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #FFC107;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --card-background: #fff;
+    --shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--card-background);
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.nav-links a.active {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Game Types Section */
+.game-types {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+}
+
+.game-types h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.game-card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.game-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.game-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Difficulty Selection */
+.difficulty-selection {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.difficulty-selection h2 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.difficulty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.difficulty-button {
+    padding: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.difficulty-button.easy {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.difficulty-button.medium {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.difficulty-button.hard {
+    background: #fbe9e7;
+    color: #c62828;
+}
+
+.difficulty-button.impossible {
+    background-color: #9C27B0;
+    color: white;
+}
+
+/* Game Interface */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.score-display,
+.timer-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.question-card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.question-card h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.question-card p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Buttons */
+.cta-button {
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cta-button.secondary {
+    background-color: var(--secondary-color);
+    color: #333;
+}
+
+.cta-button.secondary:hover {
+    background-color: #ffd54f;
+}
+
+.option-button {
+    padding: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.option-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.options-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.game-over-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Game Over Section */
+.game-over {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.game-over h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.game-over p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Center Back to Home Button */
+.difficulty-selection .cta-button,
+.game-over .cta-button {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Picture Game Styles */
+.picture-question {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.picture-question img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+/* Word Game Styles */
+.word-scramble {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.scrambled-word {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 1rem 0;
+    letter-spacing: 2px;
+}
+
+.word-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.word-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #555;
+}
+
+/* Mobile Navigation */
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--card-background);
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .difficulty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .difficulty-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Support Section */
+.support {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.support-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.support-card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+}
+
+.support-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.support-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.support-email {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.support-email:hover {
+    text-decoration: underline;
+}
+
+/* Privacy and Terms Sections */
+.privacy, .terms {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.privacy-content, .terms-content {
+    text-align: left;
+}
+
+.privacy h3, .terms h3 {
+    color: var(--primary-color);
+    margin: 1.5rem 0 0.5rem;
+}
+
+.privacy ul, .terms ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.privacy li, .terms li {
+    margin-bottom: 0.5rem;
+}
+
+.privacy p, .terms p {
+    margin-bottom: 1rem;
+}
+
+/* Footer Update */
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #555;
+}
+
+.footer-bottom p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Memory Game Styles */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.card-front {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.card-back {
+    background-color: white;
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched .card-back {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Riddles Game Styles */
+.hint-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.hint-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.hint-button:hover {
+    background-color: #357abd;
+}
+
+.hint-display {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    min-height: 20px;
+}
+
+.answer-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.answer-input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.answer-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.submit-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #357abd;
+}
+
+/* Math Game Styles */
+.math-question {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.math-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.math-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Support Section */
+.support-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.support-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.support-option {
+    flex: 1;
+    max-width: 300px;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.support-option:hover {
+    transform: translateY(-5px);
+}
+
+.support-option h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.support-option p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* FAQ Section */
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.faq-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.faq-section .cta-button {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.8rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq-section .cta-button:hover {
+    background: var(--primary-color-dark);
+}
+
+/* Leaderboard Section */
+.leaderboard-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.leaderboard-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.leaderboard-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-join,
+.leaderboard-create {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.leaderboard-join input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.leaderboard-table {
+    overflow-x: auto;
+}
+
+.leaderboard-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.leaderboard-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* Image Styles */
+.game-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Game Selection Styles */
+.difficulty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.difficulty-button {
+    padding: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.difficulty-button.easy {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.difficulty-button.medium {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.difficulty-button.hard {
+    background: #fbe9e7;
+    color: #c62828;
+}
+
+/* Leaderboard Styles */
+.leaderboard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.leaderboard-actions .cta-button {
+    min-width: 150px;
+} 
