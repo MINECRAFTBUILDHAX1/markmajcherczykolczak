@@ -1,0 +1,482 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-color: #1f2937;
+    --light-text: #6b7280;
+    --background: #ffffff;
+    --section-bg: #f9fafb;
+    --border-color: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background);
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.progress-container {
+    width: 200px;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+main {
+    padding-top: 80px;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    scroll-margin-top: 80px;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:nth-child(even) {
+    background-color: var(--section-bg);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.step-content {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    text-align: left;
+}
+
+.step-content p {
+    margin-bottom: 1.5rem;
+    color: var(--light-text);
+}
+
+.step-content ul, .step-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.step-content li {
+    margin-bottom: 0.5rem;
+}
+
+.file-structure {
+    background: var(--background);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+    text-align: left;
+    font-family: monospace;
+}
+
+.dns-info {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.cta-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background: var(--primary-hover);
+}
+
+footer {
+    background: var(--section-bg);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-contact a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: var(--primary-color);
+}
+
+.footer-date {
+    margin-top: 1rem;
+    color: var(--light-text);
+}
+
+@media (max-width: 768px) {
+    .fixed-header {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        height: auto;
+    }
+
+    .progress-container {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    main {
+        padding-top: 120px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .section {
+        padding: 2rem 1rem 3rem;
+        min-height: auto;
+        scroll-margin-top: 120px;
+    }
+
+    .step-content {
+        padding: 0 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .record-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .dns-info {
+        padding: 1rem;
+    }
+
+    .ip-info {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .privacy-section {
+        padding-top: 1rem;
+    }
+
+    .privacy-content {
+        padding: 1.5rem;
+    }
+
+    .contact-section {
+        padding-top: 1rem;
+    }
+
+    .contact-content {
+        padding: 1.5rem;
+    }
+}
+
+.domain-input {
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.domain-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.domain-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.domain-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.ip-info {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.ip-info p {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.ip-info ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.ip-info li {
+    font-family: monospace;
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+}
+
+/* Privacy Policy Page Styles */
+.privacy-section {
+    padding-top: 6rem;
+    min-height: auto;
+}
+
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--background);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-content h2 {
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.privacy-content p {
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.privacy-content ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-content li {
+    margin-bottom: 0.5rem;
+    color: var(--light-text);
+}
+
+/* Contact Page Styles */
+.contact-section {
+    padding-top: 6rem;
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--background);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-methods {
+    margin: 2rem 0;
+}
+
+.contact-method {
+    margin-bottom: 2rem;
+}
+
+.contact-method h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.contact-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--primary-hover);
+}
+
+.contact-info {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.security-note {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f0f9ff;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0.5rem;
+}
+
+.security-note p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.security-note strong {
+    color: var(--primary-color);
+}
+
+.record-note {
+    margin: 1rem 0;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.record-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.record {
+    background: var(--section-bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.record p {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.record ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.record li {
+    margin-bottom: 0.25rem;
+    font-family: monospace;
+    color: var(--light-text);
+}
+
+.external-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.external-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.back-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Progress bar color for step 7 */
+.progress-bar.completed {
+    background: #22c55e; /* Green color */
+} 

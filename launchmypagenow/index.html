@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4069805592498055"
+    crossorigin="anonymous"></script>
+
+  <!-- Basic Meta -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaunchMyPageNow - Launch Your Website with GitHub Pages</title>
+  <meta name="description" content="Easily launch your website using GitHub Pages. Step-by-step guide, no coding required.">
+  <meta name="keywords" content="GitHub Pages, website launch, web development, no-code website, HTML hosting">
+  <meta name="author" content="Mark Majcherczyk-Olczak">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+
+  <!-- Open Graph (for Facebook and more) -->
+  <meta property="og:title" content="LaunchMyPageNow - Launch Your Website with GitHub Pages">
+  <meta property="og:description" content="Easily launch your website using GitHub Pages. Step-by-step guide, no coding required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://launchmypagenow.com/">
+  <meta property="og:image" content="https://launchmypagenow.com/og-image.png"> <!-- Replace with your actual OG image URL -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LaunchMyPageNow - Launch Your Website with GitHub Pages">
+  <meta name="twitter:description" content="Easily launch your website using GitHub Pages. Step-by-step guide, no coding required.">
+  <meta name="twitter:image" content="https://launchmypagenow.com/og-image.png"> <!-- Replace with actual image -->
+
+  <!-- Fonts and Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="fixed-header">
+     <a href="index.html" class="logo">
+  <i class="fas fa-rocket" style="color: #2563eb; margin-right: 8px;"></i>LaunchMyPageNow
+</a>
+
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="section">
+            <h1>Launch your website with GitHub Pages – It's that simple!</h1>
+            <p>Follow our step-by-step guide to create and deploy your website using GitHub Pages. No technical expertise required!</p>
+            <button class="cta-button" onclick="scrollToNextSection('home')">Start Now</button>
+        </section>
+
+        <section id="step1" class="section">
+            <h2>Step 1: Purchase Your Domain</h2>
+            <div class="step-content">
+                <p>Use a domain registrar like Namecheap or GoDaddy to purchase a custom domain.</p>
+                <ul>
+                    <li>Choose a memorable domain name</li>
+                    <li>Check availability</li>
+                    <li>Complete the purchase process</li>
+                </ul>
+                <div class="domain-input">
+                    <label for="customDomain">Enter the domain you purchased:</label>
+                    <input type="text" id="customDomain" placeholder="Enter your domain name (e.g., example.com)" class="domain-field">
+                </div>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step1')">Next Step</button>
+        </section>
+
+        <section id="step2" class="section">
+            <h2>Step 2: Set Up Your GitHub Account</h2>
+            <div class="step-content">
+                <p>If you don't have one yet, <a href="https://github.com/signup" target="_blank" class="external-link">create a GitHub account here</a>.</p>
+                <p>GitHub Pages is a static site hosting service that takes files from a repository, runs the files through a build process, and publishes a website.</p>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step2')">Next Step</button>
+        </section>
+
+        <section id="step3" class="section">
+            <h2>Step 3: Create Your GitHub Repository</h2>
+            <div class="step-content">
+                <p>Create a new repository with the name [username].github.io</p>
+                <ol>
+                    <li>Click the "+" icon in the top right</li>
+                    <li>Select "New repository"</li>
+                    <li>Name it [your-username].github.io</li>
+                    <li>Make it public</li>
+                </ol>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step3')">Next Step</button>
+        </section>
+
+        <section id="step4" class="section">
+            <h2>Step 4: Upload Your Website Files</h2>
+            <div class="step-content">
+                <p>Upload your HTML, CSS, and JS files to the GitHub repository you just created.</p>
+                <div class="file-structure">
+                    <pre>
+your-repo/
+├── index.html
+├── styles.css
+├── script.js
+└── assets/
+    └── images/</pre>
+                </div>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step4')">Next Step</button>
+        </section>
+
+        <section id="step5" class="section">
+            <h2>Step 5: Configure DNS</h2>
+            <div class="step-content">
+                <p>Point your domain to your GitHub Pages repository using CNAME records.</p>
+                <div class="dns-info">
+                    <p>Add these records to your domain provider:</p>
+                    <ul>
+                        <li>Type: CNAME</li>
+                        <li>Name: www</li>
+                        <li>Value: [username].github.io</li>
+                    </ul>
+                    <div class="ip-info">
+                        <p>Add these A records pointing to GitHub Pages IP addresses:</p>
+                        <p class="record-note">Each record should have the same host (@) but different IP values:</p>
+                        <div class="record-group">
+                            <div class="record">
+                                <p>Record 1:</p>
+                                <ul>
+                                    <li>Host: @</li>
+                                    <li>Type: A</li>
+                                    <li>Value: 185.199.108.153</li>
+                                </ul>
+                            </div>
+                            <div class="record">
+                                <p>Record 2:</p>
+                                <ul>
+                                    <li>Host: @</li>
+                                    <li>Type: A</li>
+                                    <li>Value: 185.199.109.153</li>
+                                </ul>
+                            </div>
+                            <div class="record">
+                                <p>Record 3:</p>
+                                <ul>
+                                    <li>Host: @</li>
+                                    <li>Type: A</li>
+                                    <li>Value: 185.199.110.153</li>
+                                </ul>
+                            </div>
+                            <div class="record">
+                                <p>Record 4:</p>
+                                <ul>
+                                    <li>Host: @</li>
+                                    <li>Type: A</li>
+                                    <li>Value: 185.199.111.153</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step5')">Next Step</button>
+        </section>
+
+        <section id="step6" class="section">
+            <h2>Step 6: Enable GitHub Pages</h2>
+            <div class="step-content">
+                <p>Go to the repository settings and enable GitHub Pages.</p>
+                <ol>
+                    <li>Go to Settings > Pages</li>
+                    <li>Select "main" branch as source</li>
+                    <li>Click "Save"</li>
+                    <li>Under "Custom domain", enter your domain name</li>
+                    <li>Check "Enforce HTTPS" to make your website more secure</li>
+                </ol>
+                <div class="security-note">
+                    <p><strong>Security Note:</strong> Enforcing HTTPS ensures that all traffic to your website is encrypted, protecting your visitors' data and improving your site's security.</p>
+                </div>
+            </div>
+            <button class="cta-button" onclick="scrollToNextSection('step6')">Next Step</button>
+        </section>
+
+        <section id="step7" class="section">
+            <h2>Congratulations! Your Website is Live! 🎉</h2>
+            <div class="step-content">
+                <p>You've successfully set up your website on GitHub Pages!</p>
+            </div>
+            <button class="cta-button" onclick="openWebsite()">View Your Website</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-date">© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</div>
+        </div>
+    </footer>
+ 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("year").textContent = new Date().getFullYear();
+  });
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html> 
