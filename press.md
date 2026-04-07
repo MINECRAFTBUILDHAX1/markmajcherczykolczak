@@ -97,7 +97,7 @@ Mark Majcherczyk-Olczak can be described as:
 
 For press, collaboration, or business enquiries:
 
-- Email: (your email here)
+- Email: mmajcherczykolczak@gmail.com
 
 ---
 
