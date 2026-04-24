@@ -8,11 +8,11 @@
 
   <!-- SEO Meta -->
   <meta name="description" content="Mark Majcherczyk-Olczak is a compositor and filmmaker specialising in VFX compositing, film production, and digital content creation.">
-  <meta name="keywords" content="Mark Majcherczyk-Olczak, compositor, VFX compositor, visual effects, Nuke artist, film compositing, VFX portfolio, compositor UK, filmmaking, digital compositing, post production, film editor, visual effects artist">
+  <meta name="keywords" content="Mark Majcherczyk-Olczak, compositor, VFX compositor, visual effects, Nuke artist, film compositing, VFX portfolio, compositor UK, filmmaking, digital compositing, post production">
   <meta name="author" content="Mark Majcherczyk-Olczak">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Open Graph (for sharing) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Portfolio - Mark Majcherczyk-Olczak">
   <meta property="og:description" content="VFX compositor portfolio showcasing film and visual effects work.">
   <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
   <style>
     body {
       margin: 0;
-      background-color: #0d0d0d; /* slightly grey instead of pure black */
+      background-color: #0d0d0d;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -34,7 +34,7 @@
 
     /* Header */
     .header {
-      margin-top: 80px; /* more breathing room */
+      margin-top: 100px;
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
     }
@@ -50,19 +50,22 @@
       margin-top: 5px;
     }
 
-    /* Vimeo placeholder */
+    /* Vimeo Reel */
     .video-container {
       width: 80%;
-      max-width: 900px;
-      height: 500px;
-      margin: 60px auto;
-      background-color: #1a1a1a;
+      max-width: 720px;   /* smaller + cleaner */
+      aspect-ratio: 16 / 9;
+      margin: 50px auto;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: 18px;
+      overflow: hidden;
+      background-color: #1a1a1a;
+      box-shadow: 0 0 20px rgba(0,0,0,0.35);
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     /* Social icons */
@@ -107,9 +110,13 @@
     <div class="role">COMPOSITOR</div>
   </div>
 
-  <!-- Vimeo placeholder -->
+  <!-- Vimeo Embed -->
   <div class="video-container">
-    Vimeo video goes here
+    <iframe 
+      src="https://player.vimeo.com/video/PUT_VIDEO_ID_HERE"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
 
   <!-- Social icons -->
