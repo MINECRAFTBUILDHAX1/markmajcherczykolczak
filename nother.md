@@ -131,7 +131,7 @@ Tessa’s guinea pig, whose accidental action sets the story in motion.
 
 ## 💰 Budget & Strategy
 
-**Estimated Budget:** $10,000 USD (development estimate)
+**Estimated Budget:** $30K–$75K USD (development estimate)
 
 ### Budget Strategy
 - Minimal and efficient production  
