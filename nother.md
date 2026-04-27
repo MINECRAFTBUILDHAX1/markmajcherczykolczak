@@ -117,7 +117,7 @@ Tessa’s guinea pig, whose accidental action sets the story in motion.
 
 **Production Company:** Majcherczyk Digital Ltd  
 **Planned Shoot:** January 2027  
-**Planned Location:** New Jersey, USA  
+**Planned Location:** New York, USA  
 
 ### Production Approach
 - Lean independent model  
