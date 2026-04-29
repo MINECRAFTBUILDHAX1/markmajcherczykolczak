@@ -52,19 +52,20 @@
 
     /* Vimeo Reel */
     .video-container {
-      width: 80%;
-      max-width: 720px;   /* smaller + cleaner */
-      aspect-ratio: 16 / 9;
-      margin: 50px auto;
+      width: 90%;
+      max-width: 1000px;
+      margin: 30px auto;
       border-radius: 10px;
       overflow: hidden;
-      background-color: #1a1a1a;
-      box-shadow: 0 0 20px rgba(0,0,0,0.35);
+      line-height: 0;
     }
-
+    
     .video-container iframe {
+      display: block;
       width: 100%;
-      height: 100%;
+      height: 56.25vw;
+      max-height: 562px;
+      min-height: 320px;
       border: none;
     }
 
