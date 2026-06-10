@@ -1,185 +1,222 @@
 :root {
---bg: #0b0d10;
---panel: rgba(255, 255, 255, 0.04);
---text: rgba(255, 255, 255, 0.92);
---muted: rgba(255, 255, 255, 0.6);
---accent: #7c5cff;
---accent2: #00d4ff;
---border: rgba(255, 255, 255, 0.08);
+  --bg: #0b0d10;
+  --panel: rgba(255, 255, 255, 0.04);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.6);
+  --accent: #7c5cff;
+  --accent2: #00d4ff;
+  --border: rgba(255, 255, 255, 0.08);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  }
-
-body {
-font-family: "Inter", system-ui, -apple-system, sans-serif;
-background: radial-gradient(circle at top, #141824 0%, var(--bg) 60%);
-color: var(--text);
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
 }
 
-/* HERO */
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #141824 0%, var(--bg) 60%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* =========================
+   HERO LAYOUT
+========================= */
+
 .hero {
-width: 100%;
-display: flex;
-justify-content: center;
-padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2;
 }
 
 .hero-content {
-text-align: center;
-max-width: 700px;
+  text-align: center;
+  max-width: 700px;
+  animation: fadeIn 1s ease forwards;
 }
 
 /* NAME */
 .name {
-font-size: 2.8rem;
-font-weight: 600;
-letter-spacing: -0.02em;
-margin-bottom: 0.6rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
 }
 
 /* ROLE */
 .role {
-font-size: 1.1rem;
-color: var(--muted);
-margin-bottom: 2.5rem;
-letter-spacing: 0.08em;
-text-transform: uppercase;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* LINKS GRID */
+/* =========================
+   LINKS GRID (TILES)
+========================= */
+
 .links-grid {
-display: grid;
-grid-template-columns: repeat(2, minmax(140px, 1fr));
-gap: 1rem;
-margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-/* TILES */
 .tile {
-background: var(--panel);
-border: 1px solid var(--border);
-padding: 1.2rem;
-border-radius: 14px;
-text-decoration: none;
-color: var(--text);
-font-size: 0.95rem;
-transition: all 0.25s ease;
-backdrop-filter: blur(10px);
-position: relative;
-overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.tile span {
+  position: relative;
+  z-index: 2;
 }
 
 /* glow hover */
 .tile::before {
-content: "";
-position: absolute;
-inset: 0;
-background: linear-gradient(120deg, var(--accent), var(--accent2));
-opacity: 0;
-transition: opacity 0.3s ease;
-}
-
-.tile span {
-position: relative;
-z-index: 2;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .tile:hover {
-transform: translateY(-3px);
-border-color: transparent;
+  transform: translateY(-3px);
+  border-color: transparent;
 }
 
 .tile:hover::before {
-opacity: 0.15;
-}
-
-/* subtle cinematic fade in */
-.hero-content {
-animation: fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(10px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-.name {
-font-size: 2.2rem;
-}
-
-.links-grid {
-grid-template-columns: 1fr;
-}
+  opacity: 0.18;
 }
 
 /* =========================
-CINEMATIC BACKGROUND LAYER
+   FADE IN
 ========================= */
 
-/* soft animated gradient haze */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   CINEMATIC BACKGROUND LIGHTS
+========================= */
+
 body::before {
-content: "";
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.15), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.12), transparent 45%),
-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 60%);
-z-index: -2;
-animation: floatGlow 12s ease-in-out infinite alternate;
-filter: blur(40px);
+  content: "";
+  position: fixed;
+  inset: -30%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.10), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 60%);
+  filter: blur(70px);
+  z-index: -2;
+  animation: floatGlow 20s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-/* film grain overlay */
-body::after {
-content: "";
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-opacity: 0.06;
-z-index: -1;
-pointer-events: none;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
-animation: grainMove 1s steps(2) infinite;
-}
-
-/* soft movement */
 @keyframes floatGlow {
-0% {
-transform: translateY(-10px) scale(1);
-}
-100% {
-transform: translateY(10px) scale(1.05);
-}
-}
-
-/* subtle grain motion */
-@keyframes grainMove {
-0% {
-transform: translate(0, 0);
-}
-100% {
-transform: translate(-5%, 5%);
-}
+  0% {
+    transform: translate3d(-2%, -2%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(2%, 2%, 0) scale(1.12);
+  }
 }
 
+/* =========================
+   FILM GRAIN (FIXED + VISIBLE)
+========================= */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.14;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+
+  animation: grainShift 0.5s steps(2) infinite;
+}
+
+@keyframes grainShift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-1%, 1%);
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  position: fixed;
+  bottom: 1.2rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================
+   MOBILE FIX
+========================= */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 1.5rem;
+  }
+
+  .name {
+    font-size: 2.1rem;
+  }
+
+  .role {
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .links-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .tile {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
