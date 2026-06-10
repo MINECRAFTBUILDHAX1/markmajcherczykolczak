@@ -100,6 +100,15 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .footer {
+      font-size: 12px;           /* smaller text */
+      color: rgba(255, 255, 255, 0.3); /* very muted white */
+      text-align: center;
+      margin: 40px 0 20px 0;     /* some spacing above */
+      letter-spacing: 0.5px;
+      font-family: Arial, sans-serif;
+    }
   </style>
 </head>
 
@@ -142,8 +151,6 @@
 
   </div>
   <script src="https://player.vimeo.com/api/player.js"></script>
-</body>
-  
   <footer class="footer">
   <p>© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
 </footer>
@@ -151,4 +158,7 @@
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+</body>
+  
+  
 </html>
