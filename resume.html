@@ -129,8 +129,12 @@
     </div>
   </div>
 
-  <footer>
-    © 2026 Mark Majcherczyk-Olczak
-  </footer>
+  <footer class="footer">
+  <p>© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
