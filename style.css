@@ -19,17 +19,11 @@ body {
   background: radial-gradient(circle at top, #141824 0%, var(--bg) 60%);
   color: var(--text);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow-x: hidden;
   position: relative;
 }
 
-/* =========================
-   CINEMATIC STATIC LIGHTING
-========================= */
-
+/* CINEMATIC LIGHTING */
 body::before {
   content: "";
   position: fixed;
@@ -42,10 +36,7 @@ body::before {
   z-index: -2;
 }
 
-/* =========================
-   FILM GRAIN (STATIC)
-========================= */
-
+/* GRAIN */
 body::after {
   content: "";
   position: fixed;
@@ -57,16 +48,13 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
 }
 
-/* =========================
-   HERO LAYOUT
-========================= */
-
+/* HERO */
 .hero {
-  width: 100%;
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
   padding: 2rem;
-  z-index: 2;
 }
 
 .hero-content {
@@ -91,10 +79,7 @@ body::after {
   text-transform: uppercase;
 }
 
-/* =========================
-   LINKS GRID
-========================= */
-
+/* GRID */
 .links-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(140px, 1fr));
@@ -102,7 +87,7 @@ body::after {
   margin-top: 1.5rem;
 }
 
-/* TILE STYLE */
+/* TILE */
 .tile {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -122,7 +107,6 @@ body::after {
   z-index: 2;
 }
 
-/* subtle hover glow */
 .tile::before {
   content: "";
   position: absolute;
@@ -141,28 +125,17 @@ body::after {
   opacity: 0.15;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER (FIXED) */
 .footer {
-  position: fixed;
-  bottom: 1.2rem;
-  width: 100%;
   text-align: center;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.4);
+  padding-bottom: 1.5rem;
+  margin-top: 2rem;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media (max-width: 600px) {
-
-  body {
-    padding: 1.5rem;
-  }
 
   .name {
     font-size: 2.1rem;
@@ -181,5 +154,9 @@ body::after {
   .tile {
     padding: 1rem;
     font-size: 0.9rem;
+  }
+
+  body {
+    background: #0b0d10;
   }
 }
