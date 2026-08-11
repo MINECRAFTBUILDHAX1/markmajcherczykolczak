@@ -82,6 +82,23 @@
       accent-color: var(--accent);
     }
 
+    /* Remove button */
+    .delete-task {
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.6rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .delete-task:hover {
+      background: #fecaca;
+      transform: scale(1.05);
+    }
+
     .add-task {
       display: flex;
       gap: 0.5rem;
@@ -156,7 +173,9 @@
     }
   </style>
 </head>
+
 <body>
+
   <h1>🗓️ Mark's Day Planner</h1>
 
   <form class="add-task" id="taskForm">
@@ -171,7 +190,9 @@
     <button class="reset-button" id="resetAll">Reset All Tasks</button>
   </div>
 
-  <div class="celebrate" id="celebrate">✅ All tasks done! You’re on fire, Mark 🔥</div>
+  <div class="celebrate" id="celebrate">
+    ✅ All tasks done! You’re on fire, Mark 🔥
+  </div>
 
   <script>
     const planner = document.getElementById('planner');
@@ -207,50 +228,80 @@
         const div = document.createElement('div');
         div.className = 'task' + (task.done ? ' done' : '');
 
+        // Checkbox
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = task.done;
+
         checkbox.addEventListener('change', () => {
           task.done = checkbox.checked;
           saveTasks();
           renderTasks();
         });
 
+        // Time
         const timeInput = document.createElement('input');
         timeInput.type = 'time';
         timeInput.value = task.time;
+
         timeInput.addEventListener('change', () => {
           task.time = timeInput.value;
           saveTasks();
           renderTasks();
         });
 
+        // Task text
         const textInput = document.createElement('input');
         textInput.type = 'text';
         textInput.value = task.text;
+
         textInput.addEventListener('change', () => {
           task.text = textInput.value;
           saveTasks();
         });
 
+        // Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-task';
+        deleteButton.innerHTML = '🗑️';
+        deleteButton.title = 'Remove task';
+
+        deleteButton.addEventListener('click', () => {
+          tasks.splice(index, 1);
+          saveTasks();
+          renderTasks();
+        });
+
+        // Add everything to task
         div.appendChild(checkbox);
         div.appendChild(timeInput);
         div.appendChild(textInput);
+        div.appendChild(deleteButton);
+
         planner.appendChild(div);
       });
 
       celebrate.classList.toggle('show', allDone);
     }
 
+    // Add new task
     form.addEventListener('submit', e => {
       e.preventDefault();
-      tasks.push({ time: taskTime.value, text: taskText.value, done: false });
+
+      tasks.push({
+        time: taskTime.value,
+        text: taskText.value,
+        done: false
+      });
+
       taskText.value = '';
       taskTime.value = '';
+
       saveTasks();
       renderTasks();
     });
 
+    // Delete all tasks
     resetAll.addEventListener('click', () => {
       if (confirm("Are you sure you want to delete all tasks?")) {
         tasks = [];
@@ -261,5 +312,6 @@
 
     renderTasks();
   </script>
+
 </body>
 </html>
