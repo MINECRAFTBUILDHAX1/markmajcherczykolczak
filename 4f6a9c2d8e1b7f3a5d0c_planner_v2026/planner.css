@@ -1,500 +1,1156 @@
-<style>
-    :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #777;
-      --accent: #4f46e5;
-      --border: #e5e5e5;
-      --done-bg: #e8f8e8;
-      --danger: #ef4444;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-      --rounded: 16px;
-    }
-
-    body.dark {
-      --bg: #111114;
-      --card: #1c1c21;
-      --text: #f5f5f5;
-      --muted: #999;
-      --border: #33333a;
-      --done-bg: #19351f;
-      --shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: Inter, Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 2rem;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .top-bar,
-    .header,
-    .world-clocks {
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .top-bar {
-      margin-bottom: 1.5rem;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .dark-toggle {
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      border-radius: 50px;
-      padding: 0.55rem 0.9rem;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .header {
-      margin-bottom: 1.5rem;
-    }
-
-    .greeting {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .date {
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .world-clocks {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0.7rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .clock-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.85rem 0.7rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .clock-location {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .clock-time {
-      font-size: 1.15rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .clock-date {
-      color: var(--muted);
-      font-size: 0.72rem;
-      margin-top: 0.25rem;
-    }
-
-    .dashboard {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 350px;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .main-column {
-      min-width: 0;
-    }
-
-    .progress-card {
-      background: var(--card);
-      padding: 1.2rem;
-      border-radius: var(--rounded);
-      box-shadow: var(--shadow);
-      margin-bottom: 1.5rem;
-    }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.7rem;
-      font-weight: 600;
-    }
-
-    .progress-bar {
-      height: 12px;
-      background: var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: 20px;
-      transition: width 0.4s ease;
-    }
-
-    .add-task {
-      display: grid;
-      grid-template-columns: 110px 1fr 145px 120px;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .add-task input,
-    .add-task select,
-    .add-task button {
-      padding: 0.7rem;
-      font-size: 1rem;
-      border-radius: 12px;
-    }
-
-    .add-task input,
-    .add-task select {
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-    }
-
-    .add-task button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .planner {
-      background: var(--card);
-      border-radius: var(--rounded);
-      padding: 1.2rem;
-      box-shadow: var(--shadow);
-    }
-
-    .task {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.8rem;
-      margin-bottom: 0.6rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      cursor: grab;
-      transition: 0.2s;
-    }
-
-    .task:active {
-      cursor: grabbing;
-    }
-
-    .task.dragging {
-      opacity: 0.4;
-    }
-
-    .task.done {
-      background: var(--done-bg);
-    }
-
-    .drag-handle {
-      color: var(--muted);
-      font-size: 1.1rem;
-      cursor: grab;
-    }
-
-    .task input[type="checkbox"] {
-      transform: scale(1.3);
-      accent-color: var(--accent);
-    }
-
-    .task input[type="time"] {
-      border: none;
-      background: transparent;
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    .task input[type="text"] {
-      flex: 1;
-      min-width: 0;
-      padding: 0.45rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--card);
-      color: var(--text);
-    }
-
-    .priority {
-      width: 125px;
-      min-width: 125px;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 0.65rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .priority.low {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .priority.medium {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .priority.high {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .delete-task {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 0.3rem;
-    }
-
-    .controls {
-      margin: 1.2rem auto;
-      display: flex;
-      justify-content: center;
-    }
-
-    .reset-button {
-      background: var(--danger);
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .celebrate {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #22c55e;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-
-    .celebrate.show {
-      opacity: 1;
-    }
-
-    /* =========================
-       SEPTEMBER GOALS
-    ========================= */
-
-    .goals-card {
-      background: var(--card);
-      border-radius: var(--rounded);
-      padding: 1.25rem;
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 1.5rem;
-    }
-
-    .goals-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .goals-title {
-      margin: 0;
-      font-size: 1.35rem;
-    }
-
-    .goals-year {
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .goals-subtitle {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
-
-    .goals-progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.45rem;
-    }
-
-    .goals-progress-bar {
-      height: 9px;
-      background: var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 1rem;
-    }
-
-    .goals-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: 20px;
-      transition: width 0.4s ease;
-    }
-
-    .goal {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .goal:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .goal-checkbox {
-      width: 18px;
-      height: 18px;
-      margin-top: 2px;
-      accent-color: var(--accent);
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-
-    .goal-label {
-      font-size: 0.9rem;
-      line-height: 1.35;
-      cursor: pointer;
-    }
-
-    .goal.completed .goal-label {
-      text-decoration: line-through;
-      color: var(--muted);
-    }
-
-    .goal-category {
-      display: block;
-      color: var(--muted);
-      font-size: 0.72rem;
-      margin-top: 0.2rem;
-    }
-
-    .goals-complete {
-      text-align: center;
-      color: #22c55e;
-      font-weight: 700;
-      margin-top: 1rem;
-      display: none;
-    }
-
-    .goals-complete.show {
-      display: block;
-    }
-
-    .undo {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: white;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      display: none;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-      z-index: 10;
-    }
-
-    .undo.show {
-      display: flex;
-    }
-
-    .undo button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.4rem 0.7rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    @media (max-width: 900px) {
-      body {
-        padding: 1rem;
-      }
-
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-
-      .goals-card {
-        position: static;
-      }
-
-      .world-clocks {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .greeting {
-        font-size: 1.6rem;
-      }
-
-      .world-clocks {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .add-task {
-        grid-template-columns: 1fr;
-      }
-
-      .task {
-        flex-wrap: wrap;
-      }
-
-      .task input[type="text"] {
-        width: 100%;
-        order: 5;
-      }
-
-      .priority {
-        width: 125px;
-      }
-    }
-  </style>
+/* =========================================================
+   MARK'S DAY PLANNER — 2026
+   Modern dashboard UI
+   ========================================================= */
+
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --card-soft: #f8f9fb;
+  --text: #17181c;
+  --muted: #747781;
+  --muted-light: #9a9da5;
+
+  --accent: #635bff;
+  --accent-hover: #554de8;
+  --accent-soft: #eeecff;
+
+  --border: #e7e8ec;
+  --border-strong: #d9dbe1;
+
+  --done-bg: #f1faf3;
+  --done-border: #d7f0dc;
+
+  --danger: #ef4444;
+  --danger-soft: #fff0f0;
+
+  --success: #22c55e;
+
+  --shadow-sm: 0 2px 8px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 8px 30px rgba(16, 24, 40, 0.07);
+  --shadow-lg: 0 18px 50px rgba(16, 24, 40, 0.09);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --transition: 180ms ease;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.planner-page.dark {
+  --bg: #0d0e11;
+  --card: #15161a;
+  --card-soft: #1b1c21;
+
+  --text: #f5f6f8;
+  --muted: #989ba5;
+  --muted-light: #70737c;
+
+  --accent: #7c75ff;
+  --accent-hover: #8d87ff;
+  --accent-soft: rgba(124, 117, 255, 0.14);
+
+  --border: #282a30;
+  --border-strong: #34363d;
+
+  --done-bg: #142219;
+  --done-border: #21442a;
+
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.1);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+.planner-page {
+  min-height: 100vh;
+  margin: 0;
+  padding: 32px;
+  background: var(--bg);
+  color: var(--text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.planner-page *,
+.planner-page *::before,
+.planner-page *::after {
+  box-sizing: border-box;
+}
+
+.planner-page button,
+.planner-page input,
+.planner-page select {
+  font: inherit;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.planner-page .top-bar {
+  max-width: 1180px;
+  margin: 0 auto 22px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.planner-page .dark-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--card);
+  color: var(--text);
+
+  box-shadow: var(--shadow-sm);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.planner-page .dark-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.planner-page .dark-toggle:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.planner-page .header {
+  max-width: 1180px;
+  margin: 0 auto 28px;
+}
+
+.planner-page .greeting {
+  margin: 0;
+
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  font-weight: 750;
+  letter-spacing: -0.045em;
+}
+
+.planner-page .date {
+  margin-top: 9px;
+
+  color: var(--muted);
+
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   WORLD CLOCKS
+   ========================================================= */
+
+.planner-page .world-clocks {
+  max-width: 1180px;
+  margin: 0 auto 28px;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.planner-page .clock-card {
+  min-width: 0;
+
+  padding: 17px 16px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.planner-page .clock-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.planner-page .clock-location {
+  margin-bottom: 9px;
+
+  color: var(--muted);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+}
+
+.planner-page .clock-time {
+  color: var(--text);
+
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1;
+  font-weight: 750;
+
+  letter-spacing: -0.025em;
+
+  white-space: nowrap;
+}
+
+.planner-page .clock-date {
+  margin-top: 8px;
+
+  color: var(--muted-light);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   MAIN DASHBOARD
+   ========================================================= */
+
+.planner-page .dashboard {
+  max-width: 1180px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+
+  gap: 22px;
+
+  align-items: start;
+}
+
+.planner-page .main-column {
+  min-width: 0;
+}
+
+/* =========================================================
+   TODAY'S PROGRESS
+   ========================================================= */
+
+.planner-page .progress-card {
+  margin-bottom: 14px;
+  padding: 20px 22px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+}
+
+.planner-page .progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 13px;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.planner-page #progressText {
+  color: var(--muted);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.planner-page .progress-bar {
+  height: 8px;
+
+  overflow: hidden;
+
+  background: var(--border);
+
+  border-radius: 999px;
+}
+
+.planner-page .progress-fill {
+  width: 0;
+  height: 100%;
+
+  background: var(--accent);
+
+  border-radius: inherit;
+
+  transition: width 400ms ease;
+}
+
+/* =========================================================
+   ADD TASK BAR
+   ========================================================= */
+
+.planner-page .add-task {
+  display: grid;
+
+  grid-template-columns: 105px minmax(0, 1fr) 145px 125px;
+
+  gap: 9px;
+
+  margin-bottom: 14px;
+}
+
+.planner-page .add-task input,
+.planner-page .add-task select {
+  min-height: 46px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  background: var(--card);
+  color: var(--text);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.planner-page .add-task input::placeholder {
+  color: var(--muted-light);
+}
+
+.planner-page .add-task input:focus,
+.planner-page .add-task select:focus {
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 3px var(--accent-soft),
+    var(--shadow-sm);
+}
+
+.planner-page .add-task button {
+  min-height: 46px;
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  background: var(--accent);
+  color: #fff;
+
+  font-size: 0.86rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px rgba(99, 91, 255, 0.22);
+
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.planner-page .add-task button:hover {
+  background: var(--accent-hover);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 18px rgba(99, 91, 255, 0.28);
+}
+
+.planner-page .add-task button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   TASK PLANNER
+   ========================================================= */
+
+.planner-page .planner {
+  padding: 10px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+
+  min-height: 100px;
+}
+
+/* =========================================================
+   TASK ROW
+   ========================================================= */
+
+.planner-page .task {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 58px;
+
+  margin-bottom: 8px;
+  padding: 9px 10px;
+
+  background: var(--card-soft);
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  cursor: grab;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.planner-page .task:last-child {
+  margin-bottom: 0;
+}
+
+.planner-page .task:hover {
+  background: var(--card);
+  border-color: var(--border);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.planner-page .task:active {
+  cursor: grabbing;
+}
+
+.planner-page .task.dragging {
+  opacity: 0.45;
+  transform: scale(0.985);
+}
+
+/* =========================================================
+   COMPLETED TASK
+   ========================================================= */
+
+.planner-page .task.done {
+  background: var(--done-bg);
+  border-color: var(--done-border);
+}
+
+.planner-page .task.done input[type="text"] {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* =========================================================
+   DRAG HANDLE
+   ========================================================= */
+
+.planner-page .drag-handle {
+  flex: 0 0 20px;
+
+  color: var(--muted-light);
+
+  font-size: 1.05rem;
+  line-height: 1;
+
+  text-align: center;
+
+  cursor: grab;
+
+  user-select: none;
+
+  transition: color var(--transition);
+}
+
+.planner-page .task:hover .drag-handle {
+  color: var(--muted);
+}
+
+/* =========================================================
+   TASK CHECKBOX
+   ========================================================= */
+
+.planner-page .task input[type="checkbox"] {
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+
+  accent-color: var(--accent);
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   TASK TIME
+   ========================================================= */
+
+.planner-page .task input[type="time"] {
+  flex: 0 0 82px;
+
+  width: 82px;
+
+  padding: 5px 2px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: var(--muted);
+
+  font-size: 0.82rem;
+  font-weight: 650;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   TASK TEXT
+   ========================================================= */
+
+.planner-page .task input[type="text"] {
+  flex: 1;
+  min-width: 0;
+
+  padding: 8px 9px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: transparent;
+  color: var(--text);
+
+  font-size: 0.9rem;
+  font-weight: 550;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.planner-page .task input[type="text"]:hover {
+  background: var(--card);
+}
+
+.planner-page .task input[type="text"]:focus {
+  background: var(--card);
+
+  border-color: var(--border-strong);
+
+  box-shadow:
+    0 0 0 3px var(--accent-soft);
+}
+
+/* =========================================================
+   PRIORITY
+   ========================================================= */
+
+.planner-page .priority {
+  flex: 0 0 125px;
+
+  width: 125px;
+  min-width: 125px;
+
+  padding: 8px 11px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.planner-page .priority:hover {
+  transform: translateY(-1px);
+}
+
+.planner-page .priority:focus {
+  border-color: var(--border-strong);
+}
+
+.planner-page .priority.low {
+  background: #eaf8ef;
+  color: #18743b;
+}
+
+.planner-page .priority.medium {
+  background: #fff6d9;
+  color: #946500;
+}
+
+.planner-page .priority.high {
+  background: #ffebeb;
+  color: #b42323;
+}
+
+.planner-page.dark .priority.low {
+  background: rgba(34, 197, 94, 0.13);
+  color: #70e59a;
+}
+
+.planner-page.dark .priority.medium {
+  background: rgba(245, 190, 60, 0.13);
+  color: #f3c969;
+}
+
+.planner-page.dark .priority.high {
+  background: rgba(239, 68, 68, 0.13);
+  color: #ff8d8d;
+}
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+.planner-page .delete-task {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
+  opacity: 0.45;
+
+  transition:
+    background var(--transition),
+    opacity var(--transition),
+    transform var(--transition);
+}
+
+.planner-page .delete-task:hover {
+  opacity: 1;
+
+  background: var(--danger-soft);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+.planner-page .controls {
+  display: flex;
+  justify-content: flex-end;
+
+  margin: 12px 2px 0;
+}
+
+.planner-page .reset-button {
+  padding: 8px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: var(--muted);
+
+  font-size: 0.76rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.planner-page .reset-button:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* =========================================================
+   CELEBRATION
+   ========================================================= */
+
+.planner-page .celebrate {
+  margin-top: 14px;
+
+  text-align: center;
+
+  color: var(--success);
+
+  font-size: 0.92rem;
+  font-weight: 700;
+
+  opacity: 0;
+
+  transform: translateY(4px);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.planner-page .celebrate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   SEPTEMBER GOALS
+   ========================================================= */
+
+.planner-page .goals-card {
+  position: sticky;
+  top: 24px;
+
+  padding: 22px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+}
+
+.planner-page .goals-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 4px;
+}
+
+.planner-page .goals-title {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 1.35rem;
+  line-height: 1.2;
+
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.planner-page .goals-year {
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+}
+
+.planner-page .goals-subtitle {
+  margin: 7px 0 20px;
+
+  color: var(--muted);
+
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   GOAL PROGRESS
+   ========================================================= */
+
+.planner-page .goals-progress-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.planner-page #goalsProgressText {
+  color: var(--muted);
+}
+
+.planner-page .goals-progress-bar {
+  height: 7px;
+
+  overflow: hidden;
+
+  margin-bottom: 17px;
+
+  background: var(--border);
+
+  border-radius: 999px;
+}
+
+.planner-page .goals-progress-fill {
+  width: 0;
+  height: 100%;
+
+  background: var(--accent);
+
+  border-radius: inherit;
+
+  transition: width 400ms ease;
+}
+
+/* =========================================================
+   GOAL ROW
+   ========================================================= */
+
+.planner-page .goal {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.planner-page .goal:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.planner-page .goal-checkbox {
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  margin: 1px 0 0;
+
+  accent-color: var(--accent);
+
+  cursor: pointer;
+}
+
+.planner-page .goal-label {
+  color: var(--text);
+
+  font-size: 0.81rem;
+  line-height: 1.4;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.planner-page .goal-category {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--muted-light);
+
+  font-size: 0.67rem;
+  line-height: 1.25;
+
+  font-weight: 600;
+}
+
+.planner-page .goal.completed .goal-label {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* =========================================================
+   GOALS COMPLETE
+   ========================================================= */
+
+.planner-page .goals-complete {
+  display: none;
+
+  margin-top: 18px;
+
+  padding: 11px;
+
+  border-radius: 10px;
+
+  background: var(--done-bg);
+  color: var(--success);
+
+  text-align: center;
+
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.planner-page .goals-complete.show {
+  display: block;
+}
+
+/* =========================================================
+   UNDO
+   ========================================================= */
+
+.planner-page .undo {
+  position: fixed;
+
+  left: 50%;
+  bottom: 24px;
+
+  z-index: 100;
+
+  display: none;
+  align-items: center;
+
+  gap: 14px;
+
+  transform: translateX(-50%);
+
+  padding: 10px 11px 10px 15px;
+
+  background: #18191d;
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+
+  box-shadow: var(--shadow-lg);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.planner-page .undo.show {
+  display: flex;
+}
+
+.planner-page .undo button {
+  padding: 7px 11px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: var(--accent);
+  color: #fff;
+
+  font-size: 0.76rem;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .planner-page {
+    padding: 25px;
+  }
+
+  .planner-page .dashboard {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
+  .planner-page .world-clocks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .planner-page .clock-card:nth-child(4),
+  .planner-page .clock-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .planner-page {
+    padding: 18px;
+  }
+
+  .planner-page .top-bar {
+    margin-bottom: 20px;
+  }
+
+  .planner-page .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-page .goals-card {
+    position: static;
+  }
+
+  .planner-page .world-clocks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .planner-page .add-task {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .planner-page .add-task input[type="text"] {
+    grid-column: span 2;
+    grid-row: 1;
+  }
+
+  .planner-page .add-task input[type="time"] {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .planner-page .add-task select {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .planner-page .add-task button {
+    grid-column: span 2;
+    grid-row: 3;
+  }
+
+}
+
+/* =========================================================
+   RESPONSIVE — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .planner-page {
+    padding: 14px;
+  }
+
+  .planner-page .greeting {
+    font-size: 1.85rem;
+  }
+
+  .planner-page .world-clocks {
+    gap: 8px;
+  }
+
+  .planner-page .clock-card {
+    padding: 14px 10px;
+  }
+
+  .planner-page .clock-time {
+    font-size: 1.05rem;
+  }
+
+  .planner-page .planner {
+    padding: 7px;
+  }
+
+  .planner-page .task {
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 10px;
+  }
+
+  .planner-page .task input[type="text"] {
+    order: 5;
+
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .planner-page .priority {
+    flex: 0 0 125px;
+  }
+
+  .planner-page .delete-task {
+    margin-left: auto;
+  }
+
+  .planner-page .goals-card {
+    padding: 18px;
+  }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .planner-page *,
+  .planner-page *::before,
+  .planner-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+}
