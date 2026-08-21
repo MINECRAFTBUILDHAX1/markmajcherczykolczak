@@ -42,9 +42,16 @@
       transition: background 0.3s, color 0.3s;
     }
 
+    .top-bar,
+    .header,
+    .world-clocks {
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .top-bar {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+      margin-bottom: 1.5rem;
       display: flex;
       justify-content: flex-end;
     }
@@ -60,8 +67,7 @@
     }
 
     .header {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .greeting {
@@ -75,19 +81,62 @@
       font-size: 1rem;
     }
 
-    .weather {
-      margin-top: 0.8rem;
+    .world-clocks {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .clock-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem 0.7rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .clock-location {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .clock-time {
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .clock-date {
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 0.25rem;
+    }
+
+    .dashboard {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 350px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .main-column {
+      min-width: 0;
     }
 
     .progress-card {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
       background: var(--card);
       padding: 1.2rem;
       border-radius: var(--rounded);
       box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
     }
 
     .progress-header {
@@ -114,10 +163,9 @@
 
     .add-task {
       display: grid;
-      grid-template-columns: 110px 1fr 120px;
+      grid-template-columns: 110px 1fr 145px 120px;
       gap: 0.6rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .add-task input,
@@ -144,8 +192,6 @@
     }
 
     .planner {
-      max-width: 700px;
-      margin: auto;
       background: var(--card);
       border-radius: var(--rounded);
       padding: 1.2rem;
@@ -206,11 +252,14 @@
     }
 
     .priority {
+      width: 125px;
+      min-width: 125px;
       border: none;
       border-radius: 8px;
-      padding: 0.4rem;
+      padding: 0.5rem 0.65rem;
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .priority.low {
@@ -237,7 +286,6 @@
     }
 
     .controls {
-      max-width: 700px;
       margin: 1.2rem auto;
       display: flex;
       justify-content: center;
@@ -249,35 +297,6 @@
       border: none;
       padding: 0.7rem 1.2rem;
       border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .undo {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: white;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      display: none;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    }
-
-    .undo.show {
-      display: flex;
-    }
-
-    .undo button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.4rem 0.7rem;
-      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
     }
@@ -296,13 +315,176 @@
       opacity: 1;
     }
 
-    @media (max-width: 600px) {
+    /* =========================
+       SEPTEMBER GOALS
+    ========================= */
+
+    .goals-card {
+      background: var(--card);
+      border-radius: var(--rounded);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    .goals-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .goals-title {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .goals-year {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .goals-subtitle {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .goals-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+    }
+
+    .goals-progress-bar {
+      height: 9px;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .goals-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 20px;
+      transition: width 0.4s ease;
+    }
+
+    .goal {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .goal:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .goal-checkbox {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .goal-label {
+      font-size: 0.9rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .goal.completed .goal-label {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .goal-category {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 0.2rem;
+    }
+
+    .goals-complete {
+      text-align: center;
+      color: #22c55e;
+      font-weight: 700;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .goals-complete.show {
+      display: block;
+    }
+
+    .undo {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: white;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+
+    .undo.show {
+      display: flex;
+    }
+
+    .undo button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
       body {
         padding: 1rem;
       }
 
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .goals-card {
+        position: static;
+      }
+
+      .world-clocks {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
       .greeting {
         font-size: 1.6rem;
+      }
+
+      .world-clocks {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .add-task {
@@ -317,6 +499,10 @@
         width: 100%;
         order: 5;
       }
+
+      .priority {
+        width: 125px;
+      }
     }
   </style>
 </head>
@@ -330,50 +516,133 @@
   <header class="header">
     <div class="greeting" id="greeting"></div>
     <div class="date" id="date"></div>
-    <div class="weather" id="weather">🌤️ Loading weather...</div>
   </header>
 
-  <div class="progress-card">
-    <div class="progress-header">
-      <span>Today's Progress</span>
-      <span id="progressText">0 / 0</span>
+  <!-- WORLD CLOCKS -->
+
+  <div class="world-clocks">
+
+    <div class="clock-card">
+      <div class="clock-location">🇬🇧 London</div>
+      <div class="clock-time" id="clock-london">--:--:--</div>
+      <div class="clock-date" id="date-london"></div>
     </div>
 
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+    <div class="clock-card">
+      <div class="clock-location">🇺🇸 New York</div>
+      <div class="clock-time" id="clock-newyork">--:--:--</div>
+      <div class="clock-date" id="date-newyork"></div>
     </div>
+
+    <div class="clock-card">
+      <div class="clock-location">🇺🇸 Chicago</div>
+      <div class="clock-time" id="clock-chicago">--:--:--</div>
+      <div class="clock-date" id="date-chicago"></div>
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-location">🇺🇸 Los Angeles</div>
+      <div class="clock-time" id="clock-losangeles">--:--:--</div>
+      <div class="clock-date" id="date-losangeles"></div>
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-location">🇫🇷 Paris</div>
+      <div class="clock-time" id="clock-paris">--:--:--</div>
+      <div class="clock-date" id="date-paris"></div>
+    </div>
+
   </div>
 
-  <form class="add-task" id="taskForm">
-    <input type="time" id="taskTime" required />
+  <div class="dashboard">
 
-    <input
-      type="text"
-      id="taskText"
-      placeholder="What do you need to do?"
-      required
-    />
+    <main class="main-column">
 
-    <select id="taskPriority">
-      <option value="low">🟢 Low</option>
-      <option value="medium" selected>🟡 Medium</option>
-      <option value="high">🔴 High</option>
-    </select>
+      <!-- TODAY'S PROGRESS -->
 
-    <button type="submit">+ Add Task</button>
-  </form>
+      <div class="progress-card">
+        <div class="progress-header">
+          <span>Today's Progress</span>
+          <span id="progressText">0 / 0</span>
+        </div>
 
-  <div class="planner" id="planner"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
 
-  <div class="controls">
-    <button class="reset-button" id="resetAll">
-      Reset All Tasks
-    </button>
+      <!-- ADD TASK -->
+
+      <form class="add-task" id="taskForm">
+
+        <input type="time" id="taskTime" required />
+
+        <input
+          type="text"
+          id="taskText"
+          placeholder="What do you need to do?"
+          required
+        />
+
+        <select id="taskPriority">
+          <option value="low">🟢 Low</option>
+          <option value="medium" selected>🟡 Medium</option>
+          <option value="high">🔴 High</option>
+        </select>
+
+        <button type="submit">+ Add Task</button>
+
+      </form>
+
+      <!-- PLANNER -->
+
+      <div class="planner" id="planner"></div>
+
+      <div class="controls">
+        <button class="reset-button" id="resetAll">
+          Reset All Tasks
+        </button>
+      </div>
+
+      <div class="celebrate" id="celebrate">
+        ✅ All tasks done! You're on fire, Mark 🔥
+      </div>
+
+    </main>
+
+    <!-- SEPTEMBER GOALS -->
+
+    <aside class="goals-card">
+
+      <div class="goals-title-row">
+        <h2 class="goals-title">September Goals</h2>
+        <span class="goals-year">2026</span>
+      </div>
+
+      <div class="goals-subtitle">
+        Monthly objectives — keep these in sight all month.
+      </div>
+
+      <div class="goals-progress-header">
+        <span>Progress</span>
+        <span id="goalsProgressText">0 / 10</span>
+      </div>
+
+      <div class="goals-progress-bar">
+        <div class="goals-progress-fill" id="goalsProgressFill"></div>
+      </div>
+
+      <div id="goalsList"></div>
+
+      <div class="goals-complete" id="goalsComplete">
+        🎉 September goals complete!
+      </div>
+
+    </aside>
+
   </div>
 
-  <div class="celebrate" id="celebrate">
-    ✅ All tasks done! You're on fire, Mark 🔥
-  </div>
+  <!-- UNDO -->
 
   <div class="undo" id="undo">
     <span>Task deleted</span>
@@ -381,6 +650,7 @@
   </div>
 
   <script>
+
     const planner = document.getElementById("planner");
     const form = document.getElementById("taskForm");
     const taskTime = document.getElementById("taskTime");
@@ -395,23 +665,93 @@
 
     const greeting = document.getElementById("greeting");
     const date = document.getElementById("date");
-    const weather = document.getElementById("weather");
 
     const darkToggle = document.getElementById("darkToggle");
 
     const undoBox = document.getElementById("undo");
     const undoButton = document.getElementById("undoButton");
 
+    const goalsList = document.getElementById("goalsList");
+    const goalsProgressFill = document.getElementById("goalsProgressFill");
+    const goalsProgressText = document.getElementById("goalsProgressText");
+    const goalsComplete = document.getElementById("goalsComplete");
+
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
     let deletedTask = null;
     let deletedIndex = null;
     let undoTimeout = null;
 
-    /* =========================
-       GREETING + DATE
-    ========================= */
+    /*
+      =========================
+      SEPTEMBER 2026 GOALS
+      =========================
+    */
+
+    const septemberGoals = [
+      {
+        id: "nother-script",
+        text: "Finish and lock #NotHer script",
+        category: "#NotHer"
+      },
+      {
+        id: "nother-deck",
+        text: "Lock #NotHer pitch deck",
+        category: "#NotHer"
+      },
+      {
+        id: "nother-pitching",
+        text: "Start pitching #NotHer",
+        category: "#NotHer"
+      },
+      {
+        id: "struggles-draft",
+        text: "Start The Struggles of Others first draft",
+        category: "The Struggles of Others"
+      },
+      {
+        id: "struggles-casting",
+        text: "Finish casting for The Struggles of Others",
+        category: "The Struggles of Others"
+      },
+      {
+        id: "pickup-guy",
+        text: "Finish Pickup Guy story treatment",
+        category: "Pickup Guy"
+      },
+      {
+        id: "minotaur",
+        text: "Start The Minotaur — story outline and possibly treatment",
+        category: "The Minotaur"
+      },
+      {
+        id: "talent-creators",
+        text: "Land one role for Talent or Creators",
+        category: "Talent / Creators"
+      },
+      {
+        id: "producer",
+        text: "Connect with a talented early-career producer to partner with",
+        category: "Team / Partnerships"
+      },
+      {
+        id: "george",
+        text: "Get George more involved in production, outreach, stories and Google Suite",
+        category: "Team / Development"
+      }
+    ];
+
+    let completedGoals =
+      JSON.parse(localStorage.getItem("septemberGoals2026")) || {};
+
+    /*
+      =========================
+      GREETING + DATE
+      =========================
+    */
 
     function updateDate() {
+
       const now = new Date();
       const hour = now.getHours();
 
@@ -435,108 +775,205 @@
 
     updateDate();
 
-    /* =========================
-       WEATHER
-    ========================= */
+    /*
+      =========================
+      WORLD CLOCKS
+      =========================
+    */
 
-    async function loadWeather() {
-      if (!navigator.geolocation) {
-        weather.textContent = "🌤️ Weather unavailable";
-        return;
-      }
+    const timeZones = {
+      london: "Europe/London",
+      newyork: "America/New_York",
+      chicago: "America/Chicago",
+      losangeles: "America/Los_Angeles",
+      paris: "Europe/Paris"
+    };
 
-      navigator.geolocation.getCurrentPosition(
-        async position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
+    function updateWorldClocks() {
 
-          try {
-            const response = await fetch(
-              `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`
-            );
+      Object.entries(timeZones).forEach(([location, timeZone]) => {
 
-            const data = await response.json();
+        const now = new Date();
 
-            const temp = Math.round(data.current.temperature_2m);
-            const code = data.current.weather_code;
+        const time = new Intl.DateTimeFormat("en-GB", {
+          timeZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false
+        }).format(now);
 
-            weather.textContent =
-              `${getWeatherEmoji(code)} ${getWeatherDescription(code)} • ${temp}°C`;
-          } catch (error) {
-            weather.textContent = "🌤️ Weather unavailable";
-          }
-        },
-        () => {
-          weather.textContent = "🌤️ Allow location for weather";
-        }
-      );
+        const formattedDate = new Intl.DateTimeFormat("en-GB", {
+          timeZone,
+          weekday: "short",
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }).format(now);
+
+        document.getElementById(
+          `clock-${location}`
+        ).textContent = time;
+
+        document.getElementById(
+          `date-${location}`
+        ).textContent = formattedDate;
+
+      });
     }
 
-    function getWeatherEmoji(code) {
-      if (code === 0) return "☀️";
-      if ([1, 2, 3].includes(code)) return "🌤️";
-      if ([45, 48].includes(code)) return "🌫️";
-      if ([51, 53, 55, 56, 57].includes(code)) return "🌦️";
-      if ([61, 63, 65, 66, 67].includes(code)) return "🌧️";
-      if ([71, 73, 75, 77].includes(code)) return "❄️";
-      if ([80, 81, 82].includes(code)) return "🌦️";
-      if ([95, 96, 99].includes(code)) return "⛈️";
+    updateWorldClocks();
 
-      return "🌤️";
-    }
+    setInterval(updateWorldClocks, 1000);
+    setInterval(updateDate, 1000);
 
-    function getWeatherDescription(code) {
-      if (code === 0) return "Clear";
-      if ([1, 2, 3].includes(code)) return "Partly cloudy";
-      if ([45, 48].includes(code)) return "Foggy";
-      if ([51, 53, 55].includes(code)) return "Drizzle";
-      if ([61, 63, 65].includes(code)) return "Rain";
-      if ([71, 73, 75, 77].includes(code)) return "Snow";
-      if ([80, 81, 82].includes(code)) return "Showers";
-      if ([95, 96, 99].includes(code)) return "Thunderstorms";
-
-      return "Weather";
-    }
-
-    loadWeather();
-
-    /* =========================
-       LOCAL STORAGE
-    ========================= */
+    /*
+      =========================
+      LOCAL STORAGE
+      =========================
+    */
 
     function saveTasks() {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
-    /* =========================
-       PROGRESS
-    ========================= */
+    /*
+      =========================
+      TODAY'S PROGRESS
+      =========================
+    */
 
     function updateProgress() {
+
       const total = tasks.length;
       const completed = tasks.filter(task => task.done).length;
 
       const percentage =
-        total === 0 ? 0 : Math.round((completed / total) * 100);
+        total === 0
+          ? 0
+          : Math.round((completed / total) * 100);
 
       progressFill.style.width = `${percentage}%`;
-      progressText.textContent = `${completed} / ${total} (${percentage}%)`;
 
-      const allDone = total > 0 && completed === total;
+      progressText.textContent =
+        `${completed} / ${total} (${percentage}%)`;
+
+      const allDone =
+        total > 0 && completed === total;
 
       celebrate.classList.toggle("show", allDone);
     }
 
-    /* =========================
-       RENDER
-    ========================= */
+    /*
+      =========================
+      SEPTEMBER GOAL PROGRESS
+      =========================
+    */
+
+    function saveGoals() {
+      localStorage.setItem(
+        "septemberGoals2026",
+        JSON.stringify(completedGoals)
+      );
+    }
+
+    function updateGoalsProgress() {
+
+      const total = septemberGoals.length;
+
+      const completed =
+        septemberGoals.filter(goal =>
+          completedGoals[goal.id]
+        ).length;
+
+      const percentage =
+        Math.round((completed / total) * 100);
+
+      goalsProgressFill.style.width =
+        `${percentage}%`;
+
+      goalsProgressText.textContent =
+        `${completed} / ${total}`;
+
+      goalsComplete.classList.toggle(
+        "show",
+        completed === total
+      );
+    }
+
+    function renderGoals() {
+
+      goalsList.innerHTML = "";
+
+      septemberGoals.forEach(goal => {
+
+        const goalElement =
+          document.createElement("div");
+
+        goalElement.className = "goal";
+
+        if (completedGoals[goal.id]) {
+          goalElement.classList.add("completed");
+        }
+
+        const checkbox =
+          document.createElement("input");
+
+        checkbox.type = "checkbox";
+        checkbox.className = "goal-checkbox";
+        checkbox.checked =
+          !!completedGoals[goal.id];
+
+        const label =
+          document.createElement("label");
+
+        label.className = "goal-label";
+
+        label.innerHTML = `
+          ${goal.text}
+          <span class="goal-category">
+            ${goal.category}
+          </span>
+        `;
+
+        checkbox.addEventListener(
+          "change",
+          () => {
+
+            completedGoals[goal.id] =
+              checkbox.checked;
+
+            saveGoals();
+
+            renderGoals();
+
+          }
+        );
+
+        goalElement.appendChild(checkbox);
+        goalElement.appendChild(label);
+
+        goalsList.appendChild(goalElement);
+
+      });
+
+      updateGoalsProgress();
+    }
+
+    /*
+      =========================
+      RENDER TASKS
+      =========================
+    */
 
     function renderTasks() {
+
       planner.innerHTML = "";
 
       tasks.forEach((task, index) => {
 
-        const div = document.createElement("div");
+        const div =
+          document.createElement("div");
 
         div.className = "task";
         div.draggable = true;
@@ -546,54 +983,74 @@
           div.classList.add("done");
         }
 
-        /* Drag handle */
+        const handle =
+          document.createElement("span");
 
-        const handle = document.createElement("span");
-        handle.className = "drag-handle";
+        handle.className =
+          "drag-handle";
+
         handle.textContent = "☷";
 
-        /* Checkbox */
-
-        const checkbox = document.createElement("input");
+        const checkbox =
+          document.createElement("input");
 
         checkbox.type = "checkbox";
         checkbox.checked = task.done;
 
-        checkbox.addEventListener("change", () => {
-          task.done = checkbox.checked;
-          saveTasks();
-          renderTasks();
-        });
+        checkbox.addEventListener(
+          "change",
+          () => {
 
-        /* Time */
+            task.done =
+              checkbox.checked;
 
-        const timeInput = document.createElement("input");
+            saveTasks();
+            renderTasks();
+
+          }
+        );
+
+        const timeInput =
+          document.createElement("input");
 
         timeInput.type = "time";
         timeInput.value = task.time;
 
-        timeInput.addEventListener("change", () => {
-          task.time = timeInput.value;
-          saveTasks();
-        });
+        timeInput.addEventListener(
+          "change",
+          () => {
 
-        /* Text */
+            task.time =
+              timeInput.value;
 
-        const textInput = document.createElement("input");
+            saveTasks();
+
+          }
+        );
+
+        const textInput =
+          document.createElement("input");
 
         textInput.type = "text";
         textInput.value = task.text;
 
-        textInput.addEventListener("change", () => {
-          task.text = textInput.value;
-          saveTasks();
-        });
+        textInput.addEventListener(
+          "change",
+          () => {
 
-        /* Priority */
+            task.text =
+              textInput.value;
 
-        const priority = document.createElement("select");
+            saveTasks();
 
-        priority.className = `priority ${task.priority || "medium"}`;
+          }
+        );
+
+        const priority =
+          document.createElement("select");
+
+        priority.className =
+          `priority ${task.priority || "medium"}`;
 
         priority.innerHTML = `
           <option value="low">🟢 Low</option>
@@ -601,37 +1058,49 @@
           <option value="high">🔴 High</option>
         `;
 
-        priority.value = task.priority || "medium";
+        priority.value =
+          task.priority || "medium";
 
-        priority.addEventListener("change", () => {
-          task.priority = priority.value;
+        priority.addEventListener(
+          "change",
+          () => {
 
-          priority.className =
-            `priority ${priority.value}`;
+            task.priority =
+              priority.value;
 
-          saveTasks();
-        });
+            priority.className =
+              `priority ${priority.value}`;
 
-        /* Delete */
+            saveTasks();
 
-        const deleteButton = document.createElement("button");
+          }
+        );
 
-        deleteButton.className = "delete-task";
+        const deleteButton =
+          document.createElement("button");
+
+        deleteButton.className =
+          "delete-task";
+
         deleteButton.textContent = "🗑️";
         deleteButton.title = "Delete task";
 
-        deleteButton.addEventListener("click", () => {
+        deleteButton.addEventListener(
+          "click",
+          () => {
 
-          deletedTask = task;
-          deletedIndex = index;
+            deletedTask = task;
+            deletedIndex = index;
 
-          tasks.splice(index, 1);
+            tasks.splice(index, 1);
 
-          saveTasks();
-          renderTasks();
+            saveTasks();
+            renderTasks();
 
-          showUndo();
-        });
+            showUndo();
+
+          }
+        );
 
         div.appendChild(handle);
         div.appendChild(checkbox);
@@ -640,26 +1109,33 @@
         div.appendChild(priority);
         div.appendChild(deleteButton);
 
-        /* Drag events */
+        div.addEventListener(
+          "dragstart",
+          () => {
+            div.classList.add("dragging");
+          }
+        );
 
-        div.addEventListener("dragstart", () => {
-          div.classList.add("dragging");
-        });
-
-        div.addEventListener("dragend", () => {
-          div.classList.remove("dragging");
-        });
+        div.addEventListener(
+          "dragend",
+          () => {
+            div.classList.remove("dragging");
+          }
+        );
 
         planner.appendChild(div);
+
       });
 
       setupDragAndDrop();
       updateProgress();
     }
 
-    /* =========================
-       DRAG & DROP
-    ========================= */
+    /*
+      =========================
+      DRAG & DROP
+      =========================
+    */
 
     function setupDragAndDrop() {
 
@@ -668,82 +1144,112 @@
 
       taskElements.forEach(taskElement => {
 
-        taskElement.addEventListener("dragover", e => {
-          e.preventDefault();
+        taskElement.addEventListener(
+          "dragover",
+          e => {
 
-          const dragging =
-            document.querySelector(".dragging");
+            e.preventDefault();
 
-          if (!dragging || dragging === taskElement) return;
+            const dragging =
+              document.querySelector(".dragging");
 
-          const rect =
-            taskElement.getBoundingClientRect();
+            if (
+              !dragging ||
+              dragging === taskElement
+            ) {
+              return;
+            }
 
-          const midpoint =
-            rect.top + rect.height / 2;
+            const rect =
+              taskElement.getBoundingClientRect();
 
-          if (e.clientY < midpoint) {
-            planner.insertBefore(
-              dragging,
-              taskElement
-            );
-          } else {
-            planner.insertBefore(
-              dragging,
-              taskElement.nextSibling
-            );
+            const midpoint =
+              rect.top + rect.height / 2;
+
+            if (e.clientY < midpoint) {
+
+              planner.insertBefore(
+                dragging,
+                taskElement
+              );
+
+            } else {
+
+              planner.insertBefore(
+                dragging,
+                taskElement.nextSibling
+              );
+
+            }
+
           }
-        });
+        );
 
-        taskElement.addEventListener("drop", e => {
-          e.preventDefault();
+        taskElement.addEventListener(
+          "drop",
+          e => {
 
-          const newOrder = [];
+            e.preventDefault();
 
-          document
-            .querySelectorAll(".task")
-            .forEach(element => {
-              const oldIndex =
-                Number(element.dataset.index);
+            const newOrder = [];
 
-              newOrder.push(tasks[oldIndex]);
-            });
+            document
+              .querySelectorAll(".task")
+              .forEach(element => {
 
-          tasks = newOrder;
+                const oldIndex =
+                  Number(element.dataset.index);
 
-          saveTasks();
-          renderTasks();
-        });
+                newOrder.push(tasks[oldIndex]);
+
+              });
+
+            tasks = newOrder;
+
+            saveTasks();
+            renderTasks();
+
+          }
+        );
+
       });
     }
 
-    /* =========================
-       ADD TASK
-    ========================= */
+    /*
+      =========================
+      ADD TASK
+      =========================
+    */
 
-    form.addEventListener("submit", e => {
+    form.addEventListener(
+      "submit",
+      e => {
 
-      e.preventDefault();
+        e.preventDefault();
 
-      tasks.push({
-        time: taskTime.value,
-        text: taskText.value,
-        priority: taskPriority.value,
-        done: false
-      });
+        tasks.push({
+          time: taskTime.value,
+          text: taskText.value,
+          priority: taskPriority.value,
+          done: false
+        });
 
-      saveTasks();
-      renderTasks();
+        saveTasks();
+        renderTasks();
 
-      taskTime.value = "";
-      taskText.value = "";
+        taskTime.value = "";
+        taskText.value = "";
 
-      taskText.focus();
-    });
+        taskText.focus();
 
-    /* =========================
-       UNDO DELETE
-    ========================= */
+      }
+    );
+
+    /*
+      =========================
+      UNDO DELETE
+      =========================
+    */
 
     function showUndo() {
 
@@ -751,93 +1257,131 @@
 
       clearTimeout(undoTimeout);
 
-      undoTimeout = setTimeout(() => {
-        undoBox.classList.remove("show");
-        deletedTask = null;
-        deletedIndex = null;
-      }, 5000);
+      undoTimeout =
+        setTimeout(() => {
+
+          undoBox.classList.remove("show");
+
+          deletedTask = null;
+          deletedIndex = null;
+
+        }, 5000);
     }
 
-    undoButton.addEventListener("click", () => {
+    undoButton.addEventListener(
+      "click",
+      () => {
 
-      if (deletedTask) {
+        if (deletedTask) {
 
-        tasks.splice(
-          deletedIndex,
-          0,
-          deletedTask
-        );
+          tasks.splice(
+            deletedIndex,
+            0,
+            deletedTask
+          );
 
-        saveTasks();
-        renderTasks();
+          saveTasks();
+          renderTasks();
 
-        deletedTask = null;
-        deletedIndex = null;
+          deletedTask = null;
+          deletedIndex = null;
 
-        clearTimeout(undoTimeout);
-        undoBox.classList.remove("show");
+          clearTimeout(undoTimeout);
+
+          undoBox.classList.remove("show");
+
+        }
+
       }
-    });
+    );
 
-    /* =========================
-       RESET ALL
-    ========================= */
+    /*
+      =========================
+      RESET ALL
+      =========================
+    */
 
-    resetAll.addEventListener("click", () => {
+    resetAll.addEventListener(
+      "click",
+      () => {
 
-      if (
-        confirm(
-          "Are you sure you want to delete all tasks?"
-        )
-      ) {
-        tasks = [];
+        if (
+          confirm(
+            "Are you sure you want to delete all tasks?"
+          )
+        ) {
 
-        saveTasks();
-        renderTasks();
+          tasks = [];
+
+          saveTasks();
+          renderTasks();
+
+        }
+
       }
-    });
+    );
 
-    /* =========================
-       DARK MODE
-    ========================= */
+    /*
+      =========================
+      DARK MODE
+      =========================
+    */
 
     function updateDarkModeButton() {
 
-      if (document.body.classList.contains("dark")) {
-        darkToggle.textContent = "☀️ Light Mode";
+      if (
+        document.body.classList.contains("dark")
+      ) {
+
+        darkToggle.textContent =
+          "☀️ Light Mode";
+
       } else {
-        darkToggle.textContent = "🌙 Dark Mode";
+
+        darkToggle.textContent =
+          "🌙 Dark Mode";
+
       }
+
     }
 
-    darkToggle.addEventListener("click", () => {
+    darkToggle.addEventListener(
+      "click",
+      () => {
 
-      document.body.classList.toggle("dark");
+        document.body.classList.toggle("dark");
 
-      const isDark =
-        document.body.classList.contains("dark");
+        const isDark =
+          document.body.classList.contains("dark");
 
-      localStorage.setItem(
-        "darkMode",
-        isDark ? "true" : "false"
-      );
+        localStorage.setItem(
+          "darkMode",
+          isDark ? "true" : "false"
+        );
 
-      updateDarkModeButton();
-    });
+        updateDarkModeButton();
+
+      }
+    );
 
     if (
       localStorage.getItem("darkMode") === "true"
     ) {
+
       document.body.classList.add("dark");
+
     }
 
     updateDarkModeButton();
 
-    /* =========================
-       START
-    ========================= */
+    /*
+      =========================
+      START
+      =========================
+    */
 
     renderTasks();
+    renderGoals();
 
   </script>
 
