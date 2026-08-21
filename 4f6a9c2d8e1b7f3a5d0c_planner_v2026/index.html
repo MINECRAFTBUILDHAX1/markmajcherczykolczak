@@ -460,14 +460,24 @@
       updateGoalsProgress();
     }
 
+        function sortTasksByTime() {
+      tasks.sort((a, b) => {
+        return a.time.localeCompare(b.time);
+      });
+    
+      saveTasks();
+    }
+
     /*
       =========================
       RENDER TASKS
       =========================
     */
 
-    function renderTasks() {
+      function renderTasks() {
 
+      sortTasksByTime();
+    
       planner.innerHTML = "";
 
       tasks.forEach((task, index) => {
@@ -519,12 +529,12 @@
         timeInput.addEventListener(
           "change",
           () => {
-
-            task.time =
-              timeInput.value;
-
-            saveTasks();
-
+        
+            task.time = timeInput.value;
+        
+            sortTasksByTime();
+            renderTasks();
+        
           }
         );
 
