@@ -486,20 +486,13 @@
           document.createElement("div");
 
         div.className = "task";
-        div.draggable = true;
-        div.dataset.index = index;
+        
 
         if (task.done) {
           div.classList.add("done");
         }
 
-        const handle =
-          document.createElement("span");
-
-        handle.className =
-          "drag-handle";
-
-        handle.textContent = "☷";
+       
 
         const checkbox =
           document.createElement("input");
@@ -612,120 +605,23 @@
           }
         );
 
-        div.appendChild(handle);
         div.appendChild(checkbox);
         div.appendChild(timeInput);
         div.appendChild(textInput);
         div.appendChild(priority);
         div.appendChild(deleteButton);
 
-        div.addEventListener(
-          "dragstart",
-          () => {
-            div.classList.add("dragging");
-          }
-        );
-
-        div.addEventListener(
-          "dragend",
-          () => {
-            div.classList.remove("dragging");
-          }
-        );
+        
 
         planner.appendChild(div);
 
       });
 
-      setupDragAndDrop();
       updateProgress();
     }
 
     /*
-      =========================
-      DRAG & DROP
-      =========================
-    */
-
-    function setupDragAndDrop() {
-
-      const taskElements =
-        document.querySelectorAll(".task");
-
-      taskElements.forEach(taskElement => {
-
-        taskElement.addEventListener(
-          "dragover",
-          e => {
-
-            e.preventDefault();
-
-            const dragging =
-              document.querySelector(".dragging");
-
-            if (
-              !dragging ||
-              dragging === taskElement
-            ) {
-              return;
-            }
-
-            const rect =
-              taskElement.getBoundingClientRect();
-
-            const midpoint =
-              rect.top + rect.height / 2;
-
-            if (e.clientY < midpoint) {
-
-              planner.insertBefore(
-                dragging,
-                taskElement
-              );
-
-            } else {
-
-              planner.insertBefore(
-                dragging,
-                taskElement.nextSibling
-              );
-
-            }
-
-          }
-        );
-
-        taskElement.addEventListener(
-          "drop",
-          e => {
-
-            e.preventDefault();
-
-            const newOrder = [];
-
-            document
-              .querySelectorAll(".task")
-              .forEach(element => {
-
-                const oldIndex =
-                  Number(element.dataset.index);
-
-                newOrder.push(tasks[oldIndex]);
-
-              });
-
-            tasks = newOrder;
-
-            saveTasks();
-            renderTasks();
-
-          }
-        );
-
-      });
-    }
-
-    /*
+      
       =========================
       ADD TASK
       =========================
