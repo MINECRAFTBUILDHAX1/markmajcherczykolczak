@@ -1,0 +1,392 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Mark Majcherczyk-Olczak — Founder & Creative Director</title>
+
+  <meta name="description" content="Learn about Mark Majcherczyk-Olczak, London-based filmmaker, VFX artist, and Founder & Creative Director of Majcherczyk Digital.">
+  <meta name="keywords" content="Mark Majcherczyk-Olczak, Mark Majcherczyk Olczak, Majcherczyk Digital, Founder, Creative Director, filmmaker, London filmmaker, British filmmaker, independent filmmaker, film producer, VFX artist, VFX compositor, visual effects artist, filmmaking, film production, independent film, creative technology, visual storytelling, Project Nova, #NotHer, post-production, digital filmmaking">
+  <meta name="author" content="Mark Majcherczyk-Olczak">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://markmajcherczykolczak.com/about">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Mark Majcherczyk-Olczak">
+  <meta property="og:description" content="London-based filmmaker, VFX artist, and Founder & Creative Director of Majcherczyk Digital.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://markmajcherczykolczak.com/about">
+  <meta property="og:image" content="https://markmajcherczykolczak.com/og-image.png">
+  <meta property="og:site_name" content="Mark Majcherczyk-Olczak">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #050505;
+      --white: #f5f5f3;
+      --muted: #a4a4a0;
+      --line: rgba(245, 245, 243, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--black);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+      padding: 42px 48px 45px;
+    }
+
+    /* HEADER */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .back {
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--white);
+    }
+
+    /* INTRO */
+
+    .intro {
+      padding: 95px 0 90px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+    }
+
+    .intro-text {
+      max-width: 650px;
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 70px;
+      padding: 75px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding-top: 7px;
+    }
+
+    .section-content {
+      max-width: 650px;
+    }
+
+    .section-content p {
+      color: #d0d0cc;
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-content em {
+      color: var(--white);
+    }
+
+    /* CLOSING */
+
+    .closing {
+      padding: 90px 0 70px;
+    }
+
+    .closing h2 {
+      max-width: 800px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+    }
+
+    .closing p {
+      max-width: 600px;
+      margin-top: 30px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: #686864;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 25px 22px 35px;
+      }
+
+      .intro {
+        padding: 65px 0 60px;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 55px 0;
+      }
+
+      .section-label {
+        padding-top: 0;
+      }
+
+      .closing {
+        padding: 65px 0 55px;
+      }
+
+      .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="header">
+      <a href="/" class="logo">MMO</a>
+      <a href="/" class="back">Back to home</a>
+    </header>
+
+    <main>
+
+      <section class="intro">
+        <p class="eyebrow">About</p>
+
+        <h1>
+          Mark<br>
+          Majcherczyk-Olczak
+        </h1>
+
+        <p class="intro-text">
+          Mark Majcherczyk-Olczak is a London-based filmmaker, visual effects artist,
+          and Founder & Creative Director of Majcherczyk Digital, an independent
+          production company developing original film, television, and digital content.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-label">The Work</div>
+
+        <div class="section-content">
+          <p>
+            Working across development, production, and post-production, Mark combines
+            storytelling with visual effects and creative technology to bring original
+            projects from the page to the screen.
+          </p>
+
+          <p>
+            His interests span a variety of genres and forms, with a focus on creating
+            distinctive stories and visual worlds. While visual effects remain an
+            important part of his creative skill set, filmmaking and storytelling sit
+            at the centre of his work.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Original Work</div>
+
+        <div class="section-content">
+          <p>
+            Mark is best known for <em>Project Nova</em> (2025), an original animated
+            feature project, and <em>#NotHer</em> (2027), an upcoming live-action
+            feature film.
+          </p>
+
+          <p>
+            Through his work, he continues to develop original films and television
+            projects while building the creative relationships and production
+            foundations needed to bring them to life.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Before Majcherczyk Digital</div>
+
+        <div class="section-content">
+          <p>
+            Mark's creative journey began in 2025 with a focus on building and selling
+            websites, developing an early foundation in digital creation and
+            entrepreneurship.
+          </p>
+
+          <p>
+            During the same period, he returned to Blender for the first time since
+            around the age of twelve. Revisiting 3D and digital filmmaking reignited
+            his interest in visual effects, animation, and creating cinematic worlds.
+          </p>
+
+          <p>
+            After producing several short films, he began developing <em>Project Nova</em>,
+            an ambitious original animated feature project. The experience became an
+            important step toward his wider filmmaking ambitions and eventually led
+            toward the development of Majcherczyk Digital.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Majcherczyk Digital</div>
+
+        <div class="section-content">
+          <p>
+            Mark founded Majcherczyk Digital to create a place where filmmakers,
+            artists, and other creatives can come together to build something great.
+          </p>
+
+          <p>
+            As Founder & Creative Director, he works across the company's creative
+            direction and original projects, bringing people and ideas together across
+            development, production, and post-production.
+          </p>
+
+          <p>
+            The long-term vision is to build Majcherczyk Digital into an independent
+            production company capable of developing original work across film,
+            television, and digital media.
+          </p>
+        </div>
+      </section>
+
+      <section class="closing">
+        <h2>
+          From an idea on the page<br>
+          to something on the screen.
+        </h2>
+
+        <p>
+          Mark continues to develop original projects, collaborate with emerging
+          creative talent, and build the foundations for a long-term independent
+          production company.
+        </p>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Majcherczyk Digital Ltd. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/markmajcherczykolczak/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/markmajcherczykolczak/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.imdb.com/name/nm17548614/" target="_blank" rel="noopener noreferrer">IMDb</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+```
