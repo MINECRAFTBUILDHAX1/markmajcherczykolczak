@@ -186,13 +186,14 @@
 
     /* PHOTO */
 
+  
     .portrait {
+      position: relative;
       justify-self: end;
       width: min(430px, 100%);
       aspect-ratio: 4 / 5;
-      overflow: hidden;
+      overflow: visible;
     }
-
     .portrait img {
       display: block;
       width: 100%;
@@ -318,6 +319,57 @@
         padding-top: 15px;
       }
     }
+
+
+          /* EDITORIAL PHOTO TAPE */
+      
+      .portrait {
+        position: relative;
+      }
+      
+      .photo-tape {
+        position: absolute;
+        width: 105px;
+        height: 25px;
+        background: rgba(235, 233, 224, 0.88);
+        top: 17px;
+        right: -27px;
+        transform: rotate(7deg);
+        z-index: 3;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        opacity: 0.92;
+      }
+      
+      /* Slightly softer tape edges */
+      
+      .photo-tape::before,
+      .photo-tape::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 7px;
+        height: 100%;
+        background: rgba(220, 218, 208, 0.45);
+      }
+      
+      .photo-tape::before {
+        left: 0;
+      }
+      
+      .photo-tape::after {
+        right: 0;
+      }
+      
+      /* MOBILE */
+      
+      @media (max-width: 520px) {
+        .photo-tape {
+          width: 85px;
+          height: 21px;
+          top: 13px;
+          right: -20px;
+        }
+      }
   </style>
 </head>
 
@@ -358,13 +410,14 @@
 
         </div>
 
-        <div class="portrait">
-          <img
-            src="mark_headshot_closeup.jpeg"
-            alt="Mark Majcherczyk-Olczak"
-          >
-        </div>
-
+          <div class="portrait">
+            <img
+              src="mark_headshot_closeup.jpeg"
+              alt="Mark Majcherczyk-Olczak"
+            >
+            <span class="photo-tape"></span>
+          </div>
+  
       </section>
 
       <div class="bottom">
