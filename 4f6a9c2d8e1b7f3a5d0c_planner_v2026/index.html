@@ -110,12 +110,12 @@
 
     </main>
 
-    <!-- SEPTEMBER GOALS -->
+    <!-- OCTOBER GOALS -->
 
     <aside class="goals-card">
 
       <div class="goals-title-row">
-        <h2 class="goals-title">September Goals</h2>
+        <h2 class="goals-title">October Goals</h2>
         <span class="goals-year">2026</span>
       </div>
 
@@ -135,7 +135,7 @@
       <div id="goalsList"></div>
 
       <div class="goals-complete" id="goalsComplete">
-        🎉 September goals complete!
+        🎉 October goals complete!
       </div>
 
     </aside>
@@ -184,65 +184,55 @@
 
     /*
       =========================
-      SEPTEMBER 2026 GOALS
+      OCTOBER 2026 GOALS
       =========================
     */
 
-    const septemberGoals = [
+    const octoberGoals = [
       {
-        id: "nother-script",
-        text: "Finish and LOCK the #NotHer script",
+        id: "nother-financing",
+        text: "SECURE financing for #NotHer by 31 October — active pitching, investor outreach, meetings and follow-ups",
         category: "#NotHer"
       },
       {
-        id: "nother-deck",
-        text: "LOCK the #NotHer pitch deck + complete the full pitching package",
+        id: "nother-executive-producer",
+        text: "Find and ATTACH an Executive Producer to #NotHer",
         category: "#NotHer"
       },
       {
-        id: "nother-pitching",
-        text: "Begin active #NotHer pitching — outreach, submissions and meetings",
+        id: "nother-distribution",
+        text: "Secure a distribution / sales relationship for #NotHer, including exploring theatrical and international distribution",
         category: "#NotHer"
       },
       {
-        id: "struggles-draft",
-        text: "Complete the FIRST DRAFT of The Struggles of Others",
-        category: "The Struggles of Others"
-      },
-      {
-        id: "struggles-casting",
-        text: "FINISH casting for The Struggles of Others",
-        category: "The Struggles of Others"
-      },
-      {
-        id: "pickup-guy",
-        text: "FINISH the Pickup Guy story treatment + prepare for an early-development announcement",
-        category: "Pickup Guy"
-      },
-      {
-        id: "minotaur",
-        text: "Develop The Minotaur from concept → full story outline + begin treatment",
-        category: "The Minotaur"
-      },
-      {
-        id: "talent-creators",
+        id: "talent-opportunity",
         text: "LAND at least ONE paid or credited opportunity for Majcherczyk Talent",
         category: "Talent"
       },
       {
-        id: "producer",
-        text: "Find and establish a relationship with ONE talented early-career producer for future Majcherczyk Digital projects",
-        category: "Team / Partnerships"
+        id: "industry-publication",
+        text: "Get Majcherczyk Digital FEATURED in an industry publication",
+        category: "Publicity"
       },
       {
-        id: "george",
-        text: "Bring George fully into the Majcherczyk Digital workflow as Head of Music, while giving him hands-on experience across production, casting, outreach, story development and Google Workspace",
-        category: "Team / Development"
+        id: "us-relationship",
+        text: "Establish a meaningful US industry relationship for Majcherczyk Digital",
+        category: "Industry / Partnerships"
+      },
+      {
+        id: "us-contacts",
+        text: "Establish 3 meaningful new US industry contacts across financing, production, distribution, talent or filmmaking",
+        category: "Industry / Partnerships"
+      },
+      {
+        id: "press-outreach",
+        text: "Conduct 3–5 targeted industry press / outreach pitches to support the Majcherczyk Digital publication goal",
+        category: "Publicity"
       }
     ];
 
     let completedGoals =
-      JSON.parse(localStorage.getItem("septemberGoals2026")) || {};
+      JSON.parse(localStorage.getItem("octoberGoals2026")) || {};
 
     /*
       =========================
@@ -366,23 +356,23 @@
 
     /*
       =========================
-      SEPTEMBER GOAL PROGRESS
+      OCTOBER GOAL PROGRESS
       =========================
     */
 
     function saveGoals() {
       localStorage.setItem(
-        "septemberGoals2026",
+        "octoberGoals2026",
         JSON.stringify(completedGoals)
       );
     }
 
     function updateGoalsProgress() {
 
-      const total = septemberGoals.length;
+      const total = octoberGoals.length;
 
       const completed =
-        septemberGoals.filter(goal =>
+        octoberGoals.filter(goal =>
           completedGoals[goal.id]
         ).length;
 
@@ -405,7 +395,7 @@
 
       goalsList.innerHTML = "";
 
-      septemberGoals.forEach(goal => {
+      octoberGoals.forEach(goal => {
 
         const goalElement =
           document.createElement("div");
