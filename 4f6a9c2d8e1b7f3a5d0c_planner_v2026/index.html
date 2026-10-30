@@ -182,7 +182,7 @@
     let deletedIndex = null;
     let undoTimeout = null;
 
- 
+    /*
       =========================
       NOVEMBER 2026 GOALS
       =========================
@@ -366,23 +366,23 @@
 
     /*
       =========================
-      OCTOBER GOAL PROGRESS
+      NOVEMBER GOAL PROGRESS
       =========================
     */
 
     function saveGoals() {
       localStorage.setItem(
-        "octoberGoals2026",
+        "novemberGoals2026",
         JSON.stringify(completedGoals)
       );
     }
 
     function updateGoalsProgress() {
 
-      const total = octoberGoals.length;
+      const total = novemberGoals.length;
 
       const completed =
-        octoberGoals.filter(goal =>
+        novemberGoals.filter(goal =>
           completedGoals[goal.id]
         ).length;
 
@@ -405,7 +405,7 @@
 
       goalsList.innerHTML = "";
 
-      octoberGoals.forEach(goal => {
+      novemberGoals.forEach(goal => {
 
         const goalElement =
           document.createElement("div");
