@@ -182,57 +182,67 @@
     let deletedIndex = null;
     let undoTimeout = null;
 
-    /*
+ 
       =========================
-      OCTOBER 2026 GOALS
+      NOVEMBER 2026 GOALS
       =========================
     */
-
-    const octoberGoals = [
+    
+    const novemberGoals = [
       {
-        id: "nother-financing",
-        text: "SECURE financing for #NotHer by 31 October — active pitching, investor outreach, meetings and follow-ups",
+        id: "nother-ready",
+        text: "Get #NotHer READY for its planned early 2027 shoot",
         category: "#NotHer"
       },
       {
-        id: "nother-executive-producer",
-        text: "Find and ATTACH an Executive Producer to #NotHer",
-        category: "#NotHer"
+        id: "struggles-team",
+        text: "ATTACH a director and producer to Struggles of Others",
+        category: "Filmmaking"
       },
       {
-        id: "nother-distribution",
-        text: "Secure a distribution / sales relationship for #NotHer, including exploring theatrical and international distribution",
-        category: "#NotHer"
+        id: "pickup-guy-script",
+        text: "Begin WRITING the Pickup Guy screenplay",
+        category: "Development"
       },
       {
-        id: "talent-opportunity",
-        text: "LAND at least ONE paid or credited opportunity for Majcherczyk Talent",
-        category: "Talent"
-      },
-      {
-        id: "industry-publication",
-        text: "Get Majcherczyk Digital FEATURED in an industry publication",
+        id: "linkedin-activity",
+        text: "Increase LinkedIn activity on both my personal profile and the Majcherczyk Digital company page",
         category: "Publicity"
       },
       {
-        id: "us-relationship",
-        text: "Establish a meaningful US industry relationship for Majcherczyk Digital",
-        category: "Industry / Partnerships"
+        id: "nfts-placement",
+        text: "ATTEND and COMPLETE the NFTS placement",
+        category: "Career"
       },
       {
-        id: "us-contacts",
-        text: "Establish 3 meaningful new US industry contacts across financing, production, distribution, talent or filmmaking",
-        category: "Industry / Partnerships"
+        id: "driving",
+        text: "START learning to drive",
+        category: "Personal"
       },
       {
-        id: "press-outreach",
-        text: "Conduct 3–5 targeted industry press / outreach pitches to support the Majcherczyk Digital publication goal",
-        category: "Publicity"
+        id: "friendships",
+        text: "Build genuine friendships, both online and in person",
+        category: "Personal"
+      },
+      {
+        id: "sessions-ep",
+        text: "FINISH and RELEASE the Sessions EP",
+        category: "Music"
+      },
+      {
+        id: "solo-tube",
+        text: "Take the London Underground somewhere independently",
+        category: "Independence"
+      },
+      {
+        id: "digital-declutter",
+        text: "Continue simplifying and decluttering my digital life",
+        category: "Personal"
       }
     ];
-
+    
     let completedGoals =
-      JSON.parse(localStorage.getItem("octoberGoals2026")) || {};
+      JSON.parse(localStorage.getItem("novemberGoals2026")) || {};
 
     /*
       =========================
